@@ -1,96 +1,16 @@
-import { Col, Divider, List, Row, Space } from 'antd';
+import { Col, List, Row } from 'antd';
 import Title from 'antd/es/typography/Title';
 import React, { useState } from 'react';
-
-interface IDataType {
-  title: string;
-  date: string;
-}
+import { posts } from '../data';
+import Paragraph from 'antd/es/typography/Paragraph';
+import LinkUi from '../ui/link';
+import { IDataType } from './props';
 
 const NoticiasView: React.FC = () => {
   const [data, setData] = useState<IDataType[]>();
 
   const fetchData = () => {
-    const data = new Date().toLocaleDateString('pt-BR', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric'
-    });
-
-    setData([
-      {
-        title: 'Noticia ' + Math.random().toString(),
-        date: data
-      },
-      {
-        title: 'Noticia ' + Math.random().toString(),
-        date: data
-      },
-      {
-        title: 'Noticia ' + Math.random().toString(),
-        date: data
-      },
-      {
-        title: 'Noticia ' + Math.random().toString(),
-        date: data
-      },
-      {
-        title: 'Noticia ' + Math.random().toString(),
-        date: data
-      },
-      {
-        title: 'Noticia ' + Math.random().toString(),
-        date: data
-      },
-      {
-        title: 'Noticia ' + Math.random().toString(),
-        date: data
-      },
-      {
-        title: 'Noticia ' + Math.random().toString(),
-        date: data
-      },
-      {
-        title: 'Noticia ' + Math.random().toString(),
-        date: data
-      },
-      {
-        title: 'Noticia ' + Math.random().toString(),
-        date: data
-      },
-      {
-        title: 'Noticia ' + Math.random().toString(),
-        date: data
-      },
-      {
-        title: 'Noticia ' + Math.random().toString(),
-        date: data
-      },
-      {
-        title: 'Noticia ' + Math.random().toString(),
-        date: data
-      },
-      {
-        title: 'Noticia ' + Math.random().toString(),
-        date: data
-      },
-      {
-        title: 'Noticia ' + Math.random().toString(),
-        date: data
-      },
-      {
-        title: 'Noticia ' + Math.random().toString(),
-        date: data
-      },
-      {
-        title: 'Noticia ' + Math.random().toString(),
-        date: data
-      },
-      {
-        title: 'Noticia ' + Math.random().toString(),
-        date: data
-      }
-    ])
+    setData(posts)
   }
 
   React.useEffect(() => {
@@ -106,7 +26,11 @@ const NoticiasView: React.FC = () => {
           <List.Item style={{}}>
             <Row justify="space-between" style={{ display: 'flex', flex: 1 }}>
               <Col span={18}>
-                {item.title}
+                <Paragraph>
+                  <LinkUi url={'https://ant.design/docs/react/introduce#links'}>
+                    {item.title}
+                  </LinkUi>
+                </Paragraph>
               </Col>
               <Col>
                 {item.date}

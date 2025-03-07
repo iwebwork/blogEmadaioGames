@@ -2,12 +2,13 @@ import React, { PropsWithChildren } from 'react';
 import { Layout } from 'antd';
 import MenuUi from './menu';
 import Title from 'antd/es/typography/Title';
+import { ILayoutUi } from './props';
 
 const { Header, Footer, Sider, Content } = Layout;
 
 const headerStyle: React.CSSProperties = {
   textAlign: 'center',
-  backgroundColor: '#ddd'
+  backgroundColor: '#fff'
 };
 
 const contentStyle: React.CSSProperties = {
@@ -35,9 +36,6 @@ const layoutStyle: React.CSSProperties = {
 const layoutStyleContent: React.CSSProperties = {
 };
 
-interface ILayoutUi extends PropsWithChildren {
-}
-
 const LayoutViewUi: React.FC<ILayoutUi> = (props) => {
   const { children } = props;
 
@@ -54,9 +52,7 @@ const LayoutViewUi: React.FC<ILayoutUi> = (props) => {
         </Sider>
 
         <Content style={contentStyle}>
-          <div style={{}}>
-            {children}
-          </div>
+          {children}
         </Content>
 
         <Sider width="25%" style={siderStyle}>

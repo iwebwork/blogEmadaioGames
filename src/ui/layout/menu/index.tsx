@@ -1,9 +1,7 @@
 import { Col, Menu, MenuProps, Row } from "antd";
-import { MailOutlined } from '@ant-design/icons';
+import { TMenuItem } from "./props";
 
-type MenuItem = Required<MenuProps>['items'][number];
-
-const items: MenuItem[] = [
+const items: TMenuItem[] = [
   {
     label: 'Noticias',
     key: 'noticias',
@@ -13,12 +11,13 @@ const items: MenuItem[] = [
 const MenuUi: React.FC = () => {
 
   return (
-    <Row justify={"space-between"}>
-      <Col>Logo</Col>
+    <Row justify={"space-between"} style={{}}>
+      <Col style={{}}>Logo</Col>
       <Col>
-        <Menu mode="horizontal" items={items} />
+        <Menu style={{}} mode="horizontal" items={items} />
       </Col>
-    </Row>
+      <Col></Col>
+    </Row >
 
   );
 };
