@@ -5,40 +5,9 @@ import Title from 'antd/es/typography/Title';
 import { ILayoutUi } from './props';
 import Pallet from './colorsPalette';
 import SiderLayout from './sider';
+import { layoutStyle, headerStyle, layoutStyleContent, contentStyle, footerStyle } from './styles';
 
 const { Header, Footer, Content } = Layout;
-
-const headerStyle: React.CSSProperties = {
-  textAlign: 'center',
-  position: 'sticky',
-  top: 0,
-  zIndex: 1,
-  width: '100%',
-  backgroundColor: Pallet.BackGround.principal
-};
-
-const contentStyle: React.CSSProperties = {
-  flex: 1,
-  textAlign: 'center',
-};
-
-const footerStyle: React.CSSProperties = {
-  display: 'flex',
-  justifyContent: 'center',
-  backgroundColor: Pallet.BackGround.principal
-};
-
-const layoutStyle: React.CSSProperties = {
-  display: 'flex',
-  flexDirection: 'column',
-  minHeight: '100vh',
-};
-
-const layoutStyleContent: React.CSSProperties = {
-  display: 'flex',
-  backgroundColor: Pallet.BackGround.secundaria,
-  color: Pallet.Typography.principal,
-};
 
 const LayoutViewUi: React.FC<ILayoutUi> = (props) => {
   const { children, SiderChildrenLeft, SiderChildrenRight } = props;

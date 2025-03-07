@@ -23,6 +23,7 @@ const MenuUi: React.FC = () => {
     }}>
       <Col style={{}}>Logo</Col>
       <Col>
+
         <Menu style={{
           backgroundColor: Pallet.BackGround.principal
         }}

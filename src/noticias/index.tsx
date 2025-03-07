@@ -1,4 +1,4 @@
-import { Col, List, Row } from 'antd';
+import { Col, List, Row, Space } from 'antd';
 import Title from 'antd/es/typography/Title';
 import React, { useState } from 'react';
 import { posts } from '../data';
@@ -19,7 +19,10 @@ const NoticiasView: React.FC = () => {
   }, [])
 
   return (
-    <>
+    <div style={{
+      marginLeft: 40,
+      marginRight: 40
+    }}>
       <List
         header={<Title style={{ color: Pallet.Typography.principal }}>Lista de Noticias</Title>}
         dataSource={data}
@@ -43,7 +46,7 @@ const NoticiasView: React.FC = () => {
         )}
       />
 
-    </>
+    </div>
   )
 }
 

@@ -11,75 +11,75 @@ interface IData {
 
 export const posts : IData[] = [
       {
-        title: `Noticia BLOBLBOLBOBOLBOBODOSDPOFPDFPSDFLSDPFSDPFSDPFPSDPFSPDKFPSPDFKPSDPFKSDPFKPSDKSDKF ` + Math.random().toString(),
+        title: `O vento sopra suave, folhas dançam, a tarde se despede, estrelas logo brilharão. ${Math.random().toString()}`,
         date: data
       },
       {
-        title: `Noticia BLOBLBOLBOBOLBOBODOSDPOFPDFPSDFLSDPFSDPFSDPFPSDPFSPDKFPSPDFKPSDPFKSDPFKPSDKSDKF ` + Math.random().toString(),
+        title: `O vento sopra suave, folhas dançam, a tarde se despede, estrelas logo brilharão. ${Math.random().toString()}`,
         date: data
       },
       {
-        title: `Noticia ` + Math.random().toString(),
+        title: `O vento sopra suave, folhas dançam, a tarde se despede, estrelas logo brilharão. ${Math.random().toString()}`,
         date: data
       },
       {
-        title: `Noticia ` + Math.random().toString(),
+        title: `O vento sopra suave, folhas dançam, a tarde se despede, estrelas logo brilharão. ${Math.random().toString()}`,
         date: data
       },
       {
-        title: `Noticia ` + Math.random().toString(),
+        title: `O vento sopra suave, folhas dançam, a tarde se despede, estrelas logo brilharão. ${Math.random().toString()}`,
         date: data
       },
       {
-        title: `Noticia ` + Math.random().toString(),
+        title: `O vento sopra suave, folhas dançam, a tarde se despede, estrelas logo brilharão. ${Math.random().toString()}`,
         date: data
       },
       {
-        title: `Noticia ` + Math.random().toString(),
+        title: `O vento sopra suave, folhas dançam, a tarde se despede, estrelas logo brilharão. ${Math.random().toString()}`,
         date: data
       },
       {
-        title: `Noticia ` + Math.random().toString(),
+        title: `O vento sopra suave, folhas dançam, a tarde se despede, estrelas logo brilharão. ${Math.random().toString()}`,
         date: data
       },
       {
-        title: `Noticia ` + Math.random().toString(),
+        title: `O vento sopra suave, folhas dançam, a tarde se despede, estrelas logo brilharão. ${Math.random().toString()}`,
         date: data
       },
       {
-        title: `Noticia ` + Math.random().toString(),
+        title: `O vento sopra suave, folhas dançam, a tarde se despede, estrelas logo brilharão. ${Math.random().toString()}`,
         date: data
       },
       {
-        title: `Noticia ` + Math.random().toString(),
+        title: `O vento sopra suave, folhas dançam, a tarde se despede, estrelas logo brilharão. ${Math.random().toString()}`,
         date: data
       },
       {
-        title: `Noticia ` + Math.random().toString(),
+        title: `O vento sopra suave, folhas dançam, a tarde se despede, estrelas logo brilharão. ${Math.random().toString()}`,
         date: data
       },
       {
-        title: `Noticia ` + Math.random().toString(),
+        title: `O vento sopra suave, folhas dançam, a tarde se despede, estrelas logo brilharão. ${Math.random().toString()}`,
         date: data
       },
       {
-        title: `Noticia ` + Math.random().toString(),
+        title: `O vento sopra suave, folhas dançam, a tarde se despede, estrelas logo brilharão. ${Math.random().toString()}`,
         date: data
       },
       {
-        title: `Noticia ` + Math.random().toString(),
+        title: `O vento sopra suave, folhas dançam, a tarde se despede, estrelas logo brilharão. ${Math.random().toString()}`,
         date: data
       },
       {
-        title: `Noticia ` + Math.random().toString(),
+        title: `O vento sopra suave, folhas dançam, a tarde se despede, estrelas logo brilharão. ${Math.random().toString()}`,
         date: data
       },
       {
-        title: `Noticia ` + Math.random().toString(),
+        title: `O vento sopra suave, folhas dançam, a tarde se despede, estrelas logo brilharão. ${Math.random().toString()}`,
         date: data
       },
       {
-        title: `Noticia ` + Math.random().toString(),
+        title: `O vento sopra suave, folhas dançam, a tarde se despede, estrelas logo brilharão. ${Math.random().toString()}`,
         date: data
       }
 ]
