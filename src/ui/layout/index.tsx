@@ -1,23 +1,19 @@
-import React from 'react';
 import { Layout } from 'antd';
-import MenuUi from './menu';
 import Title from 'antd/es/typography/Title';
-import { ILayoutUi } from './props';
+import React from 'react';
 import Pallet from './colorsPalette';
+import MenuUi from './menu';
+import { ILayoutUi } from './props';
 import SiderLayout from './sider';
-import { layoutStyle, headerStyle, layoutStyleContent, contentStyle, footerStyle } from './styles';
+import { contentStyle, footerStyle, layoutStyle, layoutStyleContent } from './styles';
 
-const { Header, Footer, Content } = Layout;
+const { Footer, Content } = Layout;
 
-const LayoutViewUi: React.FC<ILayoutUi> = (props) => {
-  const { children, SiderChildrenLeft, SiderChildrenRight } = props;
+const LayoutViewUi: React.FC<ILayoutUi> = ({ children, SiderChildrenLeft, SiderChildrenRight }) => {
 
   return (
     <Layout style={layoutStyle}>
-
-      <Header style={headerStyle}>
-        <MenuUi />
-      </Header>
+      <MenuUi />
 
       <Layout style={layoutStyleContent}>
         {SiderChildrenLeft &&
@@ -25,9 +21,13 @@ const LayoutViewUi: React.FC<ILayoutUi> = (props) => {
             {SiderChildrenLeft}
           </SiderLayout>}
 
-        <Content style={contentStyle}>
-          {children}
-        </Content>
+        <Layout style={contentStyle}>
+          {children &&
+            <Content>
+              {children}
+            </Content>}
+        </Layout>
+
 
         {SiderChildrenRight &&
           <SiderLayout>

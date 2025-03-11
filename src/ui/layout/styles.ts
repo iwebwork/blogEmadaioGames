@@ -1,17 +1,20 @@
 import Pallet from "./colorsPalette";
 
 export const headerStyle: React.CSSProperties = {
-  textAlign: 'center',
   position: 'sticky',
   top: 0,
   zIndex: 1,
   width: '100%',
+  display: 'flex',
+  alignItems: 'center',
   backgroundColor: Pallet.BackGround.principal
 };
 
 export const contentStyle: React.CSSProperties = {
-  flex: 1,
-  textAlign: 'center',
+  marginTop: 20,
+  marginBottom: 20,
+  marginRight: 20,
+  marginLeft: 20
 };
 
 export const footerStyle: React.CSSProperties = {

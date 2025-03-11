@@ -1,39 +1,40 @@
-import { Button, Col, Menu, Row } from "antd";
-import { TMenuItem } from "./props";
+import { Col, Menu, Row } from "antd";
 import Pallet from "../colorsPalette";
-import { useState } from "react";
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-} from '@ant-design/icons'
+import { TMenuItem } from "./props";
+import { Image } from "antd";
 
 const items: TMenuItem[] = [
   {
+    key: '1',
     label: 'Noticias',
-    key: 'noticias',
     style: { color: Pallet.Typography.secundaria }
   }
 ];
 
 const MenuUi: React.FC = () => {
   return (
-    <Row justify={"space-between"} style={{
+    <Row align={'middle'} justify={"space-around"} style={{
       backgroundColor: Pallet.BackGround.principal,
       color: Pallet.Typography.secundaria,
+      minHeight: 60
     }}>
-      <Col style={{}}>Logo</Col>
       <Col>
-
-        <Menu style={{
-          backgroundColor: Pallet.BackGround.principal
+        <Image style={{
+          height: 50,
         }}
-          mode="vertical"
-          items={items}
-          theme="dark" />
+          src="/logo.png"
+          preview={false}
+        />
       </Col>
+      <Menu style={{
+        backgroundColor: Pallet.BackGround.principal
+      }}
+        mode="horizontal"
+        items={items}
+        selectedKeys={[]}
+        theme="dark" />
       <Col></Col>
-    </Row >
-
+    </Row>
   );
 };
 
