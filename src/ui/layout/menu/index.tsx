@@ -1,14 +1,12 @@
-import { Button, Col, Drawer, DrawerProps, Flex, Menu, MenuTheme, RadioChangeEvent, Row } from "antd";
-import '@ant-design/v5-patch-for-react-19';
-import Pallet from "../colorsPalette";
-import { ITheme, TMenuItem } from "./props";
-import { Image } from "antd";
-import { useWindowSize } from "../hooks/window";
-import { useState } from "react";
-import React from "react";
 import { BarsOutlined } from "@ant-design/icons";
+import '@ant-design/v5-patch-for-react-19';
+import { Button, Col, Drawer, DrawerProps, Flex, Image, Menu, Row } from "antd";
+import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { urls } from "../../../data/communs";
+import Pallet from "../colorsPalette";
+import { useWindowSize } from "../hooks/window";
+import { ITheme, TMenuItem } from "./props";
 
 const MenuItens: React.FC<ITheme> = ({ theme, mode, backGroundColor }) => {
   const navigate = useNavigate();
@@ -40,7 +38,7 @@ const MenuUi: React.FC = () => {
   const [isWindow, setIsWindow] = useState(false);
 
   const [open, setOpen] = useState(false);
-  const [placement, setPlacement] = useState<DrawerProps['placement']>('top');
+  const [placement] = useState<DrawerProps['placement']>('top');
 
   React.useEffect(() => {
     setIsWindow(window.width >= 400);

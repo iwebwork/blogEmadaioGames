@@ -1,10 +1,9 @@
-import { Col, Flex, List, Row, Typography } from 'antd';
+import { Flex, List, Typography } from 'antd';
 import React, { useState } from 'react';
-import noticias from '../../data/noticias';
-import Pallet from '../../ui/layout/colorsPalette';
-import { ICorpo } from './props';
-import { IData } from '../../data/noticias/props';
 import { useNavigate } from 'react-router';
+import noticias from '../../data/noticias';
+import { IData } from '../../data/noticias/props';
+import Pallet from '../../ui/layout/colorsPalette';
 
 const { Link, Paragraph } = Typography;
 
