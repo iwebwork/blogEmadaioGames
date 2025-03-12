@@ -1,5 +1,6 @@
 export interface IData {
-  id: number;
+  id: string;
   title: string;
   date: string;
+  body?: string;
 }

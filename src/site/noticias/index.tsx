@@ -4,13 +4,20 @@ import noticias from '../../data/noticias';
 import Pallet from '../../ui/layout/colorsPalette';
 import { ICorpo } from './props';
 import { IData } from '../../data/noticias/props';
+import { useNavigate } from 'react-router';
 
 const { Link, Paragraph } = Typography;
 
-const Corpo: React.FC<ICorpo> = ({ title, date }) => {
+const Corpo: React.FC<IData> = (props) => {
+  const navigate = useNavigate();
+  const { id, title, date } = props;
+
   return (
-    <Flex wrap justify='center' gap="middle" style={{ display: 'flex', flex: 1 }}>
-      <Link underline style={{ color: Pallet.Typography.principal }} href={'https://ant.design/docs/react/introduce#links'} >
+    <Flex key={id} wrap justify='center' gap="middle" style={{ display: 'flex', flex: 1 }}>
+      <Link underline style={{ color: Pallet.Typography.principal }}
+        onClick={() => {
+          navigate(`/site/post/${id}`);
+        }} >
         {title}
       </Link>
       <Paragraph>
@@ -30,7 +37,7 @@ const NoticiasView: React.FC = () => {
         <List.Item style={{
           backgroundColor: Pallet.BackGround.secundaria
         }}>
-          <Corpo title={item.title} date={item.date} />
+          <Corpo id={item.id} title={item.title} date={item.date} />
         </List.Item>
       )}
     />

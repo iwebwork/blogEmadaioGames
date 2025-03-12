@@ -9,7 +9,7 @@ const App: React.FC = () => {
     <BrowserRouter>
       <Routes>
         <Route index path='/site/*' element={<SiteView />} />
-        <Route path='/*' element={<Navigate to={'/site'} />} />
+        <Route path='/*' element={<Navigate to={'/site/noticias'} />} />
       </Routes>
     </BrowserRouter>
   )

@@ -1,9 +1,5 @@
-export interface IDataType {
-  title: string;
-  date: string;
-}
-
 export interface ICorpo {
+  key: string;
   title: string,
   date: string
 }

@@ -2,6 +2,7 @@ import { Navigate, Route, Routes } from "react-router"
 import NoticiasView from "./noticias"
 import { Col, Row, Image } from "antd"
 import LayoutViewUi from "../ui/layout"
+import PostView from "./post"
 
 const Sider: React.FC = () => {
   return (
@@ -21,7 +22,8 @@ const SiteView: React.FC = () => {
     >
       <Routes>
         <Route index path='/noticias' element={<NoticiasView />} />
-        <Route index path='*' element={<Navigate to={'/site/noticias'} />} />
+        <Route path='/post/:id' element={<PostView />} />
+        <Route path='*' element={<Navigate to={'/site/noticias'} />} />
       </Routes>
     </LayoutViewUi>
   )
