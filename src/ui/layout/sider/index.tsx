@@ -18,7 +18,6 @@ const SiderLayout: React.FC<PropsWithChildren> = ({ children }) => {
     setIsWindow(window.width >= 800);
   }, [window.width])
 
-
   return (<>
     {isWindow ?
       <Sider width="20%" style={siderStyle} >

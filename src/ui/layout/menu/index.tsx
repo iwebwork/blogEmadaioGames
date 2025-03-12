@@ -7,15 +7,22 @@ import { useWindowSize } from "../hooks/window";
 import { useState } from "react";
 import React from "react";
 import { BarsOutlined } from "@ant-design/icons";
-
-const items: TMenuItem[] = [
-  {
-    key: '1',
-    label: 'Noticias'
-  }
-];
+import { useNavigate } from "react-router";
+import { urls } from "../../../data/communs";
 
 const MenuItens: React.FC<ITheme> = ({ theme, mode, backGroundColor }) => {
+  const navigate = useNavigate();
+
+  const items: TMenuItem[] = [
+    {
+      key: '1',
+      label: 'Noticias',
+      onClick: (eve) => {
+        navigate(urls[Number.parseInt(eve.key) - 1]);
+      }
+    }
+  ];
+
   return (
     <Menu style={{
       //backgroundColor: Pallet.BackGround.principal
