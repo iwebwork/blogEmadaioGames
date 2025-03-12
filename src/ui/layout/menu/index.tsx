@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { urls } from "../../../data/communs";
 import Pallet from "../colorsPalette";
-import { useWindowSize } from "../hooks/window";
+import { useWindowSize } from "../hooks";
 import { ITheme, TMenuItem } from "./props";
 
 const MenuItens: React.FC<ITheme> = ({ theme, mode, backGroundColor }) => {

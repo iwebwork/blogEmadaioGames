@@ -6,11 +6,6 @@ const date = new Date().toLocaleDateString(`pt-BR`, {
   year: `numeric`
 }); 
 
-// export const routsPosts = {
-//   primeiroPost: lazy(() => import('./../../site/noticias/posts/primeiroPost')),
-//   naoEncontrado: lazy(() => import('./../../site/noticias/posts/naoEncontrado'))
-// }
-
 export const routsPosts = (post: string) => {
   const component = lazy(() => import(`./../../site/noticias/posts/${post}`));
 

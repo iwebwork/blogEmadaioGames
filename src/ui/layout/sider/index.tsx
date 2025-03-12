@@ -2,7 +2,7 @@ import { Row } from "antd";
 import Sider from "antd/es/layout/Sider";
 import React, { PropsWithChildren, useState } from "react";
 import Pallet from "../colorsPalette";
-import { useWindowSize } from "../hooks/window";
+import { useWindowSize } from "../hooks";
 
 const siderStyle: React.CSSProperties = {
   marginTop: 20,
