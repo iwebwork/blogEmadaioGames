@@ -6,7 +6,7 @@ import PostView from "./post"
 
 const Sider: React.FC = () => {
   return (
-    <Flex vertical justify={'center'}>
+    <Flex justify={'center'}>
       <Col span={18}>
         < div id="container-03e4cb914ac639fadad951bcf7c1b7f2" />
       </Col>
@@ -18,6 +18,7 @@ const SiteView: React.FC = () => {
   return (
     <LayoutViewUi
       SiderChildrenRight={<Sider />}
+    // SiderChildrenLeft={<Sider />}
     >
       <Routes>
         <Route index path='/noticias' element={<NoticiasView />} />

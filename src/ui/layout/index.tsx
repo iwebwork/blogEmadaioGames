@@ -1,4 +1,4 @@
-import { Layout } from 'antd';
+import { Col, Flex, Layout } from 'antd';
 import Title from 'antd/es/typography/Title';
 import React from 'react';
 import Pallet from './colorsPalette';
@@ -27,10 +27,17 @@ const LayoutViewUi: React.FC<ILayoutUi> = ({ children, SiderChildrenLeft, SiderC
             </Content>}
         </Layout>
 
-        {(SiderChildrenLeft && process.env.NODE_ENV === 'production') &&
+        {(SiderChildrenRight && process.env.NODE_ENV === 'production') &&
           <SiderLayout>
             {SiderChildrenRight}
           </SiderLayout>}
+
+        {(process.env.NODE_ENV === 'production') &&
+          <Flex justify={'center'}>
+            <Col span={18}>
+              < div id="container-03e4cb914ac639fadad951bcf7c1b7f2" />
+            </Col>
+          </Flex >}
       </Layout>
 
       <Footer style={footerStyle}>

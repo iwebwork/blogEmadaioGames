@@ -1,4 +1,4 @@
-import { Row } from "antd";
+import { Flex, Row } from "antd";
 import Sider from "antd/es/layout/Sider";
 import React, { PropsWithChildren, useState } from "react";
 import Pallet from "../colorsPalette";
@@ -25,9 +25,10 @@ const SiderLayout: React.FC<PropsWithChildren> = ({ children }) => {
           {children}
         </Row >
       </Sider > :
-      <Row justify={"center"} style={{ display: 'flex', flex: 1, marginTop: 20, marginBottom: 20 }}>
+      <Flex justify={"center"} style={{ display: 'flex', flex: 1, marginTop: 20, marginBottom: 20 }}>
         {children}
-      </Row >}
+      </Flex >
+    }
   </>
 
   )
