@@ -1,9 +1,6 @@
 import React, { PropsWithChildren, useRef } from 'react';
 
-interface IAnuncio extends PropsWithChildren {
-}
-
-const Anuncio: React.FC<IAnuncio> = ({ children }) => {
+const Anuncio: React.FC<PropsWithChildren> = ({ children }) => {
   const botaoAnuncio = useRef<HTMLAnchorElement>(null);
 
   return (
