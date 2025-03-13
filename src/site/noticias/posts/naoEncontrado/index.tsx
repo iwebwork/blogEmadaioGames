@@ -1,7 +1,7 @@
 import React from "react";
 import PostUi from "../../../../ui/layout/post"
 
-const NaoContradoUi: React.FC = () => {
+const naoContradoUi: React.FC = () => {
   return (
     <PostUi>
       Post não foi encontrado
@@ -9,4 +9,4 @@ const NaoContradoUi: React.FC = () => {
   )
 }
 
-export default NaoContradoUi;
+export default naoContradoUi;

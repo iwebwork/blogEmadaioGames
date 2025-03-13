@@ -1,6 +1,16 @@
 import axios from "axios";
 import { IPost } from "./props";
 
+export const diretorioExiste = async(diretorio: string): Promise<boolean> => {
+  return axios.get(diretorio)
+    .then(() => {
+      return true;
+    })
+    .catch(() => {
+      return false;
+    });    
+}
+
 export const getNoticias = async (): Promise<IPost[]> => {
   const response = (await axios.get<IPost[]>('/data/noticias.json')).data;
   

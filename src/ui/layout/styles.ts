@@ -14,7 +14,8 @@ export const contentStyle: React.CSSProperties = {
   marginTop: 20,
   marginBottom: 20,
   marginRight: 20,
-  marginLeft: 20
+  marginLeft: 20,
+  backgroundColor: Pallet.BackGround.secundaria
 };
 
 export const footerStyle: React.CSSProperties = {
@@ -26,7 +27,7 @@ export const footerStyle: React.CSSProperties = {
 export const layoutStyle: React.CSSProperties = {
   display: 'flex',
   flexDirection: 'column',
-  minHeight: '100vh'
+  minHeight: '100vh',
 };
 
 export const layoutStyleContent: React.CSSProperties = {

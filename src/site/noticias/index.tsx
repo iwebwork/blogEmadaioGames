@@ -13,7 +13,8 @@ const Corpo: React.FC<IData> = (props) => {
 
   return (
     <Flex key={id} wrap justify='center' gap="middle" style={{ display: 'flex', flex: 1 }}>
-      <Link underline style={{ color: Pallet.Typography.principal }}
+      <Link underline
+        style={{ color: Pallet.Typography.principal }}
         onClick={() => {
           navigate(`/site/post/${id}`);
         }} >
@@ -46,9 +47,7 @@ const NoticiasView: React.FC = () => {
     <List
       dataSource={posts}
       renderItem={(item) => (
-        <List.Item style={{
-          backgroundColor: Pallet.BackGround.secundaria
-        }}>
+        <List.Item >
           <Corpo id={item.id} title={item.title} date={item.date} />
         </List.Item>
       )}
