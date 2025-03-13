@@ -1,7 +1,7 @@
-import { Row } from "antd";
+import { Row, Typography } from "antd";
 import React, { Suspense, useState } from "react";
 import { useParams } from "react-router";
-import noticias, { IPost, routsPosts } from "../../data/noticias";
+import noticias, { IPost, routsPostsNoticias } from "../../data/noticias";
 
 const PostView: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -14,7 +14,7 @@ const PostView: React.FC = () => {
       return;
   }, [id, posts]);
 
-  const Component = routsPosts(posts.find(post => post.id === id)?.post || "naoEncontrado");
+  const Component = routsPostsNoticias(posts.find(post => post.id === id)?.post || "naoEncontrado");
 
   return (
     <Suspense fallback={<Row>Carregando ....</Row>}>

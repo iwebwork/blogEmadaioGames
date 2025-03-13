@@ -6,7 +6,7 @@ const date = new Date().toLocaleDateString(`pt-BR`, {
   year: `numeric`
 }); 
 
-export const routsPosts = (post: string) => {
+export const routsPostsNoticias = (post: string) => {
   const component = lazy(() => import(`./../../site/noticias/posts/${post}`));
 
   return component;
@@ -28,21 +28,9 @@ const noticias: IPost[] = [
   },
   {
     id: '2',
-    post: '',
-    title: `O vento sopra suave, folhas dançam, a tarde se despede, estrelas logo brilharão.`,
-    date: date
-  },
-  {
-    id: '3',
-    post: '',
-    title: `O vento sopra suave, folhas dançam, a tarde se despede, estrelas logo brilharão.`,
-    date: date
-  },
-  {
-    id: '4',
-    post: '',
-    title: `O vento sopra suave, folhas dançam, a tarde se despede, estrelas logo brilharão.`,
-    date: date
+    post: 'forzaPS5',
+    title: `Preparem os motores! Forza Horizont 5,está prestes a acelerar no Playstation 5`,
+    date: '04/02/2025'
   }
 ];
 
