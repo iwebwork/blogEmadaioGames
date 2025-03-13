@@ -1,8 +1,8 @@
+import { Flex, Image, Row, Typography } from "antd";
 import React from "react";
-import PostUi from "../../../../ui/layout/post"
-import { Flex, Row, Space, Typography, Image } from "antd";
+import PostUi from "../../../../ui/layout/post";
 
-const { Text, Paragraph, Title } = Typography;
+const { Paragraph, Title } = Typography;
 
 const ForzaPS5Ui: React.FC = () => {
   return (
