@@ -2,38 +2,52 @@ import { BarsOutlined } from "@ant-design/icons";
 import '@ant-design/v5-patch-for-react-19';
 import { Button, Col, Drawer, DrawerProps, Flex, Image, Menu, Row } from "antd";
 import React, { useState } from "react";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from 'react-router';
+import Anuncio from "../../anuncio";
 import Pallet from "../colorsPalette";
 import { useWindowSize } from "../hooks";
-import { ITheme, TMenuItem } from "./props";
-
-const urls = [
-  '/site/noticias'
-]
+import { ITheme, TMenuItem, urls } from "./props";
 
 const MenuItens: React.FC<ITheme> = ({ theme, mode, backGroundColor }) => {
   const navigate = useNavigate();
-
   const items: TMenuItem[] = [
     {
       key: '1',
       label: 'Noticias',
+      style: {
+        color: Pallet.Typography.secundaria
+      },
       onClick: (eve) => {
-        navigate(urls[Number.parseInt(eve.key) - 1]);
+        navigate(urls[Number.parseInt(eve.key) - 1]); // Buscar a url
       }
     }
   ];
 
   return (
-    <Menu style={{
-      backgroundColor: backGroundColor
-    }}
-      mode={mode}
-      items={items}
-      selectedKeys={[]}
-      theme={theme} />
+    <Anuncio>
+      <Menu style={{
+        backgroundColor: backGroundColor
+      }}
+        mode={mode}
+        items={items}
+        selectedKeys={[]}
+        theme={theme} />
+    </Anuncio>
   )
 }
+
+const Logo = () => (
+  <Anuncio>
+    <Link to={'/'}>
+      <Image style={{
+        height: 50,
+      }}
+        src="/logo.png"
+        preview={false}
+      />
+    </Link>
+  </Anuncio>
+)
 
 const MenuUi: React.FC = () => {
   const window = useWindowSize();
@@ -63,12 +77,7 @@ const MenuUi: React.FC = () => {
           minHeight: 60
         }}>
           <Col>
-            <Image style={{
-              height: 50,
-            }}
-              src="/logo.png"
-              preview={false}
-            />
+            <Logo />
           </Col>
           <MenuItens
             mode="horizontal"
@@ -82,12 +91,7 @@ const MenuUi: React.FC = () => {
           color: Pallet.Typography.secundaria,
         }}>
           <Col>
-            <Image style={{
-              height: 50,
-            }}
-              src="/logo.png"
-              preview={false}
-            />
+            <Logo />
           </Col>
           <Col>
             <Button style={{

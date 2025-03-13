@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router';
 import { getNoticias } from '../../hooks/api';
 import { IData, IPost } from '../../hooks/api/props';
 import Pallet from '../../ui/layout/colorsPalette';
+import Anuncio from '../../ui/anuncio';
 
 const { Link, Paragraph } = Typography;
 
@@ -13,17 +14,22 @@ const Corpo: React.FC<IData> = (props) => {
 
   return (
     <Flex key={id} wrap justify='center' gap="middle" style={{ display: 'flex', flex: 1 }}>
-      <Link underline
-        style={{ color: Pallet.Typography.principal }}
-        onClick={() => {
-          navigate(`/site/post/${id}`);
-        }} >
-        {title}
-      </Link>
+      <Anuncio>
+        <Link
+          underline
+          style={{ color: Pallet.Typography.principal }
+          }
+          onClick={() => {
+            navigate(`/site/post/${id}`);
+          }} >
+          {title}
+        </Link >
+      </Anuncio>
       <Paragraph>
         {date}
       </Paragraph>
-    </Flex>
+
+    </Flex >
   )
 }
 
@@ -47,7 +53,7 @@ const NoticiasView: React.FC = () => {
     <List
       dataSource={posts}
       renderItem={(item) => (
-        <List.Item >
+        <List.Item>
           <Corpo id={item.id} title={item.title} date={item.date} />
         </List.Item>
       )}

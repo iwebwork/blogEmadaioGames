@@ -1,6 +1,6 @@
 import { Layout } from 'antd';
 import Title from 'antd/es/typography/Title';
-import React from 'react';
+import React, { useRef } from 'react';
 import Pallet from './colorsPalette';
 import MenuUi from './menu';
 import { ILayoutUi } from './props';
@@ -10,7 +10,6 @@ import { contentStyle, footerStyle, layoutStyle, layoutStyleContent } from './st
 const { Footer, Content } = Layout;
 
 const LayoutViewUi: React.FC<ILayoutUi> = ({ children, SiderChildrenLeft, SiderChildrenRight }) => {
-
   return (
     <Layout style={layoutStyle}>
       <MenuUi />
@@ -40,7 +39,6 @@ const LayoutViewUi: React.FC<ILayoutUi> = ({ children, SiderChildrenLeft, SiderC
           color: Pallet.Typography.secundaria
         }} level={3}>Todos os direitos reservados</Title>
       </Footer>
-
     </Layout>
   )
 }
