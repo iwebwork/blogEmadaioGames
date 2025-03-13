@@ -18,12 +18,12 @@ const Sider: React.FC = () => {
 const SiteView: React.FC = () => {
   return (
     <LayoutViewUi
-      SiderChildrenRight={<Sider />}
+    // SiderChildrenRight={<Sider />}
     >
       <Routes>
         <Route index path='/noticias' element={<NoticiasView />} />
         <Route path='/post/:id' element={<PostView />} />
-        <Route path='*' element={<Navigate to={'/site/noticias'} />} />
+        <Route path='*' element={<Navigate to={'/noticias'} />} />
       </Routes>
     </LayoutViewUi>
   )
