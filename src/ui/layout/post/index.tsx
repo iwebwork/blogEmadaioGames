@@ -1,6 +1,4 @@
-import { Flex } from "antd";
-import React from "react";
-import { PropsWithChildren } from "react"
+import React, { PropsWithChildren } from "react";
 import Pallet from "../colorsPalette";
 
 const PostUi: React.FC<PropsWithChildren> = ({ children }) => {

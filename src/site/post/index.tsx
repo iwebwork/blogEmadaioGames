@@ -1,4 +1,4 @@
-import { Row, Typography } from "antd";
+import { Row } from "antd";
 import React, { Suspense, useState } from "react";
 import { useParams } from "react-router";
 import noticias, { IPost, routsPostsNoticias } from "../../data/noticias";
