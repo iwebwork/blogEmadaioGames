@@ -7,13 +7,6 @@ const PostView: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [posts] = useState<IPost[]>(noticias);
 
-  React.useEffect(() => {
-    const value = posts.find(post => post.id === id);
-
-    if (!value)
-      return;
-  }, [id, posts]);
-
   const Component = routsPostsNoticias(posts.find(post => post.id === id)?.post || "naoEncontrado");
 
   return (
