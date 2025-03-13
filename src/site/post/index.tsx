@@ -1,14 +1,33 @@
 import { Flex, Spin } from "antd";
-import React, { Suspense, useState } from "react";
+import React, { lazy, Suspense, useState } from "react";
 import { useParams } from "react-router";
-import noticias, { IPost, routsPostsNoticias } from "../../data/noticias";
+import { selectNoticia } from "../../hooks/api";
+import { IPost } from "../../hooks/api/props";
+import { IComponent } from "./props";
 
-const PostView: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
-  const [posts] = useState<IPost[]>(noticias);
+const routsPostsNoticias = (post: string) => {
+  const component = lazy(() => import(`./../../site/noticias/posts/${post}`));
 
-  const Component =
-    routsPostsNoticias(posts.find(post => post.id === id)?.post || "naoEncontrado")
+  return component;
+}
+
+const Component: React.FC<IComponent> = ({ idPost }) => {
+  const [post, setPost] = useState<IPost>();
+
+  const fetchNoticia = async () => {
+    const result = await selectNoticia(idPost);
+
+    if (!result)
+      return;
+
+    setPost(result)
+  }
+
+  React.useEffect(() => {
+    fetchNoticia();
+  }, [])
+
+  const Component = routsPostsNoticias(post?.post || "naoEncontrado");
 
   return (
     <Suspense fallback={
@@ -20,6 +39,14 @@ const PostView: React.FC = () => {
     }>
       <Component />
     </Suspense>
+  )
+}
+
+const PostView: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
+
+  return (
+    <Component idPost={id || ""} />
   )
 }
 

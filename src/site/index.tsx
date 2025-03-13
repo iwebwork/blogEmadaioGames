@@ -1,7 +1,7 @@
+import { Col, Image, Row } from "antd"
 import { Navigate, Route, Routes } from "react-router"
-import NoticiasView from "./noticias"
-import { Col, Row, Image } from "antd"
 import LayoutViewUi from "../ui/layout"
+import NoticiasView from "./noticias"
 import PostView from "./post"
 
 const Sider: React.FC = () => {

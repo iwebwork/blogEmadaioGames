@@ -3,10 +3,13 @@ import '@ant-design/v5-patch-for-react-19';
 import { Button, Col, Drawer, DrawerProps, Flex, Image, Menu, Row } from "antd";
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
-import { urls } from "../../../data/communs";
 import Pallet from "../colorsPalette";
 import { useWindowSize } from "../hooks";
 import { ITheme, TMenuItem } from "./props";
+
+const urls = [
+  '/site/noticias'
+]
 
 const MenuItens: React.FC<ITheme> = ({ theme, mode, backGroundColor }) => {
   const navigate = useNavigate();
@@ -23,7 +26,6 @@ const MenuItens: React.FC<ITheme> = ({ theme, mode, backGroundColor }) => {
 
   return (
     <Menu style={{
-      //backgroundColor: Pallet.BackGround.principal
       backgroundColor: backGroundColor
     }}
       mode={mode}

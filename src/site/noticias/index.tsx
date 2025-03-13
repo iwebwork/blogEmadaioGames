@@ -1,8 +1,8 @@
 import { Flex, List, Typography } from 'antd';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
-import noticias from '../../data/noticias';
-import { IData } from '../../data/noticias/props';
+import { getNoticias } from '../../hooks/api';
+import { IData, IPost } from '../../hooks/api/props';
 import Pallet from '../../ui/layout/colorsPalette';
 
 const { Link, Paragraph } = Typography;
@@ -27,7 +27,20 @@ const Corpo: React.FC<IData> = (props) => {
 }
 
 const NoticiasView: React.FC = () => {
-  const [posts] = useState<IData[]>(noticias);
+  const [posts, setPosts] = useState<IPost[]>();
+
+  const fetchNoticias = async () => {
+    const result = await getNoticias();
+
+    if (!result)
+      return;
+
+    setPosts(result)
+  }
+
+  React.useEffect(() => {
+    fetchNoticias();
+  }, [])
 
   return (
     <List
