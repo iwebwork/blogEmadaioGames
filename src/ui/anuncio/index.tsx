@@ -17,9 +17,10 @@ const Anuncio: React.FC<IAnuncio> = ({ children }) => {
         {children}
       </div>
       <a ref={botaoAnuncio}
-        target='_blank'
+        rel="noreferrer"
+        target="_blank"
         hidden
-        href={'https://www.effectiveratecpm.com/bs3yvzg1?key=ab607eb16f9a5cf1c6b1dc5ee6bece67'}>Anuncio</a>
+        href={"https://www.effectiveratecpm.com/bs3yvzg1?key=ab607eb16f9a5cf1c6b1dc5ee6bece67"}>Anuncio</a>
     </>
   )
 }

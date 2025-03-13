@@ -1,6 +1,6 @@
 import { Layout } from 'antd';
 import Title from 'antd/es/typography/Title';
-import React, { useRef } from 'react';
+import React from 'react';
 import Pallet from './colorsPalette';
 import MenuUi from './menu';
 import { ILayoutUi } from './props';
@@ -15,7 +15,7 @@ const LayoutViewUi: React.FC<ILayoutUi> = ({ children, SiderChildrenLeft, SiderC
       <MenuUi />
 
       <Layout style={layoutStyleContent}>
-        {SiderChildrenLeft &&
+        {(SiderChildrenLeft && process.env.NODE_ENV === 'production') &&
           <SiderLayout>
             {SiderChildrenLeft}
           </SiderLayout>}
@@ -27,8 +27,7 @@ const LayoutViewUi: React.FC<ILayoutUi> = ({ children, SiderChildrenLeft, SiderC
             </Content>}
         </Layout>
 
-
-        {SiderChildrenRight &&
+        {(SiderChildrenLeft && process.env.NODE_ENV === 'production') &&
           <SiderLayout>
             {SiderChildrenRight}
           </SiderLayout>}
