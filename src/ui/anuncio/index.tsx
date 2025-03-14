@@ -6,10 +6,10 @@ const Anuncio: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <>
       <div onClick={() => {
-        //if (process.env.NODE_ENV === 'production')
-        botaoAnuncio.current?.click();
-        // else
-        //   console.log('aconteceu click e não vou exibir o anuncio pq estou programando');
+        if (process.env.NODE_ENV === 'production')
+          botaoAnuncio.current?.click();
+        else
+          console.log('aconteceu click e não vou exibir o anuncio pq estou programando');
       }}>
         {children}
       </div>
