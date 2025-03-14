@@ -19,8 +19,6 @@ export const contentStyle: React.CSSProperties = {
 };
 
 export const footerStyle: React.CSSProperties = {
-  display: 'flex',
-  justifyContent: 'center',
   backgroundColor: Pallet.BackGround.principal
 };
 

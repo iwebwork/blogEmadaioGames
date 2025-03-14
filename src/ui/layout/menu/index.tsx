@@ -1,6 +1,6 @@
-import { BarsOutlined } from "@ant-design/icons";
+import { BarsOutlined, YoutubeOutlined } from "@ant-design/icons";
 import '@ant-design/v5-patch-for-react-19';
-import { Button, Col, Drawer, DrawerProps, Flex, Image, Menu, Row } from "antd";
+import { Button, Col, Divider, Drawer, DrawerProps, Flex, Image, List, Menu, Popover, Row, Typography } from "antd";
 import React, { useState } from "react";
 import { Link, useNavigate } from 'react-router';
 import Anuncio from "../../anuncio";
@@ -8,6 +8,9 @@ import Pallet from "../colorsPalette";
 import { useWindowSize } from "../hooks";
 import { ITheme, TMenuItem } from "./props";
 import { getUrls } from "./constants";
+import { URL_YOUTUBE } from "../../../constants";
+
+const { Paragraph } = Typography;
 
 const MenuItens: React.FC<ITheme> = ({ theme, mode, backGroundColor, color }) => {
   const navigate = useNavigate();
@@ -71,6 +74,29 @@ const Logo = () => (
   </Anuncio>
 )
 
+export const ButtonYouTubeUi: React.FC = () => {
+  const onClickYouTube = () => {
+    window.open(URL_YOUTUBE, '_blank', 'noopener,noreferrer')
+  }
+
+  return (
+    <Anuncio>
+      <Popover content={'YouTube'} placement="right">
+        <Button style={{
+          height: 25,
+          width: 25,
+          backgroundColor: Pallet.Typography.terciaria,
+          borderColor: Pallet.Typography.secundaria
+        }}
+          variant="solid"
+          icon={<YoutubeOutlined />}
+          onClick={onClickYouTube}
+        />
+      </Popover>
+    </Anuncio>
+  )
+}
+
 const MenuUi: React.FC = () => {
   const window = useWindowSize();
   const [isWindow, setIsWindow] = useState(false);
@@ -103,7 +129,6 @@ const MenuUi: React.FC = () => {
             <Logo />
           </Col>
           <Col span={10} style={{
-            backgroundColor: 'red'
           }}>
             <MenuItens
               mode="horizontal"
@@ -112,7 +137,8 @@ const MenuUi: React.FC = () => {
               color={Pallet.Typography.principal}
             />
           </Col>
-          <Col span={1}></Col>
+          <Col span={1}>
+          </Col>
         </Row> :
         <Row align={"middle"} justify={"space-around"} style={{
           backgroundColor: Pallet.BackGround.principal,
@@ -144,8 +170,29 @@ const MenuUi: React.FC = () => {
           <MenuItens
             mode="vertical"
             theme={"light"}
-            color={Pallet.Typography.principal}
+            color={Pallet.Typography.secundaria}
           />
+          <Row>
+            <Anuncio>
+              <Flex vertical
+                style={{
+                  marginLeft: 5,
+                  marginTop: 15
+                }}>
+                Redes Socias
+                <Row style={{
+                  marginTop: 15
+                }}>
+                  <Link
+                    style={{ color: Pallet.Typography.secundaria }}
+                    to={URL_YOUTUBE}
+                    target="_blank">
+                    YouTube
+                  </Link >
+                </Row>
+              </Flex>
+            </Anuncio>
+          </Row>
         </Flex>
       </Drawer>
     </>
