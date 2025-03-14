@@ -25,7 +25,7 @@ const MenuItens: React.FC<ITheme> = ({ theme, mode, backGroundColor, color }) =>
       key: 'noticias',
       label: 'Noticias',
       style: {
-        color: color
+        color: color,
       },
       onClick: (eve) => {
         navigateMenu(eve.key);
@@ -51,7 +51,9 @@ const MenuItens: React.FC<ITheme> = ({ theme, mode, backGroundColor, color }) =>
         mode={mode}
         items={items}
         selectedKeys={[]}
-        theme={theme} />
+        theme={theme}
+
+      />
     </Anuncio>
   )
 }
@@ -100,10 +102,13 @@ const MenuUi: React.FC = () => {
           <Col span={6}>
             <Logo />
           </Col>
-          <Col span={10}>
+          <Col span={10} style={{
+            backgroundColor: 'red'
+          }}>
             <MenuItens
               mode="horizontal"
               theme={"dark"}
+              backGroundColor={Pallet.Typography.principal}
               color={Pallet.Typography.secundaria}
             />
           </Col>
