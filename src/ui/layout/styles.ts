@@ -26,6 +26,7 @@ export const layoutStyle: React.CSSProperties = {
   display: 'flex',
   flexDirection: 'column',
   minHeight: '100vh',
+  fontFamily: 'fantasy'
 };
 
 export const layoutStyleContent: React.CSSProperties = {

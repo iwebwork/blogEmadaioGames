@@ -1,16 +1,9 @@
-import { YoutubeOutlined } from "@ant-design/icons";
-import { Button, Flex, Typography } from 'antd';
+import { Flex, Typography } from 'antd';
 import React from "react";
-import Anuncio from "../../ui/anuncio";
-import { ButtonYouTubeUi } from "../../ui/layout/menu";
 
 const { Title, Paragraph } = Typography;
 
 const QuemSomosView: React.FC = () => {
-
-  const onClickYouTube = () => {
-    window.open('https://www.youtube.com/@EmadaioGames', '_blank', 'noopener,noreferrer')
-  }
 
   return (
     <>
