@@ -33,9 +33,9 @@ const LayoutViewUi: React.FC<ILayoutUi> = ({ children, SiderChildrenLeft, SiderC
           </SiderLayout>}
 
         {(process.env.NODE_ENV === 'production') &&
-          <Flex justify={'center'}>
+          <Flex justify={'center'} hidden>
             <Col span={18}>
-              < div id="container-03e4cb914ac639fadad951bcf7c1b7f2" />
+              <div id="container-03e4cb914ac639fadad951bcf7c1b7f2" />
             </Col>
           </Flex >}
       </Layout>
