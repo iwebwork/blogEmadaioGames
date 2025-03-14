@@ -9,7 +9,3 @@ export interface ITheme {
   mode: MenuMode,
   backGroundColor?: string;
 }
-
-export const urls = [
-  '/site/noticias'
-]

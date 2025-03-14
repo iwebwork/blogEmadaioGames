@@ -6,19 +6,38 @@ import { Link, useNavigate } from 'react-router';
 import Anuncio from "../../anuncio";
 import Pallet from "../colorsPalette";
 import { useWindowSize } from "../hooks";
-import { ITheme, TMenuItem, urls } from "./props";
+import { ITheme, TMenuItem } from "./props";
+import { getUrls } from "./constants";
 
 const MenuItens: React.FC<ITheme> = ({ theme, mode, backGroundColor }) => {
   const navigate = useNavigate();
   const items: TMenuItem[] = [
     {
-      key: '1',
+      key: 'noticias',
       label: 'Noticias',
       style: {
         color: Pallet.Typography.secundaria
       },
       onClick: (eve) => {
-        navigate(urls[Number.parseInt(eve.key) - 1]); // Buscar a url
+        getUrls.find(e => {
+          if (e.key === eve.key) {
+            navigate(`/site/${e.key}`); // Buscar a url
+          }
+        });
+      }
+    },
+    {
+      key: 'quemSomos',
+      label: 'Quem Somos',
+      style: {
+        color: Pallet.Typography.secundaria
+      },
+      onClick: (eve) => {
+        getUrls.find(e => {
+          if (e.key === eve.key) {
+            navigate(`/site/${e.key}`); // Buscar a url
+          }
+        });
       }
     }
   ];
