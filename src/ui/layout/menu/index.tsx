@@ -9,35 +9,36 @@ import { useWindowSize } from "../hooks";
 import { ITheme, TMenuItem } from "./props";
 import { getUrls } from "./constants";
 
-const MenuItens: React.FC<ITheme> = ({ theme, mode, backGroundColor }) => {
+const MenuItens: React.FC<ITheme> = ({ theme, mode, backGroundColor, color }) => {
   const navigate = useNavigate();
+
+  const navigateMenu = (key: string) => {
+    getUrls.find(e => {
+      if (e.key === key) {
+        navigate(`/site/${e.key}`); // Buscar a url
+      }
+    });
+  }
+
   const items: TMenuItem[] = [
     {
       key: 'noticias',
       label: 'Noticias',
       style: {
-        color: Pallet.Typography.secundaria
+        color: color
       },
       onClick: (eve) => {
-        getUrls.find(e => {
-          if (e.key === eve.key) {
-            navigate(`/site/${e.key}`); // Buscar a url
-          }
-        });
+        navigateMenu(eve.key);
       }
     },
     {
       key: 'quemSomos',
       label: 'Quem Somos',
       style: {
-        color: Pallet.Typography.secundaria
+        color: color
       },
       onClick: (eve) => {
-        getUrls.find(e => {
-          if (e.key === eve.key) {
-            navigate(`/site/${e.key}`); // Buscar a url
-          }
-        });
+        navigateMenu(eve.key);
       }
     }
   ];
@@ -76,7 +77,7 @@ const MenuUi: React.FC = () => {
   const [placement] = useState<DrawerProps['placement']>('top');
 
   React.useEffect(() => {
-    setIsWindow(window.width >= 400);
+    setIsWindow(window.width >= 600);
   }, [window.width])
 
   const showDrawer = () => {
@@ -90,20 +91,23 @@ const MenuUi: React.FC = () => {
   return (
     <>
       {isWindow ?
-        <Row align={'middle'} justify={"space-around"} style={{
-          backgroundColor: Pallet.BackGround.principal,
-          color: Pallet.Typography.secundaria,
-          minHeight: 60
-        }}>
-          <Col>
+        <Row align={'middle'} justify={"space-around"}
+          style={{
+            backgroundColor: Pallet.BackGround.principal,
+            color: Pallet.Typography.secundaria,
+            minHeight: 60
+          }}>
+          <Col span={6}>
             <Logo />
           </Col>
-          <MenuItens
-            mode="horizontal"
-            theme={"dark"}
-            backGroundColor={Pallet.BackGround.principal}
-          />
-          <Col></Col>
+          <Col span={10}>
+            <MenuItens
+              mode="horizontal"
+              theme={"dark"}
+              color={Pallet.Typography.secundaria}
+            />
+          </Col>
+          <Col span={1}></Col>
         </Row> :
         <Row align={"middle"} justify={"space-around"} style={{
           backgroundColor: Pallet.BackGround.principal,
@@ -135,6 +139,7 @@ const MenuUi: React.FC = () => {
           <MenuItens
             mode="vertical"
             theme={"light"}
+            color={Pallet.Typography.principal}
           />
         </Flex>
       </Drawer>

@@ -1,4 +1,4 @@
-import { Col, Flex, Layout } from 'antd';
+import { Col, Flex, Layout, Row } from 'antd';
 import Title from 'antd/es/typography/Title';
 import React from 'react';
 import Pallet from './colorsPalette';

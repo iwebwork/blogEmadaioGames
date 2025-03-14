@@ -8,4 +8,5 @@ export interface ITheme {
   theme: MenuTheme,
   mode: MenuMode,
   backGroundColor?: string;
+  color?: string;
 }
