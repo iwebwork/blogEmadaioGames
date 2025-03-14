@@ -96,7 +96,7 @@ const MenuUi: React.FC = () => {
         <Row align={'middle'} justify={"space-around"}
           style={{
             backgroundColor: Pallet.BackGround.principal,
-            color: Pallet.Typography.secundaria,
+            color: Pallet.Typography.principal,
             minHeight: 60
           }}>
           <Col span={6}>
@@ -108,15 +108,15 @@ const MenuUi: React.FC = () => {
             <MenuItens
               mode="horizontal"
               theme={"dark"}
-              backGroundColor={Pallet.Typography.principal}
-              color={Pallet.Typography.secundaria}
+              backGroundColor={Pallet.BackGround.principal}
+              color={Pallet.Typography.principal}
             />
           </Col>
           <Col span={1}></Col>
         </Row> :
         <Row align={"middle"} justify={"space-around"} style={{
           backgroundColor: Pallet.BackGround.principal,
-          color: Pallet.Typography.secundaria,
+          color: Pallet.Typography.principal,
         }}>
           <Col>
             <Logo />
@@ -126,7 +126,7 @@ const MenuUi: React.FC = () => {
               backgroundColor: Pallet.BackGround.principal,
             }} variant="solid" shape="circle" onClick={showDrawer}>
               <BarsOutlined style={{
-                color: Pallet.Typography.secundaria
+                color: Pallet.Typography.principal
               }} />
             </Button>
           </Col>

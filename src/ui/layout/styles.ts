@@ -33,5 +33,5 @@ export const layoutStyle: React.CSSProperties = {
 export const layoutStyleContent: React.CSSProperties = {
   display: 'flex',
   backgroundColor: Pallet.BackGround.secundaria,
-  color: Pallet.Typography.principal,
+  color: Pallet.Typography.secundaria,
 }; 

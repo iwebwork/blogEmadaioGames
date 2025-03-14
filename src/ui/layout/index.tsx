@@ -42,7 +42,7 @@ const LayoutViewUi: React.FC<ILayoutUi> = ({ children, SiderChildrenLeft, SiderC
 
       <Footer style={footerStyle}>
         <Title style={{
-          color: Pallet.Typography.secundaria
+          color: Pallet.Typography.principal
         }} level={3}>Todos os direitos reservados</Title>
       </Footer>
     </Layout>

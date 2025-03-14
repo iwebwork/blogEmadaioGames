@@ -17,7 +17,7 @@ const Corpo: React.FC<IData> = (props) => {
       <Anuncio>
         <Link
           underline
-          style={{ color: Pallet.Typography.principal }
+          style={{ color: Pallet.Typography.secundaria }
           }
           onClick={() => {
             navigate(`/site/post/${id}`);
