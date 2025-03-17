@@ -58,6 +58,7 @@ const NoticiasView: React.FC = () => {
   const [posts, setPosts] = useState<IPost[]>();
 
   const fetchNoticias = async () => {
+
     const result = await getNoticias();
 
     if (!result)
@@ -78,11 +79,17 @@ const NoticiasView: React.FC = () => {
         justifyContent: 'center'
       }}
       dataSource={posts}
-      renderItem={(item) => (
-        <List.Item>
-          <Corpo id={item.id} title={item.title} date={item.date} />
-        </List.Item>
-      )}
+      renderItem={(item: IPost) => {
+        var title = item.title;
+
+        if (!item.liberado) {
+          title += ' => pendente'
+        }
+
+        return (<List.Item>
+          <Corpo id={item.id} title={title} date={item.date} />
+        </List.Item>)
+      }}
     />
   )
 }

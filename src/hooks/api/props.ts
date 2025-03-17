@@ -10,4 +10,5 @@ export interface IPost {
   post: string;
   title: string;
   date: string;
+  liberado: boolean;
 }

@@ -16,16 +16,14 @@ const Component: React.FC<IComponent> = ({ idPost }) => {
 
   const fetchNoticia = async () => {
     const result = await selectNoticia(idPost);
-
     if (!result)
       return;
-
-    setPost(result)
+    setPost(result);
   }
 
   React.useEffect(() => {
     fetchNoticia();
-  }, [])
+  }, [idPost])
 
   const Component = routsPostsNoticias(post?.post || "naoEncontrado");
 

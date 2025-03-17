@@ -21,11 +21,17 @@ export const getNoticias = async (): Promise<IPost[]> => {
       id: res.id,
       date: formatarDataPorExtenso(res.date),
       post: res.post,
-      title: res.title
+      title: res.title,
+      liberado: res.liberado
     }
-  }) as IPost[]
+  }) as IPost[];
+  
+  if (process.env.NODE_ENV === 'production') {
+    return data.filter((data) => data.liberado === true);
+  }
 
   return data;
+
 };
 
 export const selectNoticia = async (id: string): Promise<IPost> => {
