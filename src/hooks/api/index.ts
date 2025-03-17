@@ -1,7 +1,6 @@
 import axios from "axios";
-import React from "react";
-import { IPost } from "./props";
 import { formatarDataPorExtenso } from "../comuns";
+import { IPost } from "./props";
 
 export const diretorioExiste = async(diretorio: string): Promise<boolean> => {
   return axios.get(diretorio)
