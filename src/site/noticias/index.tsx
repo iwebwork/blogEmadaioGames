@@ -1,11 +1,11 @@
-import { Card, List, Pagination, Row, Space, Typography } from 'antd';
+import styled from '@emotion/styled';
+import { Card, List, Row, Typography } from 'antd';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { getNoticias } from '../../hooks/api';
 import { IData, IPost } from '../../hooks/api/props';
 import Anuncio from '../../ui/anuncio';
 import Pallet from '../../ui/layout/colorsPalette';
-import styled from '@emotion/styled';
 
 const { Link } = Typography;
 
