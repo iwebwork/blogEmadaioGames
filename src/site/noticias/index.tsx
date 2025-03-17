@@ -1,35 +1,56 @@
-import { Flex, List, Typography } from 'antd';
+import { Card, List, Row, Typography } from 'antd';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { getNoticias } from '../../hooks/api';
 import { IData, IPost } from '../../hooks/api/props';
-import Pallet from '../../ui/layout/colorsPalette';
 import Anuncio from '../../ui/anuncio';
+import Pallet from '../../ui/layout/colorsPalette';
+import styled from '@emotion/styled';
 
-const { Link, Paragraph } = Typography;
+const { Link } = Typography;
+
+const HoverLink = styled.div(() => {
+  return {
+    borderRadius: 6,
+    ':hover': {
+      backgroundColor: Pallet.Typography.terciaria
+    }
+  }
+});
 
 const Corpo: React.FC<IData> = (props) => {
   const navigate = useNavigate();
   const { id, title, date } = props;
-
   return (
-    <Flex key={id} wrap justify='center' gap="middle" style={{ display: 'flex', flex: 1 }}>
-      <Anuncio>
-        <Link
-          underline
-          style={{ color: Pallet.Typography.secundaria }
-          }
-          onClick={() => {
-            navigate(`/site/post/${id}`);
-          }} >
-          {title}
-        </Link >
-      </Anuncio>
-      <Paragraph>
-        {date}
-      </Paragraph>
-
-    </Flex >
+    <Anuncio>
+      <Card
+        variant="outlined"
+        style={{
+          maxWidth: 800,
+          minWidth: 400,
+          backgroundColor: Pallet.BackGround.secundaria,
+          border: 0
+        }}
+      >
+        <Row>
+          <HoverLink>
+            <Link
+              style={{
+                color: Pallet.Typography.secundaria
+              }}
+              onClick={() => {
+                navigate(`/site/post/${id}`);
+              }}
+            >
+              {title}
+            </Link >
+          </HoverLink>
+        </Row>
+        <Row>
+          {date}
+        </Row>
+      </Card>
+    </Anuncio>
   )
 }
 
@@ -51,6 +72,11 @@ const NoticiasView: React.FC = () => {
 
   return (
     <List
+      style={{
+        display: 'flex',
+        flex: 1,
+        justifyContent: 'center'
+      }}
       dataSource={posts}
       renderItem={(item) => (
         <List.Item>

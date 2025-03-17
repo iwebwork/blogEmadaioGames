@@ -54,7 +54,6 @@ const MenuItens: React.FC<ITheme> = ({ theme, mode, backGroundColor, color }) =>
         items={items}
         selectedKeys={[]}
         theme={theme}
-
       />
     </Anuncio>
   )
@@ -82,12 +81,13 @@ export const ButtonYouTubeUi: React.FC = () => {
     <Anuncio>
       <Popover content={'YouTube'} placement="right">
         <Button style={{
-          height: 25,
-          width: 25,
+          height: 45,
+          width: 45,
           backgroundColor: Pallet.Typography.terciaria,
           borderColor: Pallet.Typography.secundaria
         }}
           variant="solid"
+          shape="round"
           icon={<YoutubeOutlined />}
           onClick={onClickYouTube}
         />
