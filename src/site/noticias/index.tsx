@@ -1,4 +1,4 @@
-import { Card, List, Row, Typography } from 'antd';
+import { Card, List, Pagination, Row, Space, Typography } from 'antd';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { getNoticias } from '../../hooks/api';
@@ -8,6 +8,10 @@ import Pallet from '../../ui/layout/colorsPalette';
 import styled from '@emotion/styled';
 
 const { Link } = Typography;
+
+type PaginationPosition = 'top' | 'bottom' | 'both';
+
+type PaginationAlign = 'start' | 'center' | 'end';
 
 const HoverLink = styled.div(() => {
   return {
@@ -56,6 +60,8 @@ const Corpo: React.FC<IData> = (props) => {
 
 const NoticiasView: React.FC = () => {
   const [posts, setPosts] = useState<IPost[]>();
+  const [position] = useState<PaginationPosition>('bottom');
+  const [align] = useState<PaginationAlign>('center');
 
   const fetchNoticias = async () => {
 
@@ -72,25 +78,23 @@ const NoticiasView: React.FC = () => {
   }, [])
 
   return (
-    <List
-      style={{
-        display: 'flex',
-        flex: 1,
-        justifyContent: 'center'
-      }}
-      dataSource={posts}
-      renderItem={(item: IPost) => {
-        var title = item.title;
+    <Row justify={'center'}>
+      <List
+        pagination={{ position, align }}
+        dataSource={posts}
+        renderItem={(item: IPost) => {
+          var title = item.title;
 
-        if (!item.liberado) {
-          title += ' => pendente'
-        }
+          if (!item.liberado) {
+            title += ' => pendente'
+          }
 
-        return (<List.Item>
-          <Corpo id={item.id} title={title} date={item.date} />
-        </List.Item>)
-      }}
-    />
+          return (<List.Item>
+            <Corpo id={item.id} title={title} date={item.date} />
+          </List.Item>)
+        }}
+      />
+    </Row>
   )
 }
 

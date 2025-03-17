@@ -2,16 +2,6 @@ import axios from "axios";
 import { formatarDataPorExtenso } from "../comuns";
 import { IPost } from "./props";
 
-export const diretorioExiste = async(diretorio: string): Promise<boolean> => {
-  return axios.get(diretorio)
-    .then(() => {
-      return true;
-    })
-    .catch(() => {
-      return false;
-    });    
-}
-
 export const getNoticias = async (): Promise<IPost[]> => {
   const response = (await axios.get<IPost[]>('/data/noticias.json')).data;
   
@@ -30,7 +20,6 @@ export const getNoticias = async (): Promise<IPost[]> => {
   }
 
   return data;
-
 };
 
 export const selectNoticia = async (id: string): Promise<IPost> => {
