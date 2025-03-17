@@ -1,4 +1,3 @@
-import styled from '@emotion/styled';
 import { Card, List, Row, Typography } from 'antd';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
@@ -6,21 +5,15 @@ import { getNoticias } from '../../hooks/api';
 import { IData, IPost } from '../../hooks/api/props';
 import Anuncio from '../../ui/anuncio';
 import Pallet from '../../ui/layout/colorsPalette';
+import { HoverLink } from '../../ui/style';
 
-const { Link } = Typography;
+const { Link, Title, Paragraph } = Typography;
 
 type PaginationPosition = 'top' | 'bottom' | 'both';
 
 type PaginationAlign = 'start' | 'center' | 'end';
 
-const HoverLink = styled.div(() => {
-  return {
-    borderRadius: 6,
-    ':hover': {
-      backgroundColor: Pallet.Typography.terciaria
-    }
-  }
-});
+
 
 const Corpo: React.FC<IData> = (props) => {
   const navigate = useNavigate();
@@ -37,24 +30,28 @@ const Corpo: React.FC<IData> = (props) => {
         }}
       >
         <Row>
-          <HoverLink>
-            <Link
-              style={{
-                color: Pallet.Typography.secundaria
-              }}
-              onClick={() => {
-                navigate(`/site/post/${id}`);
-              }}
-            >
-              {title}
-            </Link >
-          </HoverLink>
+          <Link
+            style={{
+              color: Pallet.Typography.secundaria
+            }}
+            onClick={() => {
+              navigate(`/site/post/${id}`);
+            }}
+          >
+            <Title level={4}>
+              <HoverLink>
+                {title}
+              </HoverLink>
+            </Title>
+          </Link >
         </Row>
         <Row>
-          {date}
+          <Paragraph>
+            {date}
+          </Paragraph>
         </Row>
       </Card>
-    </Anuncio>
+    </Anuncio >
   )
 }
 
