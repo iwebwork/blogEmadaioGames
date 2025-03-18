@@ -1,4 +1,4 @@
-import { Card, List, Row, Typography } from 'antd';
+import { Avatar, Card, Col, Flex, Image, List, Row, Typography } from 'antd';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { getNoticias } from '../../hooks/api';
@@ -13,44 +13,38 @@ type PaginationPosition = 'top' | 'bottom' | 'both';
 
 type PaginationAlign = 'start' | 'center' | 'end';
 
-
-
 const Corpo: React.FC<IData> = (props) => {
   const navigate = useNavigate();
   const { id, title, date } = props;
+
   return (
     <Anuncio>
-      <Card
-        variant="outlined"
+      <Flex
+        vertical
+        justify='flex-start'
+        align='flex-start'
         style={{
-          maxWidth: 800,
-          minWidth: 400,
           backgroundColor: Pallet.BackGround.secundaria,
-          border: 0
         }}
       >
-        <Row>
-          <Link
-            style={{
-              color: Pallet.Typography.secundaria
-            }}
-            onClick={() => {
-              navigate(`/site/post/${id}`);
-            }}
-          >
-            <Title level={4}>
-              <HoverLink>
-                {title}
-              </HoverLink>
-            </Title>
-          </Link >
-        </Row>
-        <Row>
-          <Paragraph>
-            {date}
-          </Paragraph>
-        </Row>
-      </Card>
+        <Link
+          style={{
+            color: Pallet.Typography.secundaria
+          }}
+          onClick={() => {
+            navigate(`/site/post/${id}`);
+          }}
+        >
+          <Title level={4}>
+            <HoverLink>
+              {title}
+            </HoverLink>
+          </Title>
+        </Link >
+        <Paragraph>
+          {date}
+        </Paragraph>
+      </Flex>
     </Anuncio >
   )
 }
@@ -80,6 +74,12 @@ const NoticiasView: React.FC = () => {
         pagination={{ position, align }}
         dataSource={posts}
         renderItem={(item: IPost) => {
+          var image = `/assets/img/erro.png`;
+
+          if (item.image) {
+            image = `/assets/img/${item.image}`;
+          }
+
           var title = item.title;
 
           if (!item.liberado) {
@@ -87,7 +87,24 @@ const NoticiasView: React.FC = () => {
           }
 
           return (<List.Item>
-            <Corpo id={item.id} title={title} date={item.date} />
+            <Row>
+              <Col>
+                <Image width={100} src={image} style={{
+                  padding: 20
+                }} />
+              </Col>
+              <Col>
+                <Corpo id={item.id} title={title} date={item.date} />
+              </Col>
+            </Row>
+            {/* <List.Item.Meta
+              style={{
+                maxWidth: '25%',
+                backgroundColor: 'blue'
+              }}
+              avatar={<Avatar src={image} size={'default'} />}
+            />
+            <Corpo id={item.id} title={title} date={item.date} /> */}
           </List.Item>)
         }}
       />

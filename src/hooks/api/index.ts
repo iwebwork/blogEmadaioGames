@@ -11,6 +11,7 @@ export const getNoticias = async (): Promise<IPost[]> => {
       date: formatarDataPorExtenso(res.date),
       post: res.post,
       title: res.title,
+      image: res.image,
       liberado: res.liberado
     }
   }) as IPost[];
