@@ -62,30 +62,6 @@ const Logo = () => (
   </Anuncio>
 )
 
-export const ButtonYouTubeUi: React.FC = () => {
-  const onClickYouTube = () => {
-    window.open(URL_YOUTUBE, '_blank', 'noopener,noreferrer')
-  }
-
-  return (
-    <Anuncio>
-      <Popover content={'YouTube'} placement="right">
-        <Button style={{
-          height: 45,
-          width: 45,
-          backgroundColor: Pallet.Typography.terciaria,
-          borderColor: Pallet.Typography.secundaria
-        }}
-          variant="solid"
-          shape="round"
-          icon={<YoutubeOutlined />}
-          onClick={onClickYouTube}
-        />
-      </Popover>
-    </Anuncio>
-  )
-}
-
 const MenuUi: React.FC = () => {
   const window = useWindowSize();
   const [isWindow, setIsWindow] = useState(false);

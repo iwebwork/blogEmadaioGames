@@ -2,10 +2,11 @@ import { Col, Flex, FloatButton, Layout, Row } from 'antd';
 import Title from 'antd/es/typography/Title';
 import React from 'react';
 import Pallet from './colorsPalette';
-import MenuUi, { ButtonYouTubeUi } from './menu';
+import MenuUi from './menu';
 import { ILayoutUi } from './props';
 import SiderLayout from './sider';
 import { contentStyle, footerStyle, layoutStyle, layoutStyleContent } from './styles';
+import { ButtonYouTubeUi } from './buttons';
 
 const { Footer, Content } = Layout;
 
