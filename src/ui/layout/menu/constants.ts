@@ -1,16 +1,30 @@
+import { TypePosts } from "../../listPosts/props";
+
 interface IUrl {
-  key: string;
-  value: string
+  key: TypePosts;
+  url: string;
+  label: string;
+  liberado: boolean;
 }
 
-export const getUrls: IUrl[] =  
-   [{
+export const getUrls: IUrl[] =  [
+  {
     key: 'noticias',
-    value: '/site/noticias'
+    url: '/site/noticias',
+    label: 'Noticias',
+    liberado: true
+  },
+  {
+    key: 'reviews',
+    url: '/site/reviews',
+    label: 'Reviews',
+    liberado: false
   },
   {
     key: 'quemSomos',
-    value: '/site/quemSomos'
+    url: '/site/quemSomos',
+    label: 'Quem Somos',
+    liberado: true
   }
 ] as IUrl[];
 

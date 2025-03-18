@@ -5,7 +5,7 @@ import { select } from "../../hooks/api";
 import { IPost } from "../../hooks/api/props";
 import { IComponent } from "./props";
 
-const routsPostsNoticias = (tipo: string, post: string) => {
+const routsPosts = (tipo: string, post: string) => {
   const component = lazy(() => import(`./../../site/${tipo}/posts/${post}`));
 
   return component;
@@ -14,7 +14,7 @@ const routsPostsNoticias = (tipo: string, post: string) => {
 const Component: React.FC<IComponent> = ({ tipo, idPost }) => {
   const [post, setPost] = useState<IPost>();
 
-  const fetchNoticia = async () => {
+  const fetchPosts = async () => {
     const result = await select(`/data/${tipo}.json`, idPost);
     if (!result)
       return;
@@ -22,10 +22,10 @@ const Component: React.FC<IComponent> = ({ tipo, idPost }) => {
   }
 
   React.useEffect(() => {
-    fetchNoticia();
+    fetchPosts();
   }, [idPost])
 
-  const Component = routsPostsNoticias(tipo, post?.post || "naoEncontrado");
+  const Component = routsPosts(tipo, post?.post || "naoEncontrado");
 
   return (
     <Suspense fallback={

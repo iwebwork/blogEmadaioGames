@@ -14,36 +14,22 @@ import { ITheme, TMenuItem } from "./props";
 const MenuItens: React.FC<ITheme> = ({ theme, mode, backGroundColor, color }) => {
   const navigate = useNavigate();
 
-  const navigateMenu = (key: string) => {
-    getUrls.find(e => {
-      if (e.key === key) {
-        navigate(`/site/${e.key}`); // Buscar a url
-      }
-    });
-  }
+  const filter = process.env.NODE_ENV === 'production'
+    ? getUrls.filter((data) => data.liberado === true)
+    : getUrls;
 
-  const items: TMenuItem[] = [
-    {
-      key: 'noticias',
-      label: 'Noticias',
-      style: {
-        color: color,
-      },
-      onClick: (eve) => {
-        navigateMenu(eve.key);
-      }
-    },
-    {
-      key: 'quemSomos',
-      label: 'Quem Somos',
+  const items: TMenuItem[] = filter.map((item) => {
+    return {
+      key: item.key,
+      label: item.label,
       style: {
         color: color
       },
-      onClick: (eve) => {
-        navigateMenu(eve.key);
+      onClick: () => {
+        navigate(item.url); // Buscar a url
       }
-    }
-  ];
+    } as TMenuItem
+  })
 
   return (
     <Anuncio>

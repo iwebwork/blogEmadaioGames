@@ -3,6 +3,7 @@ import LayoutViewUi from "../ui/layout"
 import NoticiasView from "./noticias"
 import PostView from "../ui/post"
 import QuemSomosView from "./quemSomos"
+import ReviewsView from "./reviews"
 
 // const Sider: React.FC = () => {
 //   return (
@@ -15,6 +16,7 @@ import QuemSomosView from "./quemSomos"
 // }
 
 const SiteView: React.FC = () => {
+
   return (
     <LayoutViewUi
     // SiderChildrenRight={<Sider />}
@@ -22,6 +24,7 @@ const SiteView: React.FC = () => {
     >
       <Routes>
         <Route index path='/noticias' element={<NoticiasView />} />
+        <Route path='/reviews' element={<ReviewsView />} />
         <Route path='/quemSomos' element={<QuemSomosView />} />
         <Route path='/post/:tipo/:id' element={<PostView />} />
         <Route path='*' element={<Navigate to={'/noticias'} />} />
