@@ -1,53 +1,12 @@
-import { Avatar, Card, Col, Flex, Image, List, Row, Typography } from 'antd';
+import { Col, Image, List, Row } from 'antd';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router';
 import { getNoticias } from '../../hooks/api';
-import { IData, IPost } from '../../hooks/api/props';
-import Anuncio from '../../ui/anuncio';
-import Pallet from '../../ui/layout/colorsPalette';
-import { HoverLink } from '../../ui/style';
-
-const { Link, Title, Paragraph } = Typography;
+import { IPost } from '../../hooks/api/props';
+import ListPostUi from '../../ui/layout/listPosts';
 
 type PaginationPosition = 'top' | 'bottom' | 'both';
 
 type PaginationAlign = 'start' | 'center' | 'end';
-
-const Corpo: React.FC<IData> = (props) => {
-  const navigate = useNavigate();
-  const { id, title, date } = props;
-
-  return (
-    <Anuncio>
-      <Flex
-        vertical
-        justify='flex-start'
-        align='flex-start'
-        style={{
-          backgroundColor: Pallet.BackGround.secundaria,
-        }}
-      >
-        <Link
-          style={{
-            color: Pallet.Typography.secundaria
-          }}
-          onClick={() => {
-            navigate(`/site/post/${id}`);
-          }}
-        >
-          <Title level={4}>
-            <HoverLink>
-              {title}
-            </HoverLink>
-          </Title>
-        </Link >
-        <Paragraph>
-          {date}
-        </Paragraph>
-      </Flex>
-    </Anuncio >
-  )
-}
 
 const NoticiasView: React.FC = () => {
   const [posts, setPosts] = useState<IPost[]>();
@@ -94,7 +53,7 @@ const NoticiasView: React.FC = () => {
                 }} />
               </Col>
               <Col>
-                <Corpo id={item.id} title={title} date={item.date} />
+                <ListPostUi id={item.id} title={title} date={item.date} />
               </Col>
             </Row>
             {/* <List.Item.Meta
