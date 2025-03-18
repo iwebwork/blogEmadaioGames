@@ -19,9 +19,13 @@ const MenuItens: React.FC<ITheme> = ({ theme, mode, backGroundColor, color }) =>
     : getUrls;
 
   const items: TMenuItem[] = filter.map((item) => {
+    const lblLabel = process.env.NODE_ENV === 'development' && !item.liberado
+      ? item.label + ' - em revisão'
+      : item.label;
+
     return {
       key: item.key,
-      label: item.label,
+      label: lblLabel,
       style: {
         color: color
       },
