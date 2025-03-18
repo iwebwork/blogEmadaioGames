@@ -7,11 +7,10 @@ const { Title, Paragraph, Text } = Typography
 const desempenhoGTA6Ui: React.FC = () => {
   return (
     <PostUi>
-      <Title>
-        Possível desempenho do GTA 6 foi vazado
-      </Title>
-
       <Paragraph>
+        <Title>
+          Possível desempenho do GTA 6 foi vazado
+        </Title>
         De acordo com Mike York, ex-animador da Rockstar Games, GTA 6 pode não atingir 60 FPS no lançamento para PlayStation 5 e Xbox Series X|S. Em uma entrevista no canal Kiwi Talkz, que foi removida posteriormente, York sugeriu que o jogo provavelmente rodará a 30 FPS estáveis nos consoles, sem problemas de desempenho. Ele mencionou ainda que, no futuro, uma versão otimizada para PC pode atingir 60 FPS, com o auxílio de novas placas de vídeo e melhorias gráficas.
       </Paragraph>
 
