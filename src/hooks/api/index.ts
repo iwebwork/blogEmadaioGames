@@ -5,7 +5,11 @@ import { IPost } from "./props";
 export const get = async (url: string): Promise<IPost[]> => {
   const response = (await axios.get<IPost[]>(url)).data;
   
-  const data = response.map((res) => {
+  const filter = process.env.NODE_ENV === 'production' 
+    ? response.filter((data) => data.liberado === true) 
+    : response; 
+  
+  const data = filter.map((res) => {
     return {
       id: res.id,
       date: formatarDataPorExtenso(res.date),
@@ -15,10 +19,6 @@ export const get = async (url: string): Promise<IPost[]> => {
       liberado: res.liberado
     }
   }) as IPost[];
-  
-  if (process.env.NODE_ENV === 'production') {
-    return data.filter((data) => data.liberado === true);
-  }
 
   return data;
 };
