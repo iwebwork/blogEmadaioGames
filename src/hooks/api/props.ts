@@ -1,5 +1,6 @@
 export interface IData {
   id: string;
+  tipo: string;
   title: string;
   date: string;
   image?: string;

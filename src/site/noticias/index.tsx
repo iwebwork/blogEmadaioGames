@@ -1,6 +1,6 @@
 import { Col, Image, List, Row } from 'antd';
 import React, { useState } from 'react';
-import { getNoticias } from '../../hooks/api';
+import { get } from '../../hooks/api';
 import { IPost } from '../../hooks/api/props';
 import ListPostUi from '../../ui/layout/listPosts';
 
@@ -15,7 +15,7 @@ const NoticiasView: React.FC = () => {
 
   const fetchNoticias = async () => {
 
-    const result = await getNoticias();
+    const result = await get('/data/noticias.json');
 
     if (!result)
       return;
@@ -53,17 +53,9 @@ const NoticiasView: React.FC = () => {
                 }} />
               </Col>
               <Col>
-                <ListPostUi id={item.id} title={title} date={item.date} />
+                <ListPostUi id={item.id} tipo='noticias' title={title} date={item.date} />
               </Col>
             </Row>
-            {/* <List.Item.Meta
-              style={{
-                maxWidth: '25%',
-                backgroundColor: 'blue'
-              }}
-              avatar={<Avatar src={image} size={'default'} />}
-            />
-            <Corpo id={item.id} title={title} date={item.date} /> */}
           </List.Item>)
         }}
       />

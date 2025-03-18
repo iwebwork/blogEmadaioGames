@@ -1,21 +1,21 @@
 import { Flex, Spin } from "antd";
 import React, { lazy, Suspense, useState } from "react";
 import { useParams } from "react-router";
-import { selectNoticia } from "../../hooks/api";
+import { select } from "../../hooks/api";
 import { IPost } from "../../hooks/api/props";
 import { IComponent } from "./props";
 
-const routsPostsNoticias = (post: string) => {
-  const component = lazy(() => import(`./../../site/noticias/posts/${post}`));
+const routsPostsNoticias = (tipo: string, post: string) => {
+  const component = lazy(() => import(`./../../site/${tipo}/posts/${post}`));
 
   return component;
 }
 
-const Component: React.FC<IComponent> = ({ idPost }) => {
+const Component: React.FC<IComponent> = ({ tipo, idPost }) => {
   const [post, setPost] = useState<IPost>();
 
   const fetchNoticia = async () => {
-    const result = await selectNoticia(idPost);
+    const result = await select(`/data/${tipo}.json`, idPost);
     if (!result)
       return;
     setPost(result);
@@ -25,7 +25,7 @@ const Component: React.FC<IComponent> = ({ idPost }) => {
     fetchNoticia();
   }, [idPost])
 
-  const Component = routsPostsNoticias(post?.post || "naoEncontrado");
+  const Component = routsPostsNoticias(tipo, post?.post || "naoEncontrado");
 
   return (
     <Suspense fallback={
@@ -42,9 +42,10 @@ const Component: React.FC<IComponent> = ({ idPost }) => {
 
 const PostView: React.FC = () => {
   const { id } = useParams<{ id: string }>();
+  const { tipo } = useParams<{ tipo: string }>();
 
   return (
-    <Component idPost={id || ""} />
+    <Component tipo={tipo || "notfound"} idPost={id || ""} />
   )
 }
 

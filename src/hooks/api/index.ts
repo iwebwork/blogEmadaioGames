@@ -2,8 +2,8 @@ import axios from "axios";
 import { formatarDataPorExtenso } from "../comuns";
 import { IPost } from "./props";
 
-export const getNoticias = async (): Promise<IPost[]> => {
-  const response = (await axios.get<IPost[]>('/data/noticias.json')).data;
+export const get = async (url: string): Promise<IPost[]> => {
+  const response = (await axios.get<IPost[]>(url)).data;
   
   const data = response.map((res) => {
     return {
@@ -23,8 +23,8 @@ export const getNoticias = async (): Promise<IPost[]> => {
   return data;
 };
 
-export const selectNoticia = async (id: string): Promise<IPost> => {
-  const response = await getNoticias();
+export const select = async (url: string, id: string): Promise<IPost> => {
+  const response = await get(url);
 
   const post = response.find(post =>  post.id === id) || {} as IPost;
   
