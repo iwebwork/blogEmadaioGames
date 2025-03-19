@@ -10,7 +10,6 @@ import { useWindowSize } from "../hooks";
 import { getUrls } from "./constants";
 import { ITheme, TMenuItem } from "./props";
 
-
 const MenuItens: React.FC<ITheme> = ({ theme, mode, backGroundColor, color }) => {
   const navigate = useNavigate();
 

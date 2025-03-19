@@ -1,4 +1,5 @@
 import { MenuProps, MenuTheme } from "antd";
+import { TypePosts } from "../../listPosts/props";
 
 export type TMenuItem = Required<MenuProps>['items'][number];
 
@@ -9,4 +10,12 @@ export interface ITheme {
   mode: MenuMode,
   backGroundColor?: string;
   color?: string;
+}
+
+
+export interface IUrl {
+  key: TypePosts;
+  url: string;
+  label: string;
+  liberado: boolean;
 }

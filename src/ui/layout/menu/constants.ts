@@ -1,11 +1,4 @@
-import { TypePosts } from "../../listPosts/props";
-
-interface IUrl {
-  key: TypePosts;
-  url: string;
-  label: string;
-  liberado: boolean;
-}
+import { IUrl } from "./props";
 
 export const getUrls: IUrl[] =  [
   {
