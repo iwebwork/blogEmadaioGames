@@ -1,6 +1,6 @@
-import { BarsOutlined, YoutubeOutlined } from "@ant-design/icons";
+import { BarsOutlined } from "@ant-design/icons";
 import '@ant-design/v5-patch-for-react-19';
-import { Button, Col, Drawer, DrawerProps, Flex, Image, Menu, Popover, Row } from "antd";
+import { Button, Col, Drawer, DrawerProps, Flex, Image, Menu, Row } from "antd";
 import React, { useState } from "react";
 import { Link, useNavigate } from 'react-router';
 import { URL_YOUTUBE } from "../../../constants";
