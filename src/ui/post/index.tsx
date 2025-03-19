@@ -5,7 +5,7 @@ import { select } from "../../hooks/api";
 import { IPost } from "../../hooks/api/props";
 import { IComponent } from "./props";
 
-const routsPosts = (tipo: string, post: string) => {
+const routePost = (tipo: string, post: string) => {
   const component = lazy(() => import(`./../../site/${tipo}/posts/${post}`));
 
   return component;
@@ -25,7 +25,7 @@ const Component: React.FC<IComponent> = ({ tipo, idPost }) => {
     fetchPosts();
   }, [idPost])
 
-  const Component = routsPosts(tipo, post?.post || "naoEncontrado");
+  const Component = routePost(tipo, post?.post || "naoEncontrado");
 
   return (
     <Suspense fallback={
