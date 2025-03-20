@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from "react-router"
 import LayoutViewUi from "../ui/layout"
 import NoticiasView from "./noticias"
-import PostView from "../ui/post"
+import PostView from "./post"
 import QuemSomosView from "./quemSomos"
 import ReviewsView from "./reviews"
 
