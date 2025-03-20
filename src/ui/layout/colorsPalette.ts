@@ -6,7 +6,7 @@ const Pallet = {
   Typography: {
     principal: '#f6f8ee',
     secundaria: '#040405',
-    terciaria: '#fdf85d',
+    terciaria: '#ffff4d',
     youTube: '#fc0404'
   }
 };
