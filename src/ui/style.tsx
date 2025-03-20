@@ -5,7 +5,8 @@ export const HoverLink = styled.div(() => {
   return {
     borderRadius: 6,
     ':hover': {
-      backgroundColor: Pallet.Typography.terciaria
+      backgroundColor: Pallet.Typography.terciaria,
+      transitionDuration: '0.6s'
     }
   }
 });

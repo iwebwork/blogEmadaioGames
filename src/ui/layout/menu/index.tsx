@@ -54,12 +54,38 @@ const Logo = () => (
       <Image style={{
         height: 50,
       }}
-        src="/logo.png"
+        src="/logo-sem-fundo.png"
         preview={false}
       />
     </Link>
   </Anuncio>
 )
+
+const MenuPadrao: React.FC = () => {
+  return (
+    <Row align={'middle'} justify={"space-around"}
+      style={{
+        backgroundColor: Pallet.BackGround.principal,
+        color: Pallet.Typography.principal,
+        minHeight: 60
+      }}>
+      <Col span={6}>
+        <Logo />
+      </Col>
+      <Col span={10} style={{
+      }}>
+        <MenuItens
+          mode="horizontal"
+          theme={"dark"}
+          backGroundColor={Pallet.BackGround.principal}
+          color={Pallet.Typography.principal}
+        />
+      </Col>
+      <Col span={1}>
+      </Col>
+    </Row>
+  )
+}
 
 const MenuUi: React.FC = () => {
   const window = useWindowSize();
@@ -83,27 +109,7 @@ const MenuUi: React.FC = () => {
   return (
     <>
       {isWindow ?
-        <Row align={'middle'} justify={"space-around"}
-          style={{
-            backgroundColor: Pallet.BackGround.principal,
-            color: Pallet.Typography.principal,
-            minHeight: 60
-          }}>
-          <Col span={6}>
-            <Logo />
-          </Col>
-          <Col span={10} style={{
-          }}>
-            <MenuItens
-              mode="horizontal"
-              theme={"dark"}
-              backGroundColor={Pallet.BackGround.principal}
-              color={Pallet.Typography.principal}
-            />
-          </Col>
-          <Col span={1}>
-          </Col>
-        </Row> :
+        <MenuPadrao /> :
         <Row align={"middle"} justify={"space-around"} style={{
           backgroundColor: Pallet.BackGround.principal,
           color: Pallet.Typography.principal,
@@ -129,12 +135,17 @@ const MenuUi: React.FC = () => {
         onClose={onClose}
         open={open}
         key={placement}
+        style={{
+          backgroundColor: Pallet.BackGround.principal,
+          color: Pallet.Typography.principal
+        }}
       >
         <Flex>
           <MenuItens
             mode="vertical"
             theme={"light"}
-            color={Pallet.Typography.secundaria}
+            backGroundColor={Pallet.BackGround.principal}
+            color={Pallet.Typography.principal}
           />
           <Row>
             <Anuncio>
@@ -148,7 +159,7 @@ const MenuUi: React.FC = () => {
                   marginTop: 15
                 }}>
                   <Link
-                    style={{ color: Pallet.Typography.secundaria }}
+                    style={{ color: Pallet.Typography.principal }}
                     to={URL_YOUTUBE}
                     target="_blank">
                     YouTube

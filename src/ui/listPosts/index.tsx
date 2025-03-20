@@ -3,7 +3,8 @@ import { IPost } from "../../hooks/api/props";
 import { Col, List, Row, Image } from "antd";
 import ListPostUi from "../../ui/layout/listPosts";
 import { get } from "../../hooks/api";
-import { IListPostsUi, PaginationAlign, PaginationPosition } from "./props";
+import { IListPostsUi, PaginationAlign, PaginationPosition } from './props';
+import Pallet from "../layout/colorsPalette";
 
 const ListPostsUi: React.FC<IListPostsUi> = ({ tipo }) => {
   const [posts, setPosts] = useState<IPost[]>();
@@ -25,9 +26,13 @@ const ListPostsUi: React.FC<IListPostsUi> = ({ tipo }) => {
   }, [])
 
   return (
-    <Row justify={'center'}>
+    <Row justify={'center'} style={{
+      marginBottom: 20
+    }}>
       <List
-        pagination={{ position, align }}
+        pagination={{
+          position, align
+        }}
         dataSource={posts}
         renderItem={(item: IPost) => {
           var image = `/assets/img/erro.png`;
@@ -43,9 +48,12 @@ const ListPostsUi: React.FC<IListPostsUi> = ({ tipo }) => {
           }
 
           return (<List.Item>
-            <Row>
-              <Col>
-                <Image width={100} src={image} style={{
+            <Row >
+              <Col style={{
+                backgroundColor: Pallet.BackGround.principal,
+                marginRight: 10
+              }}>
+                <Image preview={false} width={100} src={image} style={{
                   padding: 20
                 }} />
               </Col>

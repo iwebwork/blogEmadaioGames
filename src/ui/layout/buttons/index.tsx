@@ -14,13 +14,15 @@ export const ButtonYouTubeUi: React.FC = () => {
       <Popover content={'YouTube'} placement="right">
         <Button style={{
           height: 45,
-          width: 45,
-          backgroundColor: Pallet.Typography.terciaria,
-          borderColor: Pallet.Typography.secundaria
+          width: 50,
+          color: Pallet.Typography.principal,
+          backgroundColor: Pallet.Typography.youTube,
+          border: 0
         }}
           variant="solid"
-          shape="round"
-          icon={<YoutubeOutlined />}
+          icon={<YoutubeOutlined style={{
+            fontSize: 23
+          }} />}
           onClick={onClickYouTube}
         />
       </Popover>

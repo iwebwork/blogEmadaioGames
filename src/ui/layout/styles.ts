@@ -11,10 +11,6 @@ export const headerStyle: React.CSSProperties = {
 };
 
 export const contentStyle: React.CSSProperties = {
-  marginTop: 20,
-  marginBottom: 20,
-  marginRight: 20,
-  marginLeft: 20,
   backgroundColor: Pallet.BackGround.secundaria
 };
 
@@ -31,6 +27,8 @@ export const layoutStyle: React.CSSProperties = {
 
 export const layoutStyleContent: React.CSSProperties = {
   display: 'flex',
+  marginLeft: 50,
+  alignItems: 'flex-start',
   backgroundColor: Pallet.BackGround.secundaria,
   color: Pallet.Typography.secundaria,
 }; 
