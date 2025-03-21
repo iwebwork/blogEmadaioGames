@@ -1,6 +1,6 @@
 const Pallet = {
   BackGround: {
-    principal: '#393839',
+    principal: '#040405',
     secundaria: '#f6f8ee'
   },
   Typography: {

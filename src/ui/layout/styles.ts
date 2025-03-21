@@ -22,7 +22,8 @@ export const layoutStyle: React.CSSProperties = {
   display: 'flex',
   flexDirection: 'column',
   minHeight: '100vh',
-  fontFamily: 'fantasy'
+  fontFamily: 'fantasy',
+  backgroundColor: Pallet.BackGround.secundaria
 };
 
 export const layoutStyleContent: React.CSSProperties = {

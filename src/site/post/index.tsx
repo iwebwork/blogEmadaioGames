@@ -30,13 +30,13 @@ const Component: React.FC<IComponent> = ({ tipo, idPost }) => {
   return (
     <Suspense fallback={
       <Flex justify="center">
-        <Spin tip="Loading" size="large">
+        <Spin tip="Loading" size="large" fullscreen >
           Loading...
         </Spin>
       </Flex>
     }>
       <Component />
-    </Suspense>
+    </Suspense >
   )
 }
 

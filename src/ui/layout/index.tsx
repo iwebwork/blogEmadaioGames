@@ -18,8 +18,7 @@ const LayoutViewUi: React.FC<ILayoutUi> = ({ children, SiderChildrenLeft, SiderC
           Pagination: {
             itemActiveBg: Pallet.Typography.principal,
             colorPrimary: Pallet.Typography.secundaria,
-            colorPrimaryHover: Pallet.Typography.secundaria,
-            colorBgTextHover: 'red'
+            colorPrimaryHover: Pallet.Typography.secundaria
           }
         }
       }}
@@ -29,10 +28,10 @@ const LayoutViewUi: React.FC<ILayoutUi> = ({ children, SiderChildrenLeft, SiderC
         <MenuUi />
 
         <Layout style={layoutStyleContent}>
-          {(SiderChildrenLeft && process.env.NODE_ENV === 'production') &&
+          {/* {(SiderChildrenLeft && process.env.NODE_ENV === 'production') &&
             <SiderLayout>
               {SiderChildrenLeft}
-            </SiderLayout>}
+            </SiderLayout>} */}
 
           <Layout style={contentStyle}>
             {children &&
