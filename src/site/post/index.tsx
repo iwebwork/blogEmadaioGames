@@ -18,7 +18,7 @@ const routePost = (tipo: string, post: string) => {
 const ComponentUI: React.FC<IComponent> = ({ tipo, idPost }) => {
   const [post, setPost] = useState<IPost>();
 
-  const fetchPosts = async () => {
+  const fetchPost = async () => {
     const result = await select(`/data/${tipo}.json`, idPost);
     if (!result)
       return;
@@ -26,7 +26,7 @@ const ComponentUI: React.FC<IComponent> = ({ tipo, idPost }) => {
   }
 
   React.useEffect(() => {
-    fetchPosts();
+    fetchPost();
   }, [idPost])
 
   const ComponentRoute = routePost(tipo, post?.post || "postNaoEncontrado");
