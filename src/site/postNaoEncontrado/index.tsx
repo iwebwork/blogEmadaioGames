@@ -1,5 +1,5 @@
 import React from "react";
-import PostUi from "../../../../ui/layout/post"
+import PostUi from "../../ui/layout/post"
 
 const naoContradoUi: React.FC = () => {
   return (

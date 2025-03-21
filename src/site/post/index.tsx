@@ -6,12 +6,16 @@ import { IPost } from "../../hooks/api/props";
 import { IComponent } from "./props";
 
 const routePost = (tipo: string, post: string) => {
-  const component = lazy(() => import(`./../../site/${tipo}/posts/${post}`));
+  if (post === "postNaoEncontrado") {
+    const component = lazy(() => import(`./../../site/${post}`));
+    return component;
+  }
 
+  const component = lazy(() => import(`./../../site/${tipo}/posts/${post}`));
   return component;
 }
 
-const Component: React.FC<IComponent> = ({ tipo, idPost }) => {
+const ComponentUI: React.FC<IComponent> = ({ tipo, idPost }) => {
   const [post, setPost] = useState<IPost>();
 
   const fetchPosts = async () => {
@@ -25,7 +29,7 @@ const Component: React.FC<IComponent> = ({ tipo, idPost }) => {
     fetchPosts();
   }, [idPost])
 
-  const Component = routePost(tipo, post?.post || "naoEncontrado");
+  const ComponentRoute = routePost(tipo, post?.post || "postNaoEncontrado");
 
   return (
     <Suspense fallback={
@@ -35,7 +39,7 @@ const Component: React.FC<IComponent> = ({ tipo, idPost }) => {
         </Spin>
       </Flex>
     }>
-      <Component />
+      <ComponentRoute />
     </Suspense >
   )
 }
@@ -45,7 +49,7 @@ const PostView: React.FC = () => {
   const { tipo } = useParams<{ tipo: string }>();
 
   return (
-    <Component tipo={tipo || "notfound"} idPost={id || ""} />
+    <ComponentUI tipo={tipo || "naoEncontrado"} idPost={id || "naoEncontrado"} />
   )
 }
 
