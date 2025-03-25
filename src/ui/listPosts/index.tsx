@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { IPost } from "../../hooks/api/props";
 import { Col, List, Row, Image } from "antd";
 import ListPostUi from "../../ui/layout/listPosts";
-import { get } from "../../hooks/api";
+import { post } from "../../hooks/api";
 import { IListPostsUi, PaginationAlign, PaginationPosition } from './props';
 import Pallet from "../layout/colorsPalette";
+import { formatarDataPorExtenso } from '../../hooks/comuns';
 
 const ListPostsUi: React.FC<IListPostsUi> = ({ tipo }) => {
   const [posts, setPosts] = useState<IPost[]>();
@@ -12,8 +13,7 @@ const ListPostsUi: React.FC<IListPostsUi> = ({ tipo }) => {
   const [align] = useState<PaginationAlign>('center');
 
   const fetchPosts = async () => {
-
-    const result = await get(`/data/${tipo}.json`);
+    const result = (await post({ url: '/api/posts/getTable', body: {} })).data;
 
     if (!result)
       return;
@@ -58,7 +58,7 @@ const ListPostsUi: React.FC<IListPostsUi> = ({ tipo }) => {
                 }} />
               </Col>
               <Col>
-                <ListPostUi id={item.id} tipo={tipo} title={title} date={item.date} />
+                <ListPostUi id={item.id} tipo={tipo} title={title} date={formatarDataPorExtenso(item.date)} />
               </Col>
             </Row>
           </List.Item>)

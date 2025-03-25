@@ -1,7 +1,7 @@
 import { Flex, Spin } from "antd";
 import React, { lazy, Suspense, useState } from "react";
 import { useParams } from "react-router";
-import { select } from "../../hooks/api";
+import { post } from "../../hooks/api";
 import { IPost } from "../../hooks/api/props";
 import { IComponent } from "./props";
 
@@ -16,21 +16,22 @@ const routePost = (tipo: string, post: string) => {
 }
 
 const ComponentUI: React.FC<IComponent> = ({ tipo, idPost }) => {
-  const [post, setPost] = useState<IPost>();
+  const [selectPost, setSelectPost] = useState<IPost>();
 
-  const fetchPost = async () => {
-    const result = await select(`/data/${tipo}.json`, idPost);
+  const findPost = async () => {
+    const result = (await post({ url: `/api/posts/select/${idPost}`, body: {} })).data;
+
     if (!result)
       return;
-    setPost(result);
+
+    setSelectPost(result);
   }
 
   React.useEffect(() => {
-    fetchPost();
+    findPost();
   }, [idPost])
 
-  const ComponentRoute = routePost(tipo, post?.post || "postNaoEncontrado");
-
+  const ComponentRoute = routePost(tipo, selectPost?.name || "postNaoEncontrado");
   return (
     <Suspense fallback={
       <Flex justify="center">
