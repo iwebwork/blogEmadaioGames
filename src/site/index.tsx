@@ -1,10 +1,10 @@
 import { Navigate, Route, Routes } from "react-router"
 import LayoutViewUi from "../ui/layout"
 import NoticiasView from "./noticias"
-import PostView from "./post"
 import QuemSomosView from "./quemSomos"
 import ReviewsView from "./reviews"
 import CadastroPostView from "./cadastroPost"
+import PostUi from "../ui/layout/post"
 
 // const Sider: React.FC = () => {
 //   return (
@@ -28,7 +28,7 @@ const SiteView: React.FC = () => {
         <Route path='/reviews' element={<ReviewsView />} />
         <Route path='/quemSomos' element={<QuemSomosView />} />
         <Route path='/cadastroPost' element={<CadastroPostView />} />
-        <Route path='/post/:tipo/:id' element={<PostView />} />
+        <Route path='/post/:tipo/:id' element={<PostUi />} />
         <Route path='*' element={<Navigate to={'/noticias'} />} />
       </Routes>
     </LayoutViewUi>

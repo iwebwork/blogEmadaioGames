@@ -1,5 +1,5 @@
 import { PlusOutlined } from "@ant-design/icons";
-import { Form, Image, Upload, UploadFile, UploadProps } from "antd";
+import { Image, Upload, UploadFile, UploadProps } from "antd";
 import { UploadRequestOption } from 'rc-upload/lib/interface';
 import React, { useState } from "react";
 import { FileType, getBase64, IOptionsFile } from "./props";
@@ -13,11 +13,7 @@ const UploadImage: React.FC<IUploadImage> = ({ name, maxCount }) => {
   const [fileList, setFileList] = useState<UploadFile<any>[]>([]);
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState('');
-  const [listHashBase64, setListHashBase64] = useState<string[]>([]);
   const [finishedUpload, setFinishedUpload] = useState(false);
-
-  const [form] = Form.useForm();
-  const image = Form.useWatch(name, { form, preserve: true });
 
   const handleChange: UploadProps['onChange'] = ({ fileList: newFileList }) => {
     setFinishedUpload(false);

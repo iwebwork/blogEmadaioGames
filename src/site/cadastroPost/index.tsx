@@ -3,15 +3,13 @@ import TextArea from 'antd/es/input/TextArea';
 import dayjs from 'dayjs';
 import React from "react";
 import { getDataAtual } from '../../hooks/comuns';
-import { FieldType } from './props';
 import UploadImage from '../../ui/layout/uploadImage';
+import { FieldType } from './props';
 
 const { Title } = Typography;
 
 const CadastroPostView: React.FC = () => {
-
   const [form] = Form.useForm<FieldType>();
-  const values = Form.useWatch('cadastroPost', form);
 
   const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
     console.log('Success:', values);

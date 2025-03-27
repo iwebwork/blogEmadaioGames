@@ -1,5 +1,4 @@
 import { GetProp, UploadProps } from "antd";
-import path from "path";
 
 export type FileType = Parameters<GetProp<UploadProps, 'beforeUpload'>>[0];
 

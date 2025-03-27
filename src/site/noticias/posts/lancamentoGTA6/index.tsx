@@ -6,7 +6,7 @@ const { Title, Paragraph, Text } = Typography
 
 const lancamentoGTA6Ui: React.FC = () => {
   return (
-    <PostUi>
+    <>
 
       <Paragraph>
         <Title>
@@ -27,7 +27,7 @@ const lancamentoGTA6Ui: React.FC = () => {
           “Como todos os fãs, estamos super entusiasmados e na expectativa pelo lançamento de GTA 6, tomando como referência o lançamento do jogo anterior em 17 de setembro de 2013. Não foi nossa intenção causar confusão e queremos esclarecer que não recebemos nenhuma informação oficial das marcas sobre a data de lançamento do jogo.”
         </Text>
       </Paragraph>
-    </PostUi>
+    </>
   )
 }
 
