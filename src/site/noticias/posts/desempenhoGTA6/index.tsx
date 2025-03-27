@@ -1,5 +1,4 @@
 import React from "react";
-import PostUi from "../../../../ui/layout/post"
 import { Typography } from "antd";
 
 const { Title, Paragraph, Text } = Typography

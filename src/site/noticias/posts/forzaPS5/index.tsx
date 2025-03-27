@@ -1,6 +1,5 @@
 import { Flex, Image, Row, Typography } from "antd";
 import React from "react";
-import PostUi from "../../../../ui/layout/post";
 
 const { Paragraph, Title } = Typography;
 
