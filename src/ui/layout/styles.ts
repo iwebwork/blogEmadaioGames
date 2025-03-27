@@ -11,7 +11,10 @@ export const headerStyle: React.CSSProperties = {
 };
 
 export const contentStyle: React.CSSProperties = {
-  backgroundColor: Pallet.BackGround.secundaria
+  display: 'flex',
+  flex: 1,
+  width: '100%',
+  backgroundColor: Pallet.BackGround.secundaria,
 };
 
 export const footerStyle: React.CSSProperties = {
