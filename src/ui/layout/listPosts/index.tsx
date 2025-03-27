@@ -3,7 +3,6 @@ import { IData } from "../../../hooks/api/props";
 import Anuncio from "../../anuncio";
 import { Flex, Typography } from "antd";
 import Pallet from "../colorsPalette";
-import { HoverLink } from "../../style";
 
 const { Link, Title, Paragraph } = Typography;
 
@@ -29,10 +28,8 @@ const ListPostUi: React.FC<IData> = (props) => {
             navigate(`/site/post/${tipo}/${id}`);
           }}
         >
-          <Title level={4}>
-            <HoverLink>
-              {title}
-            </HoverLink>
+          <Title underline level={4}>
+            {title}
           </Title>
         </Link >
         <Paragraph>

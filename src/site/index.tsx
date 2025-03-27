@@ -1,9 +1,12 @@
-import { Navigate, Route, Routes } from "react-router"
-import LayoutViewUi from "../ui/layout"
-import NoticiasView from "./noticias"
-import QuemSomosView from "./quemSomos"
-import ReviewsView from "./reviews"
-import PostUi from "../ui/layout/post"
+import { lazy } from "react";
+import { Navigate, Route, Routes } from "react-router";
+import LayoutViewUi from "../ui/layout";
+import PostUi from "../ui/layout/post";
+import SuspenseUi from "../ui/layout/suspense";
+
+const NoticiasView = lazy(() => import(`./noticias`));
+const ReviewsView = lazy(() => import(`./reviews`));
+const QuemSomosView = lazy(() => import(`./quemSomos`));
 
 // const Sider: React.FC = () => {
 //   return (
@@ -22,13 +25,15 @@ const SiteView: React.FC = () => {
     // SiderChildrenRight={<Sider />}
     // SiderChildrenLeft={<Sider />}
     >
-      <Routes>
-        <Route index path='/noticias' element={<NoticiasView />} />
-        <Route path='/reviews' element={<ReviewsView />} />
-        <Route path='/quemSomos' element={<QuemSomosView />} />
-        <Route path='/post/:tipo/:id' element={<PostUi />} />
-        <Route path='*' element={<Navigate to={'/noticias'} />} />
-      </Routes>
+      <SuspenseUi>
+        <Routes>
+          <Route index path='/noticias' element={<NoticiasView />} />
+          <Route path='/reviews' element={<ReviewsView />} />
+          <Route path='/quemSomos' element={<QuemSomosView />} />
+          <Route path='/post/:tipo/:id' element={<PostUi />} />
+          <Route path='*' element={<Navigate to={'/noticias'} />} />
+        </Routes>
+      </SuspenseUi>
     </LayoutViewUi>
   )
 }
