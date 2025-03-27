@@ -1,3 +1,4 @@
+
 export function formatarDataPorExtenso(data: string): string {
   const opcoes: Intl.DateTimeFormatOptions = {
     weekday: 'long',
@@ -9,4 +10,10 @@ export function formatarDataPorExtenso(data: string): string {
   const dt = new Date(data);
 
   return dt.toLocaleDateString('pt-BR', opcoes);
+}
+
+export function getDataAtual(){
+  const now = new Date();
+  const data = now.toLocaleDateString()
+  return data;
 }

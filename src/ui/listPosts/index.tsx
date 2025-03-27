@@ -1,10 +1,11 @@
+import { Col, Image, List, Row } from "antd";
 import React, { useState } from "react";
+import { post } from "../../hooks/api";
 import { IPost } from "../../hooks/api/props";
-import { Col, List, Row, Image } from "antd";
+import { formatarDataPorExtenso } from '../../hooks/comuns';
 import ListPostUi from "../../ui/layout/listPosts";
-import { get } from "../../hooks/api";
-import { IListPostsUi, PaginationAlign, PaginationPosition } from './props';
 import Pallet from "../layout/colorsPalette";
+import { IListPostsUi, PaginationAlign, PaginationPosition } from './props';
 
 const ListPostsUi: React.FC<IListPostsUi> = ({ tipo }) => {
   const [posts, setPosts] = useState<IPost[]>();
@@ -12,8 +13,7 @@ const ListPostsUi: React.FC<IListPostsUi> = ({ tipo }) => {
   const [align] = useState<PaginationAlign>('center');
 
   const fetchPosts = async () => {
-
-    const result = await get(`/data/${tipo}.json`);
+    const result = (await post({ url: '/api/posts/getTable', body: {} })).data;
 
     if (!result)
       return;
@@ -23,7 +23,7 @@ const ListPostsUi: React.FC<IListPostsUi> = ({ tipo }) => {
 
   React.useEffect(() => {
     fetchPosts();
-  }, [])
+  }, []);
 
   return (
     <Row justify={'center'} style={{
@@ -35,13 +35,11 @@ const ListPostsUi: React.FC<IListPostsUi> = ({ tipo }) => {
         }}
         dataSource={posts}
         renderItem={(item: IPost) => {
-          var image = `/assets/img/erro.png`;
-
-          if (item.image) {
-            image = `/assets/img/${item.image}`;
-          }
-
           var title = item.title;
+          var image = "/assets/img/erro.png";
+
+          // if (item.image)
+          //   setImage(`/assets/img/${item.id}-icon.png`);
 
           if (!item.liberado) {
             title += ' => pendente'
@@ -58,7 +56,7 @@ const ListPostsUi: React.FC<IListPostsUi> = ({ tipo }) => {
                 }} />
               </Col>
               <Col>
-                <ListPostUi id={item.id} tipo={tipo} title={title} date={item.date} />
+                <ListPostUi id={item.id} tipo={tipo} title={title} date={formatarDataPorExtenso(item.date)} />
               </Col>
             </Row>
           </List.Item>)

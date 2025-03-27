@@ -6,7 +6,7 @@ const { Title, Paragraph, Text } = Typography
 
 const desempenhoGTA6Ui: React.FC = () => {
   return (
-    <PostUi>
+    <>
       <Paragraph>
         <Title>
           Possível desempenho do GTA 6 foi vazado
@@ -19,7 +19,7 @@ const desempenhoGTA6Ui: React.FC = () => {
           “Eu acredito que, no lançamento, o jogo não vai rodar a 60 FPS nativos nos consoles padrão. Talvez no PS5 Pro, mas ainda tenho minhas dúvidas”, afirmou. “Se houver 60 FPS, será por algum tipo de upscaling, como a Sony está fazendo.” Apesar de suas declarações, York deixou claro que não está envolvido no desenvolvimento atual do jogo e que suas observações são baseadas em suas experiências passadas na Rockstar, onde trabalhou até 2017, participando de projetos como GTA 5 e Red Dead Redemption 2
         </Text>
       </Paragraph>
-    </PostUi>
+    </>
   )
 }
 

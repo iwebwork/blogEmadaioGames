@@ -9,9 +9,18 @@ export interface IData {
 
 export interface IPost {
   id: string;
-  post: string;
+  name: string;
   title: string;
   date: string;
   image: string;
   liberado: boolean;
+}
+
+export interface IRequest {
+  url: string;
+  body: any
+}
+
+export interface IResponse {
+  data: any
 }

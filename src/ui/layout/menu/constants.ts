@@ -18,6 +18,12 @@ export const getUrls: IUrl[] =  [
     url: '/site/quemSomos',
     label: 'Quem Somos',
     liberado: true
+  },
+  {
+    key: 'cadastroPost',
+    url: '/site/cadastroPost',
+    label: 'Cadastro de Post',
+    liberado: false
   }
 ] as IUrl[];
 

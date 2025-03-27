@@ -6,7 +6,7 @@ const { Paragraph, Title } = Typography;
 
 const ForzaPS5Ui: React.FC = () => {
   return (
-    <PostUi>
+    <>
       <Flex>
         <Title>Preparem os motores! Forza Horizont 5,está prestes a acelerar no Playstation 5</Title>
       </Flex>
@@ -39,7 +39,7 @@ const ForzaPS5Ui: React.FC = () => {
 
         Com essa expansão para uma nova plataforma, Forza Horizon 5 está pronto para conquistar ainda mais fãs ao redor do mundo, solidificando sua posição como um dos melhores e mais emocionantes jogos de corrida da atualidade.
       </Row>
-    </PostUi>
+    </>
   )
 }
 

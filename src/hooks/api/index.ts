@@ -1,32 +1,17 @@
-import axios from "axios";
-import { formatarDataPorExtenso } from "../comuns";
-import { IPost } from "./props";
+import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
+import { IRequest, IResponse } from "./props";
+interface CustomInstanceConfig extends AxiosRequestConfig {
+  // Adicione configurações personalizadas, se necessário
+}
 
-export const get = async (url: string): Promise<IPost[]> => {
-  const response = (await axios.get<IPost[]>(url)).data;
-  
-  const filter = process.env.NODE_ENV === 'production' 
-    ? response.filter((data) => data.liberado === true) 
-    : response; 
-  
-  const data = filter.map((res) => {
-    return {
-      id: res.id,
-      date: formatarDataPorExtenso(res.date),
-      post: res.post,
-      title: res.title,
-      image: res.image,
-      liberado: res.liberado
-    }
-  }) as IPost[];
+const api: AxiosInstance = axios.create({
+  baseURL: process.env.REACT_APP_URL_API,
+  headers: {
+    'Content-Type': 'application/json'
+  }
+} as CustomInstanceConfig);
 
-  return data;
-};
-
-export const select = async (url: string, id: string): Promise<IPost> => {
-  const response = await get(url);
-
-  const post = response.find(post =>  post.id === id) || {} as IPost;
-  
-  return post;
+export const post = async (request: IRequest): Promise<IResponse> => {  
+  const response = (await api.post(request.url, request.body)).data;
+  return response;
 }
