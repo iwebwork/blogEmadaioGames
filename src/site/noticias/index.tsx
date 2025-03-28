@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ListPostsUi from '../../ui/listPosts';
+import BarAnuncioUI from '../../ui/barAnuncioUI';
 
 const NoticiasView: React.FC = () => {
   return (
-    <ListPostsUi tipo='noticias' />
+    <>
+      <ListPostsUi tipo='noticias' />
+      <BarAnuncioUI />
+    </>
   )
 }
 
