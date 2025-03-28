@@ -48,7 +48,7 @@ const SiteView: React.FC = () => {
 
     buscarNoticias();
     buscarReviews();
-  }, [carregou]);
+  }, []);
 
 
   return (
