@@ -10,11 +10,12 @@ const BarAnuncioUI: React.FC = () => {
 
   React.useEffect(() => {
     const intervalId = setInterval(() => {
+      console.log('chamou anuncio');
       // Gera uma nova URL aleatória ou lógica de atualização
       setIframeSrc(
         urlAnuncio
       );
-    }, 5000); // Atualiza a cada 5 segundos
+    }, 20000); // Atualiza a cada 20 segundos
 
     return () => clearInterval(intervalId); // Limpa o intervalo no desmontar
   }, []);
