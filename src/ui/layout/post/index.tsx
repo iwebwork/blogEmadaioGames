@@ -7,7 +7,7 @@ import { IComponent } from "./props";
 import SuspenseUi from "../suspense";
 
 const routePost = (tipo: string, post: string) => {
-  const component = lazy(() => import(`./../../../site/${tipo}/posts/${post}`))
+  const component = lazy(() => import(`./../../../site/${tipo}/${post}`))
 
   return component;
 }

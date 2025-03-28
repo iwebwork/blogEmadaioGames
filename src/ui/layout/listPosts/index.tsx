@@ -6,7 +6,7 @@ import Pallet from "../colorsPalette";
 
 const { Link, Title, Paragraph } = Typography;
 
-const ListPostUi: React.FC<IData> = (props) => {
+const ListItemPostUi: React.FC<IData> = (props) => {
   const navigate = useNavigate();
   const { id, tipo, title, date } = props;
 
@@ -40,4 +40,4 @@ const ListPostUi: React.FC<IData> = (props) => {
   )
 }
 
-export default ListPostUi;
+export default ListItemPostUi;
