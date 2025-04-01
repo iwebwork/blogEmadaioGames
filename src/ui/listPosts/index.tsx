@@ -7,12 +7,12 @@ import { IListPostsUi, PaginationAlign, PaginationPosition } from './props';
 
 const { Text } = Typography;
 
-const ListPostsUi: React.FC<IListPostsUi> = ({ posts, tipo }) => {
+const ListPostsUi: React.FC<IListPostsUi> = ({ posts, tipo, }) => {
   const [position] = useState<PaginationPosition>('bottom');
   const [align] = useState<PaginationAlign>('center');
 
   return (
-    <>
+    <>{posts &&
       <Row justify={'center'} style={{
         marginBottom: 20
       }}>
@@ -29,6 +29,7 @@ const ListPostsUi: React.FC<IListPostsUi> = ({ posts, tipo }) => {
             }
 
             var title = item.title;
+            var name = item.name;
 
             if (!item.liberado) {
               title += ' => pendente'
@@ -45,7 +46,7 @@ const ListPostsUi: React.FC<IListPostsUi> = ({ posts, tipo }) => {
                   }} />
                 </Col>
                 <Col>
-                  <ListItemPostUi id={item.id} tipo={tipo} title={title} date={item.date} />
+                  <ListItemPostUi id={item.id} tipo={tipo} name={name} title={title} date={item.date} />
                 </Col>
               </Row>
             </List.Item>)
@@ -53,7 +54,7 @@ const ListPostsUi: React.FC<IListPostsUi> = ({ posts, tipo }) => {
           locale={{ emptyText: <Text>Não possui posts</Text> }}
           loading={{ indicator: <Spin fullscreen />, spinning: posts.length === 0 }}
         />
-      </Row>
+      </Row>}
     </>
   )
 }

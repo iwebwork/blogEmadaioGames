@@ -1,36 +1,31 @@
-import React, { lazy, useState } from "react";
+import React, { lazy } from "react";
 import { useParams } from "react-router";
-import { select } from "../../../hooks/api";
-import { IPost } from "../../../hooks/api/props";
 import Pallet from "../colorsPalette";
-import { IComponent } from "./props";
 import SuspenseUi from "../suspense";
+import { IComponent } from "./props";
 
 const routePost = (tipo: string, post: string) => {
-  const component = lazy(() => import(`./../../../site/${tipo}/${post}`))
+  console.log(post); // Olhar como chamar o post não encontrado.
 
-  return component;
+  try {
+    const component = lazy(() => import(`./../../../site/${tipo}/${post}`))
+    return component;
+
+  } catch (error) {
+    console.log('caiu erro', error);
+    const component = lazy(() => import(`./../naoEncontrado`))
+    return component;
+  }
+
 }
 
 const Component: React.FC<IComponent> = ({ tipo, idPost }) => {
-  const [post, setPost] = useState<IPost>();
 
-  const fetchPosts = async () => {
-    const result = await select(`/data/${tipo}.json`, idPost);
-    if (!result)
-      return;
-    setPost(result);
-  }
-
-  React.useEffect(() => {
-    fetchPosts();
-  }, [idPost])
-
-  const Component = routePost(tipo, post?.post || "naoEncontrado");
+  const View = routePost(tipo, idPost || "naoEncontrado");
 
   return (
     <SuspenseUi>
-      <Component />
+      <View />
     </SuspenseUi>
   )
 }
@@ -46,7 +41,7 @@ const PostUi: React.FC = () => {
       marginBottom: 40,
       marginRight: 20
     }}>
-      <Component tipo={tipo || "notfound"} idPost={id || ""} />
+      <Component tipo={tipo || "naoEncontrado"} idPost={id || ""} />
     </div>
   )
 }

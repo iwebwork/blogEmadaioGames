@@ -1,6 +1,7 @@
 export interface IData {
   id: string;
   tipo: string;
+  name: string;
   title: string;
   date: string;
   image?: string;
@@ -9,9 +10,20 @@ export interface IData {
 
 export interface IPost {
   id: string;
-  post: string;
+  name: string;
   title: string;
   date: string;
   image: string;
   liberado: boolean;
+  tipo: number;
+  tipoNome: string;
+}
+
+export interface IRequest {
+  url: string;
+  body: any
+}
+
+export interface IResponse {
+  data: any
 }

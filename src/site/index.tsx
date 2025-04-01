@@ -1,15 +1,18 @@
-import { lazy, useState } from "react";
-import { Navigate, Route, Routes } from "react-router";
+import React, { lazy, useState } from "react";
+import { Navigate, Route, Routes, useNavigate } from "react-router";
+import { post } from "../hooks/api";
+import { IPost } from "../hooks/api/props";
 import LayoutViewUi from "../ui/layout";
 import PostUi from "../ui/layout/post";
-import SuspenseUi from "../ui/layout/suspense";
 import ListPostsUi from "../ui/listPosts";
 import { TypePosts } from "../ui/listPosts/props";
-import { IPost } from "../hooks/api/props";
-import { get } from "../hooks/api";
-import React from "react";
+import { Typography } from "antd";
+
+const { Paragraph } = Typography;
 
 const QuemSomosView = lazy(() => import(`./quemSomos`));
+const NaoEncontradoView = lazy(() => import(`./../ui/layout/naoEncontrado`));
+
 
 // const Sider: React.FC = () => {
 //   return (
@@ -22,34 +25,35 @@ const QuemSomosView = lazy(() => import(`./quemSomos`));
 // }
 
 const SiteView: React.FC = () => {
-  const [listPostsNoticias, setPostsNoticias] = useState<IPost[]>();
-  const [listPostsReviews, setPostsReviews] = useState<IPost[]>();
-  const [carregou, setCarregou] = useState(false);
+  const [posts, setPosts] = useState<IPost[]>([]);
+  // const [noticias, setNoticias] = useState<IPost[]>([]);
+  // const [reviews, setReviews] = useState<IPost[]>([]);
 
-  const fetchPosts = async (tipo: TypePosts) => {
-    const result = await get(`/data/${tipo}.json`);
+  const fetchPosts = async () => {
+    const result: IPost[] = (await post({ url: `/api/posts/getTable`, body: {} })).data;
 
     if (!result)
-      return [];
-
-    return result;
-  }
-
-  const buscarNoticias = async () =>
-    setPostsNoticias(await fetchPosts('noticias'));
-
-
-  const buscarReviews = async () =>
-    setPostsReviews(await fetchPosts('reviews'));
-
-  React.useEffect(() => {
-    if (carregou)
       return;
 
-    buscarNoticias();
-    buscarReviews();
+    setPosts(result);
+  }
+
+  React.useEffect(() => {
+    fetchPosts();
   }, []);
 
+  interface ISiteViewView {
+    tipo: TypePosts;
+  }
+
+  const PostsView: React.FC<ISiteViewView> = ({ tipo }) => {
+    const result = posts.filter(s => s.tipoNome === tipo);
+
+    if (result.length > 0)
+      return <ListPostsUi posts={result} tipo={tipo} />
+    else
+      return <NaoEncontradoView />
+  }
 
   return (
     <LayoutViewUi
@@ -57,11 +61,12 @@ const SiteView: React.FC = () => {
     // SiderChildrenLeft={<Sider />}
     >
       <Routes>
-        <Route index path='/noticias' element={<ListPostsUi posts={listPostsNoticias || []} tipo='noticias' />} />
-        <Route path='/reviews' element={<ListPostsUi posts={listPostsReviews || []} tipo='reviews' />} />
+        <Route index path='/noticias' element={<PostsView tipo="noticias" />} />
+        <Route path='/reviews' element={<PostsView tipo="reviews" />} />
         <Route path='/quemSomos' element={<QuemSomosView />} />
         <Route path='/post/:tipo/:id' element={<PostUi />} />
         <Route path='*' element={<Navigate to={'/noticias'} />} />
+        <Route path='/naoEncontrado' element={<NaoEncontradoView />} />
       </Routes>
     </LayoutViewUi>
   )

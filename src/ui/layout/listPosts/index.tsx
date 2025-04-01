@@ -8,7 +8,7 @@ const { Link, Title, Paragraph } = Typography;
 
 const ListItemPostUi: React.FC<IData> = (props) => {
   const navigate = useNavigate();
-  const { id, tipo, title, date } = props;
+  const { tipo, title, date, name } = props;
 
   return (
     <Anuncio>
@@ -25,7 +25,7 @@ const ListItemPostUi: React.FC<IData> = (props) => {
             color: Pallet.Typography.secundaria
           }}
           onClick={() => {
-            navigate(`/site/post/${tipo}/${id}`);
+            navigate(`/site/post/${tipo}/${name}`);
           }}
         >
           <Title underline level={4}>

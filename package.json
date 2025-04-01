@@ -14,6 +14,7 @@
     "@types/react-dom": "^19.0.0",
     "antd": "^5.24.3",
     "axios": "^1.8.3",
+    "dotenv": "^16.4.7",
     "eslint-config-react-app": "^7.0.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
