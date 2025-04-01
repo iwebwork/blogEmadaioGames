@@ -1,53 +1,52 @@
-import React, { ReactNode, useState } from "react";
+import React, { lazy, useState } from "react";
 import { useParams } from "react-router";
-import { post } from "../../../hooks/api";
+import { select } from "../../../hooks/api";
+import { IPost } from "../../../hooks/api/props";
 import Pallet from "../colorsPalette";
-import { Typography, Image } from "antd";
+import { IComponent } from "./props";
+import SuspenseUi from "../suspense";
 
-interface IDynamicComponentProps {
-  text: string;
+const routePost = (tipo: string, post: string) => {
+  const component = lazy(() => import(`./../../../site/${tipo}/${post}`))
+
+  return component;
 }
 
-const DynamicComponent: React.FC<IDynamicComponentProps> = ({ text }) => {
-  const { Paragraph, Title, Text } = Typography;
+const Component: React.FC<IComponent> = ({ tipo, idPost }) => {
+  const [post, setPost] = useState<IPost>();
 
-
-  return <>{text}</>;
-};
-
-const CreateDynamicComponent = (component: React.ComponentType<any>, props: any) => {
-  return (
-    React.createElement(component, props)
-  );
-};
-
-const PostUi: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
-  const [corpoPost, setCorpoPost] = useState<string>();
-
-  const SelectPost = async () => {
-    console.log('vai selecionar o post');
-    const result = (await post({ url: `/api/posts/select/${id}`, body: {} })).data;
-
+  const fetchPosts = async () => {
+    const result = await select(`/data/${tipo}.json`, idPost);
     if (!result)
       return;
-
-    setCorpoPost(result.corpo);
+    setPost(result);
   }
 
   React.useEffect(() => {
-    SelectPost();
-  }, []);
+    fetchPosts();
+  }, [idPost])
 
-  const dynamicComponent = CreateDynamicComponent(DynamicComponent, { text: corpoPost });
+  const Component = routePost(tipo, post?.post || "naoEncontrado");
+
+  return (
+    <SuspenseUi>
+      <Component />
+    </SuspenseUi>
+  )
+}
+
+const PostUi: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
+  const { tipo } = useParams<{ tipo: string }>();
 
   return (
     <div style={{
       backgroundColor: Pallet.BackGround.secundaria,
-      marginBottom: 50,
+      marginTop: 20,
+      marginBottom: 40,
       marginRight: 20
     }}>
-      {dynamicComponent}
+      <Component tipo={tipo || "notfound"} idPost={id || ""} />
     </div>
   )
 }

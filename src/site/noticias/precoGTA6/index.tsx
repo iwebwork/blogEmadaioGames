@@ -1,5 +1,4 @@
 import React from "react";
-import PostUi from "../../../../ui/layout/post"
 import { Typography } from "antd";
 
 const { Title, Paragraph } = Typography
@@ -7,7 +6,6 @@ const { Title, Paragraph } = Typography
 const precoGTA6Ui: React.FC = () => {
   return (
     <>
-
       <Paragraph>
         <Title>
           Possível preço do GTA 6 foi revelado

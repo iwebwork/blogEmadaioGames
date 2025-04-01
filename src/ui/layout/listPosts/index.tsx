@@ -3,11 +3,10 @@ import { IData } from "../../../hooks/api/props";
 import Anuncio from "../../anuncio";
 import { Flex, Typography } from "antd";
 import Pallet from "../colorsPalette";
-import { HoverLink } from "../../style";
 
 const { Link, Title, Paragraph } = Typography;
 
-const ListPostUi: React.FC<IData> = (props) => {
+const ListItemPostUi: React.FC<IData> = (props) => {
   const navigate = useNavigate();
   const { id, tipo, title, date } = props;
 
@@ -29,10 +28,8 @@ const ListPostUi: React.FC<IData> = (props) => {
             navigate(`/site/post/${tipo}/${id}`);
           }}
         >
-          <Title level={4}>
-            <HoverLink>
-              {title}
-            </HoverLink>
+          <Title underline level={4}>
+            {title}
           </Title>
         </Link >
         <Paragraph>
@@ -43,4 +40,4 @@ const ListPostUi: React.FC<IData> = (props) => {
   )
 }
 
-export default ListPostUi;
+export default ListItemPostUi;

@@ -1,13 +1,11 @@
-import React from "react";
-import PostUi from "../../../../ui/layout/post"
 import { Typography } from "antd";
+import React from "react";
 
 const { Title, Paragraph, Text } = Typography
 
 const lancamentoGTA6Ui: React.FC = () => {
   return (
     <>
-
       <Paragraph>
         <Title>
           Previsão de Lançamento do GTA 6
