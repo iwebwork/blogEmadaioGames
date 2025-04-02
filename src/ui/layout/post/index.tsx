@@ -7,7 +7,13 @@ import { IComponent } from "./props";
 import SuspenseUi from "../suspense";
 
 const routePost = (tipo: string, post: string) => {
-  const component = lazy(() => import(`./../../../site/${tipo}/${post}`))
+  const component = lazy(() => import(`./../../../site/${tipo}/${post}`)
+    .then((res) => {
+      return res
+    })
+    .catch(() => {
+      return import('./../postNaoEncontrado')
+    }))
 
   return component;
 }
@@ -26,7 +32,7 @@ const Component: React.FC<IComponent> = ({ tipo, idPost }) => {
     fetchPosts();
   }, [idPost])
 
-  const Component = routePost(tipo, post?.post || "naoEncontrado");
+  const Component = routePost(tipo, post?.post || "");
 
   return (
     <SuspenseUi>
