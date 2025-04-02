@@ -8,5 +8,4 @@ export type TypePosts = 'noticias' | 'reviews' | 'quemSomos';
 
 export interface IListPostsUi {
   tipo: TypePosts
-  posts: IPost[]
 }

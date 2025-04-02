@@ -1,7 +1,7 @@
 import { Flex } from "antd";
 import React from "react";
 
-const naoEncontrado: React.FC = () => {
+const PostNaoEncontrado: React.FC = () => {
   return (
     <Flex justify="center">
       Post não foi encontrado
@@ -9,4 +9,4 @@ const naoEncontrado: React.FC = () => {
   )
 }
 
-export default naoEncontrado;
+export default PostNaoEncontrado;

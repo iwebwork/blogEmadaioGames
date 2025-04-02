@@ -1,5 +1,6 @@
 import { Col, Image, List, Row, Spin, Typography } from "antd";
 import React, { useState } from "react";
+import { get } from "../../hooks/api";
 import { IPost } from "../../hooks/api/props";
 import ListItemPostUi from "../../ui/layout/listPosts";
 import Pallet from "../layout/colorsPalette";
@@ -7,9 +8,23 @@ import { IListPostsUi, PaginationAlign, PaginationPosition } from './props';
 
 const { Text } = Typography;
 
-const ListPostsUi: React.FC<IListPostsUi> = ({ posts, tipo }) => {
+const ListPostsUi: React.FC<IListPostsUi> = ({ tipo }) => {
   const [position] = useState<PaginationPosition>('bottom');
   const [align] = useState<PaginationAlign>('center');
+  const [posts, setPosts] = useState<IPost[]>();
+
+  const fetchPosts = async () => {
+    const result = await get(`/data/${tipo}.json`);
+
+    if (!result)
+      return;
+
+    setPosts(result);
+  }
+
+  React.useEffect(() => {
+    fetchPosts();
+  }, []);
 
   return (
     <>
@@ -51,7 +66,7 @@ const ListPostsUi: React.FC<IListPostsUi> = ({ posts, tipo }) => {
             </List.Item>)
           }}
           locale={{ emptyText: <Text>Não possui posts</Text> }}
-          loading={{ indicator: <Spin fullscreen />, spinning: posts.length === 0 }}
+          loading={{ indicator: <Spin fullscreen />, spinning: !posts }}
         />
       </Row>
     </>
