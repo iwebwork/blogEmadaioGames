@@ -1,14 +1,11 @@
 import React, { lazy, useState } from "react";
-import { Navigate, Route, Routes, useNavigate } from "react-router";
+import { Navigate, Route, Routes } from "react-router";
 import { post } from "../hooks/api";
 import { IPost } from "../hooks/api/props";
 import LayoutViewUi from "../ui/layout";
 import PostUi from "../ui/layout/post";
 import ListPostsUi from "../ui/listPosts";
 import { TypePosts } from "../ui/listPosts/props";
-import { Typography } from "antd";
-
-const { Paragraph } = Typography;
 
 const QuemSomosView = lazy(() => import(`./quemSomos`));
 const NaoEncontradoView = lazy(() => import(`./../ui/layout/naoEncontrado`));

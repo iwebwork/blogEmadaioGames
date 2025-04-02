@@ -24,9 +24,9 @@ const ListPostsUi: React.FC<IListPostsUi> = ({ posts, tipo, }) => {
           renderItem={(item: IPost) => {
             var image = `/assets/img/erro.png`;
 
-            if (item.image) {
-              image = `/assets/img/${item.image}`;
-            }
+            // if (item.image !== "") {
+            //   image = `/assets/img/${item.image}`;
+            // } // descomentar quando resolver o upload da imagem
 
             var title = item.title;
             var name = item.name;

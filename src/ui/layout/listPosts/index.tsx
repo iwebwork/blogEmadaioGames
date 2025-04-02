@@ -3,6 +3,7 @@ import { IData } from "../../../hooks/api/props";
 import Anuncio from "../../anuncio";
 import { Flex, Typography } from "antd";
 import Pallet from "../colorsPalette";
+import { formatarDataPorExtenso } from "../../../hooks/comuns";
 
 const { Link, Title, Paragraph } = Typography;
 
@@ -33,7 +34,7 @@ const ListItemPostUi: React.FC<IData> = (props) => {
           </Title>
         </Link >
         <Paragraph>
-          {date}
+          {formatarDataPorExtenso(date)}
         </Paragraph>
       </Flex>
     </Anuncio >

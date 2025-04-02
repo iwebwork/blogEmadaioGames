@@ -7,21 +7,20 @@ import { IComponent } from "./props";
 const routePost = (tipo: string, post: string) => {
   console.log(post); // Olhar como chamar o post não encontrado.
 
-  try {
-    const component = lazy(() => import(`./../../../site/${tipo}/${post}`))
-    return component;
+  const component = lazy(() => import(`./../../../site/${tipo}/${post}`)
+    .then((res) => {
+      return res
+    })
+    .catch(() => {
+      return import('./../naoEncontrado')
+    }))
 
-  } catch (error) {
-    console.log('caiu erro', error);
-    const component = lazy(() => import(`./../naoEncontrado`))
-    return component;
-  }
-
+  return component;
 }
 
 const Component: React.FC<IComponent> = ({ tipo, idPost }) => {
 
-  const View = routePost(tipo, idPost || "naoEncontrado");
+  const View = routePost(tipo, idPost);
 
   return (
     <SuspenseUi>
