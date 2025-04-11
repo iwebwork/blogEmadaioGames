@@ -6,6 +6,7 @@ import LayoutViewUi from "../ui/layout";
 import PostUi from "../ui/layout/post";
 import ListPostsUi from "../ui/listPosts";
 import { TypePosts } from "../ui/listPosts/props";
+import CadastroPostView from "./cadastroPost";
 
 const QuemSomosView = lazy(() => import(`./quemSomos`));
 const NaoEncontradoView = lazy(() => import(`./../ui/layout/naoEncontrado`));
@@ -62,6 +63,7 @@ const SiteView: React.FC = () => {
         <Route path='/reviews' element={<PostsView tipo="reviews" />} />
         <Route path='/quemSomos' element={<QuemSomosView />} />
         <Route path='/post/:tipo/:id' element={<PostUi />} />
+        <Route path='/cadastroPost' element={<CadastroPostView />} />
         <Route path='*' element={<Navigate to={'/noticias'} />} />
         <Route path='/naoEncontrado' element={<NaoEncontradoView />} />
       </Routes>
