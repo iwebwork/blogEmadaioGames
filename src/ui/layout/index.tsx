@@ -1,4 +1,4 @@
-import { Col, ConfigProvider, Flex, FloatButton, Image, Layout, Row } from 'antd';
+import { ConfigProvider, FloatButton, Layout, Row } from 'antd';
 import Title from 'antd/es/typography/Title';
 import React from 'react';
 import { ButtonYouTubeUi } from './buttons';
