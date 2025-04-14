@@ -1,6 +1,5 @@
 import axios from "axios";
 import { IRequest, IResponse } from "./props";
-import React from "react";
 
 // export const post = async (request: IRequest): Promise<IResponse> => {  
 //   const response = (await api.post(request.url, request.body)).data;

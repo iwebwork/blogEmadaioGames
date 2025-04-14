@@ -1,13 +1,12 @@
+import { Col, Flex, Image } from "antd";
 import React, { lazy, useState } from "react";
 import { Navigate, Route, Routes } from "react-router";
+import hookApi from "../hooks/api";
 import { IPost } from "../hooks/api/props";
 import LayoutViewUi from "../ui/layout";
 import PostUi from "../ui/layout/post";
 import ListPostsUi from "../ui/listPosts";
-import CadastroPostView from "./cadastroPost";
 import { ISiteViewView } from "./props";
-import hookApi from "../hooks/api";
-import { Col, Flex, Image } from "antd";
 
 const QuemSomosView = lazy(() => import(`./quemSomos`));
 const NaoEncontradoView = lazy(() => import(`./../ui/layout/naoEncontrado`));
