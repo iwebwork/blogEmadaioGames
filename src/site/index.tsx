@@ -26,8 +26,6 @@ const Sider: React.FC = () => {
 
 const SiteView: React.FC = () => {
   const [posts, setPosts] = useState<IPost[]>([]);
-  // const [noticias, setNoticias] = useState<IPost[]>([]);
-  // const [reviews, setReviews] = useState<IPost[]>([]);
   const { post } = hookApi();
 
   const fetchPosts = async () => {
@@ -62,7 +60,7 @@ const SiteView: React.FC = () => {
         <Route path='/reviews' element={<PostsView tipo="reviews" />} />
         <Route path='/quemSomos' element={<QuemSomosView />} />
         <Route path='/post/:id' element={<PostUi />} />
-        <Route path='/cadastroPost' element={<CadastroPostView />} />
+        {/* <Route path='/cadastroPost' element={<CadastroPostView />} /> */}
         <Route path='*' element={<Navigate to={'/noticias'} />} />
         <Route path='/naoEncontrado' element={<NaoEncontradoView />} />
       </Routes>
