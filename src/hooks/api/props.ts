@@ -17,6 +17,7 @@ export interface IPost {
   liberado: boolean;
   tipo: number;
   tipoNome: string;
+  corpo: string;
 }
 
 export interface IRequest {

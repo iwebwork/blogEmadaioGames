@@ -1,4 +1,4 @@
-import { Col, ConfigProvider, Flex, FloatButton, Layout, Row } from 'antd';
+import { Col, ConfigProvider, Flex, FloatButton, Image, Layout, Row } from 'antd';
 import Title from 'antd/es/typography/Title';
 import React from 'react';
 import { ButtonYouTubeUi } from './buttons';
@@ -28,11 +28,6 @@ const LayoutViewUi: React.FC<ILayoutUi> = ({ children, SiderChildrenLeft, SiderC
         <MenuUi />
 
         <Layout style={layoutStyleContent}>
-          {/* {(SiderChildrenLeft && process.env.NODE_ENV === 'production') &&
-            <SiderLayout>
-              {SiderChildrenLeft}
-            </SiderLayout>} */}
-
           <Layout style={contentStyle}>
             {children &&
               <Content>
@@ -40,17 +35,10 @@ const LayoutViewUi: React.FC<ILayoutUi> = ({ children, SiderChildrenLeft, SiderC
               </Content>}
           </Layout>
 
-          {(SiderChildrenRight && process.env.NODE_ENV === 'production') &&
+          {SiderChildrenRight &&
             <SiderLayout>
               {SiderChildrenRight}
             </SiderLayout>}
-
-          {(process.env.NODE_ENV === 'production') &&
-            <Flex justify={'center'} hidden>
-              <Col span={18}>
-                <div id="container-03e4cb914ac639fadad951bcf7c1b7f2" />
-              </Col>
-            </Flex >}
         </Layout>
 
         <Footer style={footerStyle}>
@@ -65,7 +53,7 @@ const LayoutViewUi: React.FC<ILayoutUi> = ({ children, SiderChildrenLeft, SiderC
           <ButtonYouTubeUi />
         </FloatButton.Group>
       </Layout>
-    </ConfigProvider>
+    </ConfigProvider >
   )
 }
 

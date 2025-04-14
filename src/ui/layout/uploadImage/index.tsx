@@ -1,5 +1,5 @@
 import { PlusOutlined } from "@ant-design/icons";
-import { Form, Image, Upload, UploadFile, UploadProps } from "antd";
+import { Image, Upload, UploadFile, UploadProps } from "antd";
 import { UploadRequestOption } from 'rc-upload/lib/interface';
 import React, { useState } from "react";
 import { FileType, getBase64, IOptionsFile } from "./props";
@@ -56,12 +56,13 @@ const UploadImage: React.FC<IUploadImage> = ({ name, maxCount }) => {
     if (!finishedUpload)
       return;
 
-    // fileList.map((res) => {
-    //   if (!res.thumbUrl)
-    //     return;
+    fileList.map((res) => {
+      if (!res.thumbUrl)
+        return;
+      console.log('res', res);
 
-    //   console.log('res.thumbUrl', res.thumbUrl)
-    // });
+      // console.log('res.thumbUrl', res.thumbUrl)
+    });
 
   }, [finishedUpload, fileList]);
 
