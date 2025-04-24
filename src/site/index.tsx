@@ -44,7 +44,6 @@ const SiteView: React.FC = () => {
 
   const PostsView: React.FC<ISiteViewView> = ({ tipo }) => {
     const result = posts.filter(s => s.tipoNome === tipo);
-    console.log('result', result);
 
     if (result.length > 0)
       return <ListPostsUi posts={result} tipo={tipo} />
