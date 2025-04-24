@@ -1,5 +1,5 @@
-Essa versão será continuada depois
-Fazer o merge com o fix/master para ser continuada.
+Essa versão é a principal.
+Sempre dar merge com a versão com api.
 
 # Getting Started with Create React App
 
