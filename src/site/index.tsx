@@ -7,6 +7,8 @@ import LayoutViewUi from "../ui/layout";
 import PostUi from "../ui/layout/post";
 import ListPostsUi from "../ui/listPosts";
 import { ISiteViewView } from "./props";
+import CadastroPostView from "./cadastroPost";
+import { getUrls } from "../ui/layout/menu/constants";
 
 const QuemSomosView = lazy(() => import(`./quemSomos`));
 const NaoEncontradoView = lazy(() => import(`./../ui/layout/naoEncontrado`));
@@ -42,6 +44,7 @@ const SiteView: React.FC = () => {
 
   const PostsView: React.FC<ISiteViewView> = ({ tipo }) => {
     const result = posts.filter(s => s.tipoNome === tipo);
+    console.log('result', result);
 
     if (result.length > 0)
       return <ListPostsUi posts={result} tipo={tipo} />
@@ -49,20 +52,31 @@ const SiteView: React.FC = () => {
       return <NaoEncontradoView />
   }
 
+  const GetRoutesUrl: React.FC = () => {
+    let data: any = [];
+
+    getUrls.map((value, index) => {
+      data.push(<Route key={index} index={value.index} path={value.path} element={
+        value.key === 'CadastroPost'
+          ? <CadastroPostView />
+          : value.key === 'QuemSomos'
+            ? <QuemSomosView />
+            : <PostsView tipo={value.key} />
+      } />)
+    });
+
+    return <Routes>
+      {data}
+      <Route path='/post/:id' element={<PostUi />} />
+      <Route path='*' element={<NaoEncontradoView />} />
+    </Routes>
+  }
+
   return (
     <LayoutViewUi
-      // SiderChildrenLeft={process.env.NODE_ENV === 'production' && <Sider />}
       SiderChildrenRight={<Sider />}
     >
-      <Routes>
-        <Route index path='/noticias' element={<PostsView tipo="noticias" />} />
-        <Route path='/reviews' element={<PostsView tipo="reviews" />} />
-        <Route path='/quemSomos' element={<QuemSomosView />} />
-        <Route path='/post/:id' element={<PostUi />} />
-        {/* <Route path='/cadastroPost' element={<CadastroPostView />} /> */}
-        <Route path='*' element={<Navigate to={'/noticias'} />} />
-        <Route path='/naoEncontrado' element={<NaoEncontradoView />} />
-      </Routes>
+      <GetRoutesUrl />
     </LayoutViewUi >
   )
 }

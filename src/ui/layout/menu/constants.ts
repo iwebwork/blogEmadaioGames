@@ -1,23 +1,35 @@
+import React from "react";
 import { IUrl } from "./props";
 
 export const getUrls: IUrl[] =  [
   {
-    key: 'noticias',
+    key: 'Noticias',
     url: '/site/noticias',
+    path: '/noticias',
     label: 'Noticias',
-    liberado: true
+    liberado: true,
+    index: true
   },
   {
-    key: 'reviews',
+    key: 'Reviews',
     url: '/site/reviews',
+    path: '/reviews',
     label: 'Reviews',
     liberado: false
   },
   {
-    key: 'quemSomos',
+    key: 'QuemSomos',
     url: '/site/quemSomos',
+    path: '/quemSomos',
     label: 'Quem Somos',
     liberado: true
-  }
+  },
+  {
+    key: 'CadastroPost',
+    url: '/site/cadastroPost',
+    path: '/cadastroPost',
+    label: 'cadastro de Post',
+    liberado: false
+  },
 ] as IUrl[];
 

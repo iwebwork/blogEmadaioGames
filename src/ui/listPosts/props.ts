@@ -4,7 +4,7 @@ export type PaginationPosition = 'top' | 'bottom' | 'both';
 
 export type PaginationAlign = 'start' | 'center' | 'end';
 
-export type TypePosts = 'noticias' | 'reviews' | 'quemSomos';
+export type TypePosts = 'Noticias' | 'Reviews' | 'QuemSomos' | 'CadastroPost';
 
 export interface IListPostsUi {
   tipo: TypePosts

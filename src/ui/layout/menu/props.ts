@@ -16,6 +16,8 @@ export interface ITheme {
 export interface IUrl {
   key: TypePosts;
   url: string;
+  path: string;
   label: string;
   liberado: boolean;
+  index: boolean;
 }

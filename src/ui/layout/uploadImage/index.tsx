@@ -79,7 +79,7 @@ const UploadImage: React.FC<IUploadImage> = ({ name, maxCount }) => {
     <>
       <Upload
         name={name}
-        listType="picture-circle"
+        listType="picture-card"
         accept='image/png'
         fileList={fileList}
         onChange={handleChange}

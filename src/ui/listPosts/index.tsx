@@ -23,10 +23,9 @@ const ListPostsUi: React.FC<IListPostsUi> = ({ posts, tipo, }) => {
           dataSource={posts}
           renderItem={(item: IPost) => {
             var image = `/assets/img/erro.png`;
-
-            // if (item.image !== "") {
-            //   image = `/assets/img/${item.image}`;
-            // } // descomentar quando resolver o upload da imagem
+            if (item.image !== "") {
+              image = `${process.env.REACT_APP_URL_API}/api/posts/getImagem/${item.id}`;
+            }
 
             var title = item.title;
             var name = item.name;
@@ -41,8 +40,9 @@ const ListPostsUi: React.FC<IListPostsUi> = ({ posts, tipo, }) => {
                   backgroundColor: Pallet.BackGround.principal,
                   marginRight: 10
                 }}>
-                  <Image preview={false} width={100} src={image} style={{
-                    padding: 20
+                  <Image preview={false} src={image} style={{
+                    padding: 20,
+                    maxWidth: 150
                   }} />
                 </Col>
                 <Col>
