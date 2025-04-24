@@ -69,10 +69,10 @@ const MenuPadrao: React.FC = () => {
         color: Pallet.Typography.principal,
         minHeight: 60
       }}>
-      <Col span={6}>
+      <Col span={3}>
         <Logo />
       </Col>
-      <Col span={10} style={{
+      <Col span={16} style={{
       }}>
         <MenuItens
           mode="horizontal"

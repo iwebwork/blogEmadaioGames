@@ -1,4 +1,3 @@
-import React from "react";
 import { IUrl } from "./props";
 
 export const getUrls: IUrl[] =  [
@@ -15,6 +14,13 @@ export const getUrls: IUrl[] =  [
     url: '/site/reviews',
     path: '/reviews',
     label: 'Reviews',
+    liberado: false
+  },
+  {
+    key: 'Curiosidades',
+    url: '/site/curiosidades',
+    path: '/curiosidades',
+    label: 'Curiosidades',
     liberado: false
   },
   {
