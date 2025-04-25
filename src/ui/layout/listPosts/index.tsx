@@ -12,32 +12,32 @@ const ListItemPostUi: React.FC<IData> = (props) => {
   const { id, title, date } = props;
 
   return (
-    <Anuncio>
-      <Flex
-        vertical
-        justify='flex-start'
-        align='flex-start'
+    // <Anuncio>
+    <Flex
+      vertical
+      justify='flex-start'
+      align='flex-start'
+      style={{
+        backgroundColor: Pallet.BackGround.secundaria,
+      }}
+    >
+      <Link
         style={{
-          backgroundColor: Pallet.BackGround.secundaria,
+          color: Pallet.Typography.secundaria
+        }}
+        onClick={() => {
+          navigate(`/site/post/${id}`);
         }}
       >
-        <Link
-          style={{
-            color: Pallet.Typography.secundaria
-          }}
-          onClick={() => {
-            navigate(`/site/post/${id}`);
-          }}
-        >
-          <Title underline level={4}>
-            {title}
-          </Title>
-        </Link >
-        <Paragraph>
-          {formatarDataPorExtenso(date)}
-        </Paragraph>
-      </Flex>
-    </Anuncio >
+        <Title underline level={4}>
+          {title}
+        </Title>
+      </Link >
+      <Paragraph>
+        {formatarDataPorExtenso(date)}
+      </Paragraph>
+    </Flex>
+    // </Anuncio >
   )
 }
 
