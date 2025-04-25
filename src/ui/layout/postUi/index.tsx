@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import hookApi from "../../../hooks/api";
 import { IPostComponent, ITitlePost, TGerarPost } from "./props";
+import NaoEncontradoUi from "../naoEncontradoUi";
 
 const { Title, Paragraph, Text } = Typography;
 
@@ -73,26 +74,24 @@ const PostUi: React.FC = () => {
         post.map((value, index) => {
           value.Row.map((item, itemIndex) => {
             if (item.Image) {
-              const image = item.Image;
               elements.push(<Row key={Math.random().toString()}>
                 <Col span={20}>
-                  <Image src={process.env.REACT_APP_URL_API + image.href} />
+                  <Image src={item.Image.href} />
                 </Col>
               </Row>);
             }
 
             if (item.Paragraph) {
-              const paragraph = item.Paragraph;
-
               elements.push(<Row key={Math.random().toString()}>
-                <Paragraph strong={paragraph.strong}>
-                  {paragraph.Title &&
-                    <Title level={paragraph.Title.Level}>
-                      {paragraph.Title.Text}
+                <Paragraph strong={item.Paragraph.strong}>
+                  {item.Paragraph.Title &&
+                    <Title level={item.Paragraph.Title.Level}>
+                      {item.Paragraph.Title.Text}
                     </Title>}
-                  <Text>
-                    {paragraph.Text}
-                  </Text>
+                  {item.Paragraph.Text &&
+                    <Text>
+                      {item.Paragraph.Text}
+                    </Text>}
                 </Paragraph>
               </Row>);
             }
@@ -101,9 +100,7 @@ const PostUi: React.FC = () => {
       }
 
       if (elements.length === 0) {
-        elements.push(<Paragraph>
-          Post não encontrado
-        </Paragraph>)
+        elements.push(<NaoEncontradoUi />)
       }
 
       setRows(elements);
