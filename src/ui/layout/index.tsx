@@ -1,11 +1,11 @@
 import { ConfigProvider, FloatButton, Layout, Row } from 'antd';
 import Title from 'antd/es/typography/Title';
 import React from 'react';
-import { ButtonYouTubeUi } from './buttons';
+import { ButtonYouTubeUi } from './buttonsUi';
 import Pallet from './colorsPalette';
-import MenuUi from './menu';
+import MenuUi from './menuUi';
 import { ILayoutUi } from './props';
-import SiderLayout from './sider';
+import SiderLayout from './siderUi';
 import { contentStyle, footerStyle, layoutStyle, layoutStyleContent } from './styles';
 
 const { Footer, Content } = Layout;

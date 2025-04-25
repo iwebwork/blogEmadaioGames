@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router';
 import { URL_YOUTUBE } from "../../../constants";
 import Anuncio from "../../anuncio";
 import Pallet from "../colorsPalette";
-import { useWindowSize } from "../hooks";
+import { useWindowSize } from "../hooksUi";
 import { getUrls } from "./constants";
 import { ITheme, TMenuItem } from "./props";
 

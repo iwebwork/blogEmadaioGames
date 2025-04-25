@@ -4,14 +4,14 @@ import { Route, Routes } from "react-router";
 import hookApi from "../hooks/api";
 import { IPost } from "../hooks/api/props";
 import LayoutViewUi from "../ui/layout";
-import { getUrls } from "../ui/layout/menu/constants";
-import PostUi from "../ui/layout/post";
+import { getUrls } from "../ui/layout/menuUi/constants";
+import PostUi from "../ui/layout/postUi";
 import ListPostsUi from "../ui/listPosts";
 import CadastroPostView from "./cadastroPost";
 import { ISiteViewView } from "./props";
 
 const QuemSomosView = lazy(() => import(`./quemSomos`));
-const NaoEncontradoView = lazy(() => import(`./../ui/layout/naoEncontrado`));
+const NaoEncontradoView = lazy(() => import(`../ui/layout/naoEncontradoUi`));
 
 const Sider: React.FC = () => {
   return (

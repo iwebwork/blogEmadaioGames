@@ -2,7 +2,7 @@ import { Col, Image, List, Row, Spin, Typography } from "antd";
 import { SearchProps } from "antd/es/input/Search";
 import React, { useState } from "react";
 import { IPost } from "../../hooks/api/props";
-import ListItemPostUi from "../../ui/layout/listPosts";
+import ListItemPostUi from "../layout/listPostsUi";
 import BarraPesquisaUi from "../layout/barraPesquisaUi";
 import Pallet from "../layout/colorsPalette";
 import { IListPostsUi, PaginationAlign, PaginationPosition } from './props';

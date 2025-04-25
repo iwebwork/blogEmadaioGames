@@ -3,7 +3,7 @@ import TextArea from 'antd/es/input/TextArea';
 import dayjs from 'dayjs';
 import React from "react";
 import { getDataAtual } from '../../hooks/comuns';
-import UploadImage from '../../ui/layout/uploadImage';
+import UploadImage from '../../ui/layout/uploadImageUi';
 import { FieldType } from './props';
 
 const { Title } = Typography;
