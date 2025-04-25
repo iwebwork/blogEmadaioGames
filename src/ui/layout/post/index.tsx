@@ -1,6 +1,6 @@
 import { Col, Image, Row, Typography } from "antd";
 import React, { useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import hookApi from "../../../hooks/api";
 import { IPostComponent, ITitlePost, TGerarPost } from "./props";
 
@@ -17,17 +17,27 @@ const PostUi: React.FC = () => {
   const [rowsPost, setRowsPost] = useState<TGerarPost>();
   const [title, setTile] = useState<string>();
   const { post } = hookApi();
+  const navigation = useNavigate();
 
   const SelectPost = async () => {
-    const result: IPostComponent = (await post({ url: `/api/posts/select/${id}`, body: {} })).data;
+    try {
+      const result = (await post({ url: `/api/posts/select/${id}`, body: {} }));
 
-    if (!result)
-      return;
+      if (!result.isValid) {
+        return;
+      }
 
-    if (result.corpo)
-      setRowsPost(JSON.parse(result.corpo));
+      const data: IPostComponent = result.data;
 
-    setTile(result.title)
+      if (data.corpo)
+        setRowsPost(JSON.parse(data.corpo));
+
+      setTile(data.title)
+    } catch (error) {
+      navigation('/site/erro');
+    }
+
+
   }
 
   React.useEffect(() => {
@@ -44,7 +54,7 @@ const PostUi: React.FC = () => {
         return;
 
       setPost(rowsPost);
-    }, []);
+    }, [rowsPost]);
 
     React.useEffect(() => {
       if (!post)

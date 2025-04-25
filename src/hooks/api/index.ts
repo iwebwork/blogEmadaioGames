@@ -16,7 +16,7 @@ const hookApi = () => {
   
   const post = async (request: IRequest): Promise<IResponse> => {
     const response = (await api.post(request.url, request.body)).data;
-      return response;
+    return response;
   };
 
   return {post};

@@ -1,10 +1,14 @@
+import { Empty, Typography } from "antd";
 import React from "react";
 
 const naoEncontrado: React.FC = () => {
   return (
-    <>
-      Post não foi encontrado
-    </>
+    <Empty
+      image={Empty.PRESENTED_IMAGE_SIMPLE}
+      description={<Typography.Text>
+        Post não foi encontrado
+      </Typography.Text>}
+    />
   )
 }
 

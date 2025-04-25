@@ -26,5 +26,6 @@ export interface IRequest {
 }
 
 export interface IResponse {
-  data: any
+  data: any,
+  isValid: boolean;
 }
