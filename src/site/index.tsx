@@ -1,14 +1,14 @@
 import { Col, Flex, Image } from "antd";
 import React, { lazy, useState } from "react";
-import { Navigate, Route, Routes } from "react-router";
+import { Route, Routes } from "react-router";
 import hookApi from "../hooks/api";
 import { IPost } from "../hooks/api/props";
 import LayoutViewUi from "../ui/layout";
+import { getUrls } from "../ui/layout/menu/constants";
 import PostUi from "../ui/layout/post";
 import ListPostsUi from "../ui/listPosts";
-import { ISiteViewView } from "./props";
 import CadastroPostView from "./cadastroPost";
-import { getUrls } from "../ui/layout/menu/constants";
+import { ISiteViewView } from "./props";
 
 const QuemSomosView = lazy(() => import(`./quemSomos`));
 const NaoEncontradoView = lazy(() => import(`./../ui/layout/naoEncontrado`));

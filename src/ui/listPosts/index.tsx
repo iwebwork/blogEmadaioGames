@@ -1,12 +1,11 @@
-import { SearchOutlined } from "@ant-design/icons/lib/icons";
-import { Button, Col, Divider, Image, List, Row, Spin, Typography } from "antd";
-import Search, { SearchProps } from "antd/es/input/Search";
+import { Col, Image, List, Row, Spin, Typography } from "antd";
+import { SearchProps } from "antd/es/input/Search";
 import React, { useState } from "react";
 import { IPost } from "../../hooks/api/props";
 import ListItemPostUi from "../../ui/layout/listPosts";
+import BarraPesquisaUi from "../layout/barraPesquisaUi";
 import Pallet from "../layout/colorsPalette";
 import { IListPostsUi, PaginationAlign, PaginationPosition } from './props';
-import BarraPesquisaUi from "../layout/barraPesquisaUi";
 
 const { Text } = Typography;
 const timerMS = 2000;
