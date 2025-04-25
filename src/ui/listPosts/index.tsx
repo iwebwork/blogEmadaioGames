@@ -2,7 +2,7 @@ import { Col, Image, List, Row, Spin, Typography } from "antd";
 import { SearchProps } from "antd/es/input/Search";
 import React, { useState } from "react";
 import { IPost } from "../../hooks/api/props";
-import ListItemPostUi from "../layout/listPostsUi";
+import ListItemPostUi from "../layout/listItemPostUi";
 import BarraPesquisaUi from "../layout/barraPesquisaUi";
 import Pallet from "../layout/colorsPalette";
 import { IListPostsUi, PaginationAlign, PaginationPosition } from './props';
@@ -73,7 +73,7 @@ const ListPostsUi: React.FC<IListPostsUi> = ({ posts, tipo, }) => {
             var title = item.title;
             var name = item.name;
 
-            if (!item.liberado) {
+            if (item.liberado === 2) {
               title += ' => pendente'
             }
 

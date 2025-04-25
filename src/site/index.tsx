@@ -43,7 +43,10 @@ const SiteView: React.FC = () => {
   }, []);
 
   const PostsView: React.FC<ISiteViewView> = ({ tipo }) => {
-    const result = posts.filter(s => s.tipoNome === tipo);
+    const data = posts.filter(s => s.tipoNome === tipo);
+    const result = process.env.NODE_ENV === 'production'
+      ? data.filter(s => s.liberado === 1)
+      : data
 
     if (result.length > 0)
       return <ListPostsUi posts={result} tipo={tipo} />

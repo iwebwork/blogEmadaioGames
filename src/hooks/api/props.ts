@@ -14,7 +14,7 @@ export interface IPost {
   title: string;
   date: string;
   image: string;
-  liberado: boolean;
+  liberado: number;
   tipo: number;
   tipoNome: string;
   corpo: string;
