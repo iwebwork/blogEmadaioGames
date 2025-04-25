@@ -73,15 +73,14 @@ const PostUi: React.FC = () => {
       if (post) {
         post.map((value, index) => {
           value.Row.map((item, itemIndex) => {
-            if (item.Image) {
+            item.Image &&
               elements.push(<Row key={Math.random().toString()}>
                 <Col span={20}>
                   <Image src={item.Image.href} />
                 </Col>
               </Row>);
-            }
 
-            if (item.Paragraph) {
+            item.Paragraph &&
               elements.push(<Row key={Math.random().toString()}>
                 <Paragraph strong={item.Paragraph.strong}>
                   {item.Paragraph.Title &&
@@ -94,7 +93,6 @@ const PostUi: React.FC = () => {
                     </Text>}
                 </Paragraph>
               </Row>);
-            }
           })
         });
       }
