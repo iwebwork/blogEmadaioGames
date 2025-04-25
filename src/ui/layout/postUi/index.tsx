@@ -87,6 +87,7 @@ const PostUi: React.FC = () => {
                     <Title level={item.Paragraph.Title.Level}>
                       {item.Paragraph.Title.Text}
                     </Title>}
+
                   {item.Paragraph.Text &&
                     <Text>
                       {item.Paragraph.Text}
