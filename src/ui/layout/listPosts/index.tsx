@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router";
 import { IData } from "../../../hooks/api/props";
-import Anuncio from "../../anuncio";
 import { Flex, Typography } from "antd";
 import Pallet from "../colorsPalette";
 import { formatarDataPorExtenso } from "../../../hooks/comuns";
@@ -12,7 +11,6 @@ const ListItemPostUi: React.FC<IData> = (props) => {
   const { id, title, date } = props;
 
   return (
-    // <Anuncio>
     <Flex
       vertical
       justify='flex-start'
@@ -37,7 +35,6 @@ const ListItemPostUi: React.FC<IData> = (props) => {
         {formatarDataPorExtenso(date)}
       </Paragraph>
     </Flex>
-    // </Anuncio >
   )
 }
 
