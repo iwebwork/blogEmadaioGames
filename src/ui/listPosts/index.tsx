@@ -25,7 +25,8 @@ const ListPostsUi: React.FC<IListPostsUi> = ({ posts, tipo, }) => {
     }
 
     const data = [...posts].filter((elemento, indice, arrayOriginal) => {
-      if (!elemento.name.toLocaleUpperCase().includes(value.toLocaleUpperCase()))
+      const position = elemento.name.toUpperCase().indexOf(value.toUpperCase());
+      if (!elemento.corpo.toUpperCase().includes(value.toUpperCase(), position))
         return;
 
       return elemento;
