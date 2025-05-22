@@ -13,7 +13,7 @@ export interface IPost {
   name: string;
   title: string;
   date: string;
-  image: string;
+  image?: string;
   liberado: number;
   tipo: number;
   tipoNome: string;

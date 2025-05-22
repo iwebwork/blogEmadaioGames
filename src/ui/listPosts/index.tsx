@@ -65,8 +65,8 @@ const ListPostsUi: React.FC<IListPostsUi> = ({ posts, tipo, }) => {
           renderItem={(item: IPost) => {
             var backImagem = Pallet.BackGround.principal;
 
-            var image = `/assets/img/erro.png`;
-            if (item.image !== "") {
+            var image = `/logo.png`;
+            if (item.image) {
               image = `${process.env.REACT_APP_URL_API}/api/posts/getImagem/${item.id}`;
               backImagem = Pallet.BackGround.secundaria;
             }

@@ -54,7 +54,7 @@ const Logo = () => (
       <Image style={{
         height: 50,
       }}
-        src="/logo-sem-fundo.png"
+        src="/logo.png"
         preview={false}
       />
     </Link>
