@@ -9,7 +9,8 @@ const SuspenseUi: React.FC<PropsWithChildren> = ({ children }) => {
           Loading...
         </Spin>
       </Flex>
-    } children={children}>
+    }>
+      {children}
     </Suspense>
   )
 }

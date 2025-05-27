@@ -37,7 +37,8 @@ const MenuItens: React.FC<ITheme> = ({ theme, mode, backGroundColor, color }) =>
   return (
     <Anuncio>
       <Menu style={{
-        backgroundColor: backGroundColor
+        backgroundColor: backGroundColor,
+        justifyContent: 'center'  
       }}
         mode={mode}
         items={items}
@@ -53,6 +54,7 @@ const Logo = () => (
     <Link to={'/'}>
       <Image style={{
         height: 50,
+        paddingLeft: 20
       }}
         src="/logo.png"
         preview={false}
@@ -63,13 +65,13 @@ const Logo = () => (
 
 const MenuPadrao: React.FC = () => {
   return (
-    <Row align={'middle'} justify={"space-around"}
+    <Row align={'middle'} justify={"space-between"}
       style={{
         backgroundColor: Pallet.BackGround.principal,
         color: Pallet.Typography.principal,
         minHeight: 60
       }}>
-      <Col span={3}>
+      <Col span={2}>
         <Logo />
       </Col>
       <Col span={16} style={{
@@ -110,7 +112,7 @@ const MenuUi: React.FC = () => {
     <>
       {isWindow ?
         <MenuPadrao /> :
-        <Row align={"middle"} justify={"space-around"} style={{
+        <Row align={"middle"} justify={"space-between"} style={{
           backgroundColor: Pallet.BackGround.principal,
           color: Pallet.Typography.principal,
         }}>
