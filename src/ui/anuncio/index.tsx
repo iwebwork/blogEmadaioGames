@@ -1,15 +1,29 @@
-import React, { PropsWithChildren, useRef } from 'react';
+import React, { PropsWithChildren, useRef, useState } from 'react';
+import hookApi from '../../hooks/api';
+import { IResponseAnuncio } from './props';
 
 const Anuncio: React.FC<PropsWithChildren> = ({ children }) => {
   const botaoAnuncio = useRef<HTMLAnchorElement>(null);
+  const [url, setUrl] = useState("https://www.google.com.br/?hl=pt-BR");
 
-  const urlAnuncio =
-    process.env.NODE_ENV === 'production'
-      ? "https://www.effectiveratecpm.com/bs3yvzg1?key=ab607eb16f9a5cf1c6b1dc5ee6bece67"
-      : "https://www.google.com.br/?hl=pt-BR";
+  const { post } = hookApi();
 
-  const abrirPupUnder = () => {
-    window.open(urlAnuncio,
+  const getUrlAnuncio = async () => {
+    if (process.env.NODE_ENV === 'production')
+      return;
+
+    const result = (await post({ url: `/api/anuncios/selectTipo/${1}`, body: {} }));
+
+    if (result.isValid) {
+      const data: IResponseAnuncio = result.data;
+      setUrl(data.corpo)
+    }
+  }
+
+  const abrirPupUnder = async () => {
+    await getUrlAnuncio();
+
+    window.open(url.toString(),
       'popunder',
       'toolbar=0,location=0,directories=0,status=0,menubar=0,scrollbars=0,resizable=0,width=1,height=1,left=500,top=500');
   }
@@ -17,16 +31,16 @@ const Anuncio: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <>
       <div onClick={() => {
-        if (process.env.NODE_ENV === 'production')
-          abrirPupUnder();
+        abrirPupUnder();
       }}>
         {children}
+        <a ref={botaoAnuncio}
+          rel="noreferrer"
+          target="_blank"
+          hidden
+          href={url}>Anuncio</a>
       </div>
-      <a ref={botaoAnuncio}
-        rel="noreferrer"
-        target="_blank"
-        hidden
-        href={urlAnuncio}>Anuncio</a>
+
     </>
   )
 }
