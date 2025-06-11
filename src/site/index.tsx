@@ -76,7 +76,7 @@ const SiteView: React.FC = () => {
 
   return (
     <LayoutViewUi
-      SiderChildrenRight={<Sider />}
+    // SiderChildrenRight={<Sider />}
     >
       <GetRoutesUrl />
     </LayoutViewUi >

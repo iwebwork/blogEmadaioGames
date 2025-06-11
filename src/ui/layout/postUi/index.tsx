@@ -1,4 +1,4 @@
-import { Col, Image, Row, Typography } from "antd";
+import { Col, Flex, Image, Row, Spin, Typography } from "antd";
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import hookApi from "../../../hooks/api";
@@ -9,7 +9,9 @@ const { Title, Paragraph, Text } = Typography;
 
 const TitlePost: React.FC<ITitlePost> = ({ text, level }) => {
   return (
-    <Title level={level}>{text}</Title>
+    <Flex justify="center">
+      <Title level={level}>{text}</Title>
+    </Flex>
   )
 }
 
@@ -17,6 +19,7 @@ const PostUi: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [rowsPost, setRowsPost] = useState<TGerarPost>();
   const [title, setTile] = useState<string>();
+
   const { post } = hookApi();
   const navigation = useNavigate();
 
@@ -55,7 +58,10 @@ const PostUi: React.FC = () => {
         return;
 
       setPost(rowsPost);
-      setIsRender(true);
+      setTimeout(() => {
+
+        setIsRender(true);
+      }, 2000);
     }, [rowsPost]);
 
     React.useEffect(() => {
@@ -65,6 +71,10 @@ const PostUi: React.FC = () => {
       const elements: React.ReactNode[] = [];
 
       if (post) {
+        elements.push(
+          <TitlePost key={Math.random().toString()} level={1} text={`${title}`} />
+        )
+
         post.map((value, index) => {
           value.Row.map((item, itemIndex) => {
             item.Image &&
@@ -101,17 +111,13 @@ const PostUi: React.FC = () => {
 
     return (
       <>
-        {isRender &&
-          rows &&
-          rows
-        }
+        {isRender ? rows : <Spin fullscreen />}
       </>
     )
   }
 
   return (
     <>
-      <TitlePost key={Math.random().toString()} level={1} text={`${title}`} />
       <Component />
     </>
   )
