@@ -55,14 +55,8 @@ const PostUi: React.FC = () => {
         return;
 
       setPost(rowsPost);
-    }, [rowsPost]);
-
-    React.useEffect(() => {
-      if (!post)
-        return;
-
       setIsRender(true);
-    }, [post]);
+    }, [rowsPost]);
 
     React.useEffect(() => {
       if (!isRender)
@@ -108,6 +102,7 @@ const PostUi: React.FC = () => {
     return (
       <>
         {isRender &&
+          rows &&
           rows
         }
       </>
