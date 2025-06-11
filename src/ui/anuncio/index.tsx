@@ -4,7 +4,7 @@ import { IResponseAnuncio } from './props';
 
 const Anuncio: React.FC<PropsWithChildren> = ({ children }) => {
   const botaoAnuncio = useRef<HTMLAnchorElement>(null);
-  const [url, setUrl] = useState("https://www.google.com.br/?hl=pt-BR");
+  const [url, setUrl] = useState("");
 
   const { post } = hookApi();
 
@@ -21,6 +21,9 @@ const Anuncio: React.FC<PropsWithChildren> = ({ children }) => {
   }
 
   const abrirPupUnder = async () => {
+    if (url === "")
+      return;
+
     await getUrlAnuncio();
 
     window.open(url.toString(),
