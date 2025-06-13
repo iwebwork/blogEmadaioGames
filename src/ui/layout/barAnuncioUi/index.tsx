@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
+// REMOVER NA FIX/MASTER
 const BarAnuncioUI: React.FC = () => {
   const urlAnuncio = 'https://www.effectiveratecpm.com/bs3yvzg1?key=ab607eb16f9a5cf1c6b1dc5ee6bece67';
 
