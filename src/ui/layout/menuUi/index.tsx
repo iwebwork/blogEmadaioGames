@@ -7,15 +7,17 @@ import { URL_YOUTUBE } from "../../../constants";
 import Anuncio from "../../anuncio";
 import Pallet from "../colorsPalette";
 import { useWindowSize } from "../hooksUi";
-import { getUrls } from "./constants";
+import { fetchMenu } from "./model";
 import { ITheme, TMenuItem } from "./props";
 
-const MenuItens: React.FC<ITheme> = ({ theme, mode, backGroundColor, color }) => {
+const MenuItens: React.FC<ITheme> = async ({ theme, mode, backGroundColor, color }) => {
   const navigate = useNavigate();
 
+  const urls = await fetchMenu();
+
   const filter = process.env.NODE_ENV === 'production'
-    ? getUrls.filter((data) => data.liberado === true)
-    : getUrls;
+    ? urls.filter((data) => data.liberado === true)
+    : urls;
 
   const items: TMenuItem[] = filter.map((item) => {
     const lblLabel = process.env.NODE_ENV === 'development' && !item.liberado
@@ -23,7 +25,7 @@ const MenuItens: React.FC<ITheme> = ({ theme, mode, backGroundColor, color }) =>
       : item.label;
 
     return {
-      key: item.key,
+      key: item.id,
       label: lblLabel,
       style: {
         color: color
@@ -38,7 +40,7 @@ const MenuItens: React.FC<ITheme> = ({ theme, mode, backGroundColor, color }) =>
     <Anuncio>
       <Menu style={{
         backgroundColor: backGroundColor,
-        justifyContent: 'center'  
+        justifyContent: 'center'
       }}
         mode={mode}
         items={items}

@@ -1,5 +1,4 @@
 import { MenuProps, MenuTheme } from "antd";
-import { TypePosts } from "../../listPosts/props";
 
 export type TMenuItem = Required<MenuProps>['items'][number];
 
@@ -13,8 +12,8 @@ export interface ITheme {
 }
 
 
-export interface IUrl {
-  key: TypePosts;
+export interface IMenu {
+  id: string;
   url: string;
   path: string;
   label: string;
