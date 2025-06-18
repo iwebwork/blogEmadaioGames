@@ -7,6 +7,7 @@ import MenuUi from './menuUi';
 import { ILayoutUi } from './props';
 import SiderLayout from './siderUi';
 import { contentStyle, footerStyle, layoutStyle, layoutStyleContent } from './styles';
+import Anuncio from '../anuncio';
 
 const { Footer, Content } = Layout;
 
@@ -36,7 +37,6 @@ const LayoutViewUi: React.FC<ILayoutUi> = ({ children, SiderChildrenLeft, SiderC
         }
       }}
     >
-
       <Layout style={layoutStyle}>
         <MenuUi />
 
