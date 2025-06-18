@@ -8,43 +8,34 @@ const Anuncio: React.FC<PropsWithChildren> = ({ children }) => {
 
   const { post } = hookApi();
 
+  React.useEffect(() => {
+    getUrlAnuncio();
+  }, []);
+
   const getUrlAnuncio = async () => {
-    if (process.env.NODE_ENV === 'production')
+    const result = (await post({ url: `/api/anuncios/selectTipo/${1}`, body: {} }));
+    if (!result.isValid)
       return;
 
-    const result = (await post({ url: `/api/anuncios/selectTipo/${1}`, body: {} }));
-
-    if (result.isValid) {
-      const data: IResponseAnuncio = result.data;
-      setUrl(data.corpo)
-    }
+    const data: IResponseAnuncio = result.data;
+    setUrl(data.corpo);
   }
 
   const abrirPupUnder = async () => {
-    if (url === "")
-      return;
-
-    await getUrlAnuncio();
-
     window.open(url.toString(),
       'popunder',
       'toolbar=0,location=0,directories=0,status=0,menubar=0,scrollbars=0,resizable=0,width=1,height=1,left=500,top=500');
   }
 
   return (
-    <>
-      <div onClick={() => {
-        abrirPupUnder();
-      }}>
-        {children}
-        <a ref={botaoAnuncio}
-          rel="noreferrer"
-          target="_blank"
-          hidden
-          href={url}>Anuncio</a>
-      </div>
-
-    </>
+    <div onClick={abrirPupUnder}>
+      {children}
+      <a ref={botaoAnuncio}
+        rel="noreferrer"
+        target="_blank"
+        hidden
+        href={url}>Anuncio</a>
+    </div>
   )
 }
 

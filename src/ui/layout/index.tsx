@@ -37,37 +37,35 @@ const LayoutViewUi: React.FC<ILayoutUi> = ({ children, SiderChildrenLeft, SiderC
         }
       }}
     >
-      <Anuncio>
-        <Layout style={layoutStyle}>
-          <MenuUi />
+      <Layout style={layoutStyle}>
+        <MenuUi />
 
-          <Layout style={layoutStyleContent}>
-            <Layout style={contentStyle}>
-              {children &&
-                <Content>
-                  {children}
-                </Content>}
-            </Layout>
-
-            {SiderChildrenRight &&
-              <SiderLayout>
-                {SiderChildrenRight}
-              </SiderLayout>}
+        <Layout style={layoutStyleContent}>
+          <Layout style={contentStyle}>
+            {children &&
+              <Content>
+                {children}
+              </Content>}
           </Layout>
 
-          <Footer style={footerStyle}>
-            <Row justify={'center'} >
-              <Title style={{
-                color: Pallet.Typography.principal
-              }} level={3}>Todos os direitos reservados</Title>
-            </Row>
-          </Footer>
-
-          <FloatButton.Group shape='circle' style={{ insetInlineEnd: 24 }}>
-            <ButtonYouTubeUi />
-          </FloatButton.Group>
+          {SiderChildrenRight &&
+            <SiderLayout>
+              {SiderChildrenRight}
+            </SiderLayout>}
         </Layout>
-      </Anuncio>
+
+        <Footer style={footerStyle}>
+          <Row justify={'center'} >
+            <Title style={{
+              color: Pallet.Typography.principal
+            }} level={3}>Todos os direitos reservados</Title>
+          </Row>
+        </Footer>
+
+        <FloatButton.Group shape='circle' style={{ insetInlineEnd: 24 }}>
+          <ButtonYouTubeUi />
+        </FloatButton.Group>
+      </Layout>
     </ConfigProvider >
   )
 }
