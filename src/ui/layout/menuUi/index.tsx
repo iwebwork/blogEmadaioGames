@@ -183,49 +183,6 @@ const MenuUi: React.FC = () => {
         <MenuPadrao /> :
         <MenuMobile />
       }
-
-      {/* <Drawer
-        title="Emadaio Games"
-        placement={placement}
-        closable={false}
-        onClose={onClose}
-        open={open}
-        key={placement}
-        style={{
-          backgroundColor: Pallet.BackGround.principal,
-          color: Pallet.Typography.principal
-        }}
-      >
-        <Flex>
-          <MenuItens
-            mode="vertical"
-            theme={"light"}
-            backGroundColor={Pallet.BackGround.principal}
-            color={Pallet.Typography.principal}
-          />
-          <Row>
-            <Anuncio>
-              <Flex vertical
-                style={{
-                  marginLeft: 5,
-                  marginTop: 15
-                }}>
-                Redes Socias
-                <Row style={{
-                  marginTop: 15
-                }}>
-                  <Link
-                    style={{ color: Pallet.Typography.principal }}
-                    to={URL_YOUTUBE}
-                    target="_blank">
-                    YouTube
-                  </Link >
-                </Row>
-              </Flex>
-            </Anuncio >
-          </Row>
-        </Flex>
-      </Drawer> */}
     </>
   );
 };
