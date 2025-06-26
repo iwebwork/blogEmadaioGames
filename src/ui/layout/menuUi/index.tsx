@@ -7,23 +7,37 @@ import { URL_YOUTUBE } from "../../../constants";
 import Anuncio from "../../anuncio";
 import Pallet from "../colorsPalette";
 import { useWindowSize } from "../hooksUi";
-import { ITheme, TMenuItem } from "./props";
-import { getUrls, IMenuMobile } from "./model";
+import { IMenu, ITheme, TMenuItem } from "./props";
+import { fetchMenu } from "./model";
 
 const MenuItens: React.FC<ITheme> = ({ theme, mode, backGroundColor, color }) => {
   const navigate = useNavigate();
+  const [menu, setMenu] = useState<IMenu[]>([]);
+
+  const buscarMenu = async () => {
+    const data = await fetchMenu() || [];
+    setMenu(data);
+  }
+
+  React.useEffect(() => {
+    buscarMenu();
+  }, [])
+
+  React.useEffect(() => {
+
+  }, [menu]);
 
   const filter = process.env.NODE_ENV === 'production'
-    ? getUrls.filter((data) => data.liberado === true)
-    : getUrls;
+    ? menu.filter((data) => data.liberado === 1)
+    : menu;
 
   const items: TMenuItem[] = filter.map((item) => {
-    const lblLabel = process.env.NODE_ENV === 'development' && !item.liberado
+    const lblLabel = process.env.NODE_ENV === 'development' && item.liberado === 2
       ? item.label + ' - em revisão'
       : item.label;
 
     return {
-      key: item.key,
+      key: item.id,
       label: lblLabel,
       style: {
         color: color
@@ -89,7 +103,7 @@ const MenuPadrao: React.FC = () => {
   )
 }
 
-const MenuMobile: React.FC<IMenuMobile> = ({ }) => {
+const MenuMobile: React.FC = () => {
   const [placement] = useState<DrawerProps['placement']>('top');
   const [isOpenMenuModible, setIsOpenMenuModible] = useState<boolean>(false);
 

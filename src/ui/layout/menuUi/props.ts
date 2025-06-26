@@ -18,6 +18,10 @@ export interface IUrl {
   url: string;
   path: string;
   label: string;
-  liberado: boolean;
+  liberado: number;
   index: boolean;
+}
+
+export interface IMenu extends IUrl {
+  id: string;
 }

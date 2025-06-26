@@ -8,7 +8,8 @@ import PostUi from "../ui/layout/postUi";
 import ListPostsUi from "../ui/listPosts";
 import CadastroPostView from "./cadastroPost";
 import { ISiteViewView } from "./props";
-import { getUrls } from "../ui/layout/menuUi/model";
+import { fetchMenu } from "../ui/layout/menuUi/model";
+import { IMenu } from "../ui/layout/menuUi/props";
 
 const QuemSomosView = lazy(() => import(`./quemSomos`));
 const NaoEncontradoView = lazy(() => import(`../ui/layout/naoEncontradoUi`));
@@ -56,8 +57,19 @@ const SiteView: React.FC = () => {
 
   const GetRoutesUrl: React.FC = () => {
     let data: any = [];
+    const [menu, setMenu] = useState<IMenu[]>([]);
 
-    getUrls.map((value, index) => {
+
+    const buscarMenu = async () => {
+      const data = await fetchMenu() || [];
+      setMenu(data);
+    }
+
+    React.useEffect(() => {
+      buscarMenu();
+    }, [])
+
+    menu.map((value, index) => {
       data.push(<Route key={index} index={value.index} path={value.path} element={
         value.label === 'CadastroPost'
           ? <CadastroPostView />
