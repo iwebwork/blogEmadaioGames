@@ -18,6 +18,7 @@ export interface IPost {
   tipo: number;
   tipoNome: string;
   corpo: string;
+  tipoPostId: string;
 }
 
 export interface IRequest {

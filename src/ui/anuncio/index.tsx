@@ -18,10 +18,16 @@ const Anuncio: React.FC<PropsWithChildren> = ({ children }) => {
       return;
 
     const data: IResponseAnuncio = result.data;
+    if (!data)
+      return;
+
     setUrl(data.corpo);
   }
 
   const abrirPupUnder = async () => {
+    if (url.toString() === "")
+      return;
+
     window.open(url.toString(),
       'popunder',
       'toolbar=0,location=0,directories=0,status=0,menubar=0,scrollbars=0,resizable=0,width=1,height=1,left=500,top=500');
