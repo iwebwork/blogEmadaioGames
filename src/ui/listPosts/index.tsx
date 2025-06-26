@@ -96,7 +96,6 @@ const ListPostsUi: React.FC<IListPostsUi> = ({ posts, tipo, }) => {
           loading={{ indicator: <Spin fullscreen />, spinning: loading }}
         />
       </Row>
-      {/* } */}
     </>
   )
 }

@@ -40,8 +40,6 @@ const PostUi: React.FC = () => {
     } catch (error) {
       navigation('/site/erro');
     }
-
-
   }
 
   React.useEffect(() => {

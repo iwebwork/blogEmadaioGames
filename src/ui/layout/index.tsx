@@ -33,6 +33,9 @@ const LayoutViewUi: React.FC<ILayoutUi> = ({ children, SiderChildrenLeft, SiderC
             itemActiveBg: Pallet.Typography.principal,
             colorPrimary: Pallet.Typography.secundaria,
             colorPrimaryHover: Pallet.Typography.secundaria
+          },
+          Typography: {
+            fontSize: 16
           }
         }
       }}
