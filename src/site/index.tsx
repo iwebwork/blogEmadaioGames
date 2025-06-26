@@ -54,7 +54,7 @@ const SiteView: React.FC = () => {
       return <NaoEncontradoView />
   }
 
-  const GetRoutesUrl: React.FC = async () => {
+  const GetRoutesUrl: React.FC = () => {
     let data: any = [];
 
     getUrls.map((value, index) => {

@@ -1,5 +1,9 @@
 import { IUrl } from "./props";
 
+export interface IMenuMobile {
+}
+
+
 // export const fetchMenu = async () => {
 //   const { post } = hookApi();
 //   const result: IMenu[] = (await post({ url: `/api/menu/getTable`, body: {} })).data;

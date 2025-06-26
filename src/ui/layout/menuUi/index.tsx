@@ -8,9 +8,9 @@ import Anuncio from "../../anuncio";
 import Pallet from "../colorsPalette";
 import { useWindowSize } from "../hooksUi";
 import { ITheme, TMenuItem } from "./props";
-import { getUrls } from "./model";
+import { getUrls, IMenuMobile } from "./model";
 
-const MenuItens: React.FC<ITheme> = async ({ theme, mode, backGroundColor, color }) => {
+const MenuItens: React.FC<ITheme> = ({ theme, mode, backGroundColor, color }) => {
   const navigate = useNavigate();
 
   const filter = process.env.NODE_ENV === 'production'
@@ -89,48 +89,102 @@ const MenuPadrao: React.FC = () => {
   )
 }
 
-const MenuUi: React.FC = () => {
-  const window = useWindowSize();
-  const [isWindow, setIsWindow] = useState(false);
-
-  const [open, setOpen] = useState(false);
+const MenuMobile: React.FC<IMenuMobile> = ({ }) => {
   const [placement] = useState<DrawerProps['placement']>('top');
-
-  React.useEffect(() => {
-    setIsWindow(window.width >= 600);
-  }, [window.width])
-
-  const showDrawer = () => {
-    setOpen(true);
-  };
+  const [isOpenMenuModible, setIsOpenMenuModible] = useState<boolean>(false);
 
   const onClose = () => {
-    setOpen(false);
+    setIsOpenMenuModible(false);
   };
+
+  const showDrawer = () => {
+    setIsOpenMenuModible(true);
+  };
+
+  React.useEffect(() => {
+  }, [isOpenMenuModible])
 
   return (
     <>
-      {isWindow ?
-        <MenuPadrao /> :
-        <Row align={"middle"} justify={"space-between"} style={{
-          backgroundColor: Pallet.BackGround.principal,
-          color: Pallet.Typography.principal,
-        }}>
-          <Col>
-            <Logo />
-          </Col>
-          <Col>
-            <Button style={{
-              backgroundColor: Pallet.BackGround.principal,
-            }} variant="solid" shape="circle" onClick={showDrawer}>
-              <BarsOutlined style={{
-                color: Pallet.Typography.principal
-              }} />
-            </Button>
-          </Col>
-        </Row >}
-
+      <Row align={"middle"} justify={"space-between"} style={{
+        backgroundColor: Pallet.BackGround.principal,
+        color: Pallet.Typography.principal,
+      }}>
+        <Col>
+          <Logo />
+        </Col>
+        <Col>
+          <Button style={{
+            backgroundColor: Pallet.BackGround.principal,
+          }} variant="solid" shape="circle" onClick={showDrawer}>
+            <BarsOutlined style={{
+              color: Pallet.Typography.principal
+            }} />
+          </Button>
+        </Col >
+      </Row >
       <Drawer
+        title="Emadaio Games"
+        placement={placement}
+        closable={false}
+        onClose={onClose}
+        open={isOpenMenuModible}
+        key={placement}
+        style={{
+          backgroundColor: Pallet.BackGround.principal,
+          color: Pallet.Typography.principal
+        }}
+      >
+        <Flex>
+          <MenuItens
+            mode="vertical"
+            theme={"light"}
+            backGroundColor={Pallet.BackGround.principal}
+            color={Pallet.Typography.principal}
+          />
+          <Row>
+            <Anuncio>
+              <Flex vertical
+                style={{
+                  marginLeft: 5,
+                  marginTop: 15
+                }}>
+                Redes Socias
+                <Row style={{
+                  marginTop: 15
+                }}>
+                  <Link
+                    style={{ color: Pallet.Typography.principal }}
+                    to={URL_YOUTUBE}
+                    target="_blank">
+                    YouTube
+                  </Link >
+                </Row>
+              </Flex>
+            </Anuncio>
+          </Row>
+        </Flex>
+      </Drawer>
+    </>
+  )
+}
+
+const MenuUi: React.FC = () => {
+  const window = useWindowSize();
+  const [isWindowDesktop, setIsWindowDesktop] = useState<boolean>(false);
+
+  React.useEffect(() => {
+    setIsWindowDesktop(window.width >= 600);
+  }, [window.width])
+
+  return (
+    <>
+      {isWindowDesktop ?
+        <MenuPadrao /> :
+        <MenuMobile />
+      }
+
+      {/* <Drawer
         title="Emadaio Games"
         placement={placement}
         closable={false}
@@ -168,10 +222,10 @@ const MenuUi: React.FC = () => {
                   </Link >
                 </Row>
               </Flex>
-            </Anuncio>
+            </Anuncio >
           </Row>
         </Flex>
-      </Drawer>
+      </Drawer> */}
     </>
   );
 };
