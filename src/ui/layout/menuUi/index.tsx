@@ -1,14 +1,14 @@
 import { BarsOutlined } from "@ant-design/icons";
 import '@ant-design/v5-patch-for-react-19';
 import { Button, Col, Drawer, DrawerProps, Flex, Image, Menu, Row } from "antd";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from 'react-router';
 import { URL_YOUTUBE } from "../../../constants";
 import Anuncio from "../../anuncio";
 import Pallet from "../colorsPalette";
 import { useWindowSize } from "../hooksUi";
-import { IMenu, ITheme, TMenuItem } from "./props";
 import { fetchMenu } from "./model";
+import { IMenu, ITheme, TMenuItem } from "./props";
 
 const MenuItens: React.FC<ITheme> = ({ theme, mode, backGroundColor, color }) => {
   const navigate = useNavigate();

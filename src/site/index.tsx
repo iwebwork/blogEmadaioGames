@@ -3,12 +3,12 @@ import { Route, Routes } from "react-router";
 import hookApi from "../hooks/api";
 import { IPost } from "../hooks/api/props";
 import LayoutViewUi from "../ui/layout";
+import { fetchMenu } from "../ui/layout/menuUi/model";
+import { IMenu } from "../ui/layout/menuUi/props";
 import PostUi from "../ui/layout/postUi";
 import ListPostsUi from "../ui/listPosts";
 import CadastroPostView from "./cadastroPost";
 import { ISiteViewView } from "./props";
-import { fetchMenu } from "../ui/layout/menuUi/model";
-import { IMenu } from "../ui/layout/menuUi/props";
 
 const QuemSomosView = lazy(() => import(`./quemSomos`));
 const NaoEncontradoView = lazy(() => import(`../ui/layout/naoEncontradoUi`));
