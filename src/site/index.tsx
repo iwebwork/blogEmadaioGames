@@ -4,11 +4,11 @@ import { Route, Routes } from "react-router";
 import hookApi from "../hooks/api";
 import { IPost } from "../hooks/api/props";
 import LayoutViewUi from "../ui/layout";
-import { fetchMenu } from "../ui/layout/menuUi/model";
 import PostUi from "../ui/layout/postUi";
 import ListPostsUi from "../ui/listPosts";
 import CadastroPostView from "./cadastroPost";
 import { ISiteViewView } from "./props";
+import { getUrls } from "../ui/layout/menuUi/model";
 
 const QuemSomosView = lazy(() => import(`./quemSomos`));
 const NaoEncontradoView = lazy(() => import(`../ui/layout/naoEncontradoUi`));
@@ -56,15 +56,14 @@ const SiteView: React.FC = () => {
 
   const GetRoutesUrl: React.FC = async () => {
     let data: any = [];
-    const urls = await fetchMenu();
 
-    urls.map((value, index) => {
+    getUrls.map((value, index) => {
       data.push(<Route key={index} index={value.index} path={value.path} element={
         value.label === 'CadastroPost'
           ? <CadastroPostView />
           : value.label === 'QuemSomos'
             ? <QuemSomosView />
-            : <PostsView tipo={value.id} />
+            : <PostsView tipo={value.key} />
       } />)
     });
 
