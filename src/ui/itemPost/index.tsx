@@ -1,13 +1,13 @@
 import { useNavigate } from "react-router";
-import { IData } from "../../../hooks/api/props";
+import { IData } from "../../hooks/api/props";
 import { Flex, Typography } from "antd";
-import Pallet from "../colorsPalette";
-import { formatarDataPorExtenso } from "../../../hooks/comuns";
-import Anuncio from "../../anuncio";
+import Pallet from "../layout/colorsPalette";
+import { formatarDataPorExtenso } from "../../hooks/comuns";
+import Anuncio from "../anuncio";
 
 const { Link, Title, Paragraph } = Typography;
 
-const ListItemPostUi: React.FC<IData> = (props) => {
+const ItemPostUi: React.FC<IData> = (props) => {
   const navigate = useNavigate();
   const { id, title, date } = props;
 
@@ -41,4 +41,4 @@ const ListItemPostUi: React.FC<IData> = (props) => {
   )
 }
 
-export default ListItemPostUi;
+export default ItemPostUi;

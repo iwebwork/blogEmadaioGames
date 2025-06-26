@@ -2,7 +2,7 @@ import { Col, Image, List, Row, Spin, Typography } from "antd";
 import { SearchProps } from "antd/es/input/Search";
 import React, { useState } from "react";
 import { IPost } from "../../hooks/api/props";
-import ListItemPostUi from "../layout/listItemPostUi";
+import ItemPostUi from "../itemPost";
 import BarraPesquisaUi from "../layout/barraPesquisaUi";
 import Pallet from "../layout/colorsPalette";
 import { IListPostsUi, PaginationAlign, PaginationPosition } from './props';
@@ -87,7 +87,7 @@ const ListPostsUi: React.FC<IListPostsUi> = ({ posts, tipo, }) => {
                   backgroundColor: backImagem
                 }} />
                 <Col>
-                  <ListItemPostUi id={item.id} tipo={tipo} name={name} title={title} date={item.date} />
+                  <ItemPostUi id={item.id} tipo={tipo} name={name} title={title} date={item.date} />
                 </Col>
               </Row>
             </List.Item>)
