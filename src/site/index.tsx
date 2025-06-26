@@ -1,4 +1,3 @@
-import { Col, Flex, Image } from "antd";
 import React, { lazy, useState } from "react";
 import { Route, Routes } from "react-router";
 import hookApi from "../hooks/api";
@@ -26,8 +25,9 @@ const NaoEncontradoView = lazy(() => import(`../ui/layout/naoEncontradoUi`));
 //   )
 // }
 
-const SiteView: React.FC = () => {
+const PostsView: React.FC<ISiteViewView> = ({ tipo }) => {
   const [posts, setPosts] = useState<IPost[]>([]);
+
   const { post } = hookApi();
 
   const fetchPosts = async () => {
@@ -43,48 +43,48 @@ const SiteView: React.FC = () => {
     fetchPosts();
   }, []);
 
-  const PostsView: React.FC<ISiteViewView> = ({ tipo }) => {
-    const data = posts.filter(s => s.tipoNome === tipo);
-    const result = process.env.NODE_ENV === 'production'
-      ? data.filter(s => s.liberado === 1)
-      : data
+  const data = posts.filter(s => s.tipoPostId === tipo);
+  const result = process.env.NODE_ENV === 'production'
+    ? data.filter(s => s.liberado === 1)
+    : data
 
-    if (result.length > 0)
-      return <ListPostsUi posts={result} tipo={tipo} />
-    else
-      return <NaoEncontradoView />
+  if (result.length > 0)
+    return <ListPostsUi posts={result} tipo={tipo} />
+  else
+    return <NaoEncontradoView />
+}
+
+const GetRoutesUrl: React.FC = () => {
+  let data: any = [];
+  const [menu, setMenu] = useState<IMenu[]>([]);
+
+  const buscarMenu = async () => {
+    const data = await fetchMenu() || [];
+    setMenu(data);
   }
 
-  const GetRoutesUrl: React.FC = () => {
-    let data: any = [];
-    const [menu, setMenu] = useState<IMenu[]>([]);
+  React.useEffect(() => {
+    buscarMenu();
+  }, [])
 
+  menu.map((value, index) => {
+    data.push(<Route key={index} index={value.index} path={value.path} element={
+      value.label === 'Cadastro de Post'
+        ? <CadastroPostView />
+        : value.label === 'Quem Somos'
+          ? <QuemSomosView />
+          : <PostsView tipo={value.tipoPostId} />
+    } />)
+  });
 
-    const buscarMenu = async () => {
-      const data = await fetchMenu() || [];
-      setMenu(data);
-    }
+  return <Routes>
+    {data}
+    <Route path='/post/:id' element={<PostUi />} />
+    <Route path='*' element={<NaoEncontradoView />} />
+  </Routes>
+}
 
-    React.useEffect(() => {
-      buscarMenu();
-    }, [])
-
-    menu.map((value, index) => {
-      data.push(<Route key={index} index={value.index} path={value.path} element={
-        value.label === 'CadastroPost'
-          ? <CadastroPostView />
-          : value.label === 'QuemSomos'
-            ? <QuemSomosView />
-            : <PostsView tipo={value.key} />
-      } />)
-    });
-
-    return <Routes>
-      {data}
-      <Route path='/post/:id' element={<PostUi />} />
-      <Route path='*' element={<NaoEncontradoView />} />
-    </Routes>
-  }
+const SiteView: React.FC = () => {
 
   return (
     <LayoutViewUi

@@ -12,16 +12,12 @@ export interface ITheme {
   color?: string;
 }
 
-
-export interface IUrl {
-  key: TypePosts;
+export interface IMenu{
+  id: string;
   url: string;
   path: string;
   label: string;
   liberado: number;
   index: boolean;
-}
-
-export interface IMenu extends IUrl {
-  id: string;
+  tipoPostId: string;
 }

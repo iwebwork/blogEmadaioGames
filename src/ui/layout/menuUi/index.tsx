@@ -1,7 +1,7 @@
 import { BarsOutlined } from "@ant-design/icons";
 import '@ant-design/v5-patch-for-react-19';
 import { Button, Col, Drawer, DrawerProps, Flex, Image, Menu, Row } from "antd";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Link, useNavigate } from 'react-router';
 import { URL_YOUTUBE } from "../../../constants";
 import Anuncio from "../../anuncio";
@@ -149,35 +149,38 @@ const MenuMobile: React.FC = () => {
           color: Pallet.Typography.principal
         }}
       >
-        <Flex>
-          <MenuItens
-            mode="vertical"
-            theme={"light"}
-            backGroundColor={Pallet.BackGround.principal}
-            color={Pallet.Typography.principal}
-          />
-          <Row>
-            <Anuncio>
-              <Flex vertical
-                style={{
-                  marginLeft: 5,
-                  marginTop: 15
-                }}>
-                Redes Socias
-                <Row style={{
-                  marginTop: 15
-                }}>
-                  <Link
-                    style={{ color: Pallet.Typography.principal }}
-                    to={URL_YOUTUBE}
-                    target="_blank">
-                    YouTube
-                  </Link >
-                </Row>
-              </Flex>
-            </Anuncio>
-          </Row>
-        </Flex>
+        <div onClick={onClose}
+        >
+          <Flex>
+            <MenuItens
+              mode="vertical"
+              theme={"light"}
+              backGroundColor={Pallet.BackGround.principal}
+              color={Pallet.Typography.principal}
+            />
+            <Row>
+              <Anuncio>
+                <Flex vertical
+                  style={{
+                    marginLeft: 5,
+                    marginTop: 15
+                  }}>
+                  Redes Socias
+                  <Row style={{
+                    marginTop: 15
+                  }}>
+                    <Link
+                      style={{ color: Pallet.Typography.principal }}
+                      to={URL_YOUTUBE}
+                      target="_blank">
+                      YouTube
+                    </Link >
+                  </Row>
+                </Flex>
+              </Anuncio>
+            </Row>
+          </Flex>
+        </div>
       </Drawer>
     </>
   )

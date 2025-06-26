@@ -1,5 +1,5 @@
 import hookApi from "../../../hooks/api";
-import { IMenu, IUrl } from "./props";
+import { IMenu } from "./props";
 
 export const fetchMenu = async () => {
     const { post } = hookApi();
