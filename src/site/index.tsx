@@ -9,6 +9,9 @@ import PostUi from "../ui/layout/postUi";
 import ListPostsUi from "../ui/listPosts";
 import CadastroPostView from "./cadastroPost";
 import { ISiteViewView } from "./props";
+import Sider from "antd/es/layout/Sider";
+import SiderUi from "../ui/layout/siderUi";
+import { Row } from "antd";
 
 const QuemSomosView = lazy(() => import(`./quemSomos`));
 const NaoEncontradoView = lazy(() => import(`../ui/layout/naoEncontradoUi`));
@@ -27,31 +30,58 @@ const NaoEncontradoView = lazy(() => import(`../ui/layout/naoEncontradoUi`));
 
 const PostsView: React.FC<ISiteViewView> = ({ tipo }) => {
   const [posts, setPosts] = useState<IPost[]>([]);
-
   const { post } = hookApi();
+  const [postsFilter, setPostsFilter] = useState<IPost[]>([])
+  const [isLoadPosts, setIsLoadPosts] = useState<boolean>(false);
 
   const fetchPosts = async () => {
-    const result: IPost[] = (await post({ url: `/api/posts/getTable`, body: {} })).data;
+    setIsLoadPosts(false);
+    const result = (await post({ url: `/api/posts/getTable`, body: {} }));
 
-    if (!result)
+    if (!result.isValid) {
+      setPosts([]);
+      setIsLoadPosts(false);
       return;
+    }
 
-    setPosts(result);
+    setPosts(result.data as IPost[]);
+    setIsLoadPosts(true);
+  }
+
+  const filterPosts = (ptipoPostId: string) => {
+    const data = posts
+      .filter(s => s.tipoPostId === ptipoPostId);
+
+    if (process.env.NODE_ENV === 'production')
+      setPostsFilter(data.filter(s => s.liberado === 1))
+    else
+      setPostsFilter(data);
   }
 
   React.useEffect(() => {
     fetchPosts();
-  }, []);
+  }, [tipo]);
 
-  const data = posts.filter(s => s.tipoPostId === tipo);
-  const result = process.env.NODE_ENV === 'production'
-    ? data.filter(s => s.liberado === 1)
-    : data
+  React.useEffect(() => {
+    if (!isLoadPosts)
+      return;
 
-  if (result.length > 0)
-    return <ListPostsUi posts={result} tipo={tipo} />
-  else
-    return <NaoEncontradoView />
+    filterPosts(tipo);
+  }, [posts]);
+
+  React.useEffect(() => {
+    if (!isLoadPosts)
+      return;
+
+    setIsLoadPosts(true);
+  }, [postsFilter, isLoadPosts])
+
+  return <>
+    {isLoadPosts &&
+      <ListPostsUi posts={postsFilter} tipo={tipo} />
+    }
+  </>
+
 }
 
 const GetRoutesUrl: React.FC = () => {
@@ -88,7 +118,11 @@ const SiteView: React.FC = () => {
 
   return (
     <LayoutViewUi
-    // SiderChildrenRight={<Sider />}
+    // SiderChildrenRight={<SiderUi>
+    //   <Row>
+    //     <h1>Side bar teste</h1>
+    //   </Row>
+    // </SiderUi>}
     >
       <GetRoutesUrl />
     </LayoutViewUi >

@@ -40,7 +40,7 @@ const ListPostsUi: React.FC<IListPostsUi> = ({ posts, tipo, }) => {
     setTimeout(() => {
       setListPosts(posts);
     }, timerMS);
-  }, []);
+  }, [posts]);
 
   React.useEffect(() => {
     setTimeout(() => {

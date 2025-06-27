@@ -108,9 +108,13 @@ const PostUi: React.FC = () => {
     }, [isRender])
 
     return (
-      <>
+      <div
+        style={{
+          paddingRight: 10
+        }}
+      >
         {isRender ? rows : <Spin fullscreen />}
-      </>
+      </div>
     )
   }
 

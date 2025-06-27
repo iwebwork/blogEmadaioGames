@@ -123,6 +123,7 @@ const MenuMobile: React.FC = () => {
       <Row align={"middle"} justify={"space-between"} style={{
         backgroundColor: Pallet.BackGround.principal,
         color: Pallet.Typography.principal,
+        padding: 5
       }}>
         <Col>
           <Logo />
@@ -130,7 +131,7 @@ const MenuMobile: React.FC = () => {
         <Col>
           <Button style={{
             backgroundColor: Pallet.BackGround.principal,
-          }} variant="solid" shape="circle" onClick={showDrawer}>
+          }} variant="solid" shape="round" onClick={showDrawer}>
             <BarsOutlined style={{
               color: Pallet.Typography.principal
             }} />

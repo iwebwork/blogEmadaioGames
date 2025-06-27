@@ -21,9 +21,7 @@ const SiderLayout: React.FC<PropsWithChildren> = ({ children }) => {
   return (<>
     {isWindow ?
       <Sider width="20%" style={siderStyle} >
-        <Row style={{ display: 'flex', flex: 1, position: 'fixed' }}>
-          {children}
-        </Row >
+        {children}
       </Sider > :
       <Flex justify={"center"} style={{ display: 'flex', flex: 1, marginTop: 20, marginBottom: 20 }}>
         {children}

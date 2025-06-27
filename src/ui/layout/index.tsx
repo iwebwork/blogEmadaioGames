@@ -8,10 +8,13 @@ import { ILayoutUi } from './props';
 import SiderLayout from './siderUi';
 import { contentStyle, footerStyle, layoutStyle, layoutStyleContent } from './styles';
 import Anuncio from '../anuncio';
+import { useWindowSize } from './hooksUi';
 
 const { Footer, Content } = Layout;
 
 const LayoutViewUi: React.FC<ILayoutUi> = ({ children, SiderChildrenLeft, SiderChildrenRight }) => {
+  const window = useWindowSize();
+
   // const [listAnuncio, setListAnuncio] = useState();
 
   // const getSideBarAnuncios = async () => {
@@ -35,7 +38,7 @@ const LayoutViewUi: React.FC<ILayoutUi> = ({ children, SiderChildrenLeft, SiderC
             colorPrimaryHover: Pallet.Typography.secundaria
           },
           Typography: {
-            fontSize: 16
+            fontSize: window.width >= 600 ? 14 : 12
           }
         }
       }}
