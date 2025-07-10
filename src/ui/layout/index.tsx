@@ -7,26 +7,12 @@ import MenuUi from './menuUi';
 import { ILayoutUi } from './props';
 import SiderLayout from './siderUi';
 import { contentStyle, footerStyle, layoutStyle, layoutStyleContent } from './styles';
-import Anuncio from '../anuncio';
 import { useWindowSize } from './hooksUi';
 
 const { Footer, Content } = Layout;
 
 const LayoutViewUi: React.FC<ILayoutUi> = ({ children, SiderChildrenLeft, SiderChildrenRight }) => {
   const window = useWindowSize();
-
-  // const [listAnuncio, setListAnuncio] = useState();
-
-  // const getSideBarAnuncios = async () => {
-  //   if (process.env.NODE_ENV === 'production')
-  //     return;
-
-  //   const result = (await post({ url: `/api/anuncios/selectTipo/${2}`, body: {} }));
-
-  //   if (result.isValid) {
-  //     const data: IResponseAnuncio = result.data;
-  //   }
-  // }
 
   return (
     <ConfigProvider

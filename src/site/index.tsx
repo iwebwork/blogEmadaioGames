@@ -11,7 +11,8 @@ import CadastroPostView from "./cadastroPost";
 import { ISiteViewView } from "./props";
 import Sider from "antd/es/layout/Sider";
 import SiderUi from "../ui/layout/siderUi";
-import { Row } from "antd";
+import { Col, Flex, Image, Row, Typography } from "antd";
+import Link from "antd/es/typography/Link";
 
 const QuemSomosView = lazy(() => import(`./quemSomos`));
 const NaoEncontradoView = lazy(() => import(`../ui/layout/naoEncontradoUi`));
@@ -114,15 +115,37 @@ const GetRoutesUrl: React.FC = () => {
   </Routes>
 }
 
+//TODO: Pensar na forma que vamos listar os banners de anuncios
 const SiteView: React.FC = () => {
 
   return (
     <LayoutViewUi
-    // SiderChildrenRight={<SiderUi>
-    //   <Row>
-    //     <h1>Side bar teste</h1>
-    //   </Row>
-    // </SiderUi>}
+      SiderChildrenRight={<SiderUi>
+        <Row
+          style={{
+          }}
+          justify="center"
+        >
+          <Typography.Paragraph>
+            <Typography.Title level={4}>
+              Parceiros
+            </Typography.Title>
+          </Typography.Paragraph>
+          <Link target="_blank"
+            href="https://click.linksynergy.com/fs-bin/click?id=lguYJQvVovc&offerid=1767913.1664&subid=0&type=4"
+          >
+
+            <Image title="Aliexpress BR"
+              src="https://ad.linksynergy.com/fs-bin/show?id=lguYJQvVovc&bids=1767913.1664&subid=0&type=4&gridnum=0"
+              preview={false}
+              style={{
+                width: '100%'
+              }}
+
+            />
+          </Link>
+        </Row>
+      </SiderUi >}
     >
       <GetRoutesUrl />
     </LayoutViewUi >

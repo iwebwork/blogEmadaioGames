@@ -6,8 +6,12 @@ import { useWindowSize } from "../hooksUi";
 
 const siderStyle: React.CSSProperties = {
   marginTop: 20,
+  marginLeft: 10,
+  marginRight: 30,
   color: Pallet.Typography.principal,
   backgroundColor: Pallet.BackGround.secundaria,
+  display: 'flex',
+  flex: 1
 };
 
 const SiderLayout: React.FC<PropsWithChildren> = ({ children }) => {
@@ -20,7 +24,7 @@ const SiderLayout: React.FC<PropsWithChildren> = ({ children }) => {
 
   return (<>
     {isWindow ?
-      <Sider width="20%" style={siderStyle} >
+      <Sider style={siderStyle} >
         {children}
       </Sider > :
       <Flex justify={"center"} style={{ display: 'flex', flex: 1, marginTop: 20, marginBottom: 20 }}>
