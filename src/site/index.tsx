@@ -13,6 +13,7 @@ import Sider from "antd/es/layout/Sider";
 import SiderUi from "../ui/layout/siderUi";
 import { Col, Flex, Image, Row, Typography } from "antd";
 import Link from "antd/es/typography/Link";
+import Pallet from "../ui/layout/colorsPalette";
 
 const QuemSomosView = lazy(() => import(`./quemSomos`));
 const NaoEncontradoView = lazy(() => import(`../ui/layout/naoEncontradoUi`));

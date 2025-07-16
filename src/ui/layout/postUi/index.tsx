@@ -70,6 +70,14 @@ const PostUi: React.FC = () => {
 
       if (post) {
         elements.push(
+          <Row justify={"center"} style={{
+            marginTop: 30
+          }}>
+            <div id="container-bd346bb6aa3254da62090d59214f97e8"></div>
+          </Row>
+        )
+
+        elements.push(
           <TitlePost key={Math.random().toString()} level={1} text={`${title}`} />
         )
 

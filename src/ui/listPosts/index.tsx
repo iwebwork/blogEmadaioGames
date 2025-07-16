@@ -56,7 +56,12 @@ const ListPostsUi: React.FC<IListPostsUi> = ({ posts, tipo, }) => {
       }}>
         <List
           header={
-            <BarraPesquisaUi searchInput={onSearchInput} />
+            <>
+              <BarraPesquisaUi searchInput={onSearchInput} />
+              <Row >
+                <div id="container-bd346bb6aa3254da62090d59214f97e8"></div>
+              </Row>
+            </>
           }
           pagination={{
             position, align
