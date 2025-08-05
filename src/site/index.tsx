@@ -123,9 +123,10 @@ const SiteView: React.FC = () => {
     <LayoutViewUi
       SiderChildrenRight={<SiderUi>
         <Row
-          style={{
-          }}
           justify="center"
+          style={{
+            marginRight: 30
+          }}
         >
           <Typography.Paragraph>
             <Typography.Title level={4}>
@@ -145,6 +146,13 @@ const SiteView: React.FC = () => {
 
             />
           </Link>
+        </Row>
+        <Row
+          style={{
+            marginRight: 30
+          }}
+        >
+          <div id="container-bd346bb6aa3254da62090d59214f97e8"></div>
         </Row>
       </SiderUi >}
     >
