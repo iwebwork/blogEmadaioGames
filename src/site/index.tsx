@@ -1,22 +1,18 @@
+import { Image, Row, Typography } from "antd";
+import Link from "antd/es/typography/Link";
 import React, { lazy, useState } from "react";
 import { Route, Routes } from "react-router";
-import hookApi from "../hooks/api";
-import { IPost } from "../hooks/api/props";
+import CadastroPostView from "../adm/cadastroPost";
+import hooksApi from "../hooks/api";
 import LayoutViewUi from "../ui/layout";
-import { fetchMenu } from "../ui/layout/menuUi/model";
+import MenuUi from "../ui/layout/menuUi";
 import { IMenu } from "../ui/layout/menuUi/props";
 import PostUi from "../ui/layout/postUi";
-import ListPostsUi from "../ui/listPosts";
-import CadastroPostView from "./cadastroPost";
-import { ISiteViewView } from "./props";
-import Sider from "antd/es/layout/Sider";
 import SiderUi from "../ui/layout/siderUi";
-import { Col, Flex, Image, Row, Typography } from "antd";
-import Link from "antd/es/typography/Link";
-import Pallet from "../ui/layout/colorsPalette";
 
-const QuemSomosView = lazy(() => import(`./quemSomos`));
+const QuemSomosView = lazy(() => import(`../adm/quemSomos`));
 const NaoEncontradoView = lazy(() => import(`../ui/layout/naoEncontradoUi`));
+const ListPostsView = lazy(() => import('./posts'))
 
 // const Sider: React.FC = () => {
 //   return (
@@ -30,68 +26,12 @@ const NaoEncontradoView = lazy(() => import(`../ui/layout/naoEncontradoUi`));
 //   )
 // }
 
-const PostsView: React.FC<ISiteViewView> = ({ tipo }) => {
-  const [posts, setPosts] = useState<IPost[]>([]);
-  const { post } = hookApi();
-  const [postsFilter, setPostsFilter] = useState<IPost[]>([])
-  const [isLoadPosts, setIsLoadPosts] = useState<boolean>(false);
-
-  const fetchPosts = async () => {
-    setIsLoadPosts(false);
-    const result = (await post({ url: `/api/posts/getTable`, body: {} }));
-
-    if (!result.isValid) {
-      setPosts([]);
-      setIsLoadPosts(false);
-      return;
-    }
-
-    setPosts(result.data as IPost[]);
-    setIsLoadPosts(true);
-  }
-
-  const filterPosts = (ptipoPostId: string) => {
-    const data = posts
-      .filter(s => s.tipoPostId === ptipoPostId);
-
-    if (process.env.NODE_ENV === 'production')
-      setPostsFilter(data.filter(s => s.liberado === 1))
-    else
-      setPostsFilter(data);
-  }
-
-  React.useEffect(() => {
-    fetchPosts();
-  }, [tipo]);
-
-  React.useEffect(() => {
-    if (!isLoadPosts)
-      return;
-
-    filterPosts(tipo);
-  }, [posts]);
-
-  React.useEffect(() => {
-    if (!isLoadPosts)
-      return;
-
-    setIsLoadPosts(true);
-  }, [postsFilter, isLoadPosts])
-
-  return <>
-    {isLoadPosts &&
-      <ListPostsUi posts={postsFilter} tipo={tipo} />
-    }
-  </>
-
-}
 
 const GetRoutesUrl: React.FC = () => {
   let data: any = [];
   const [menu, setMenu] = useState<IMenu[]>([]);
 
   const buscarMenu = async () => {
-    const data = await fetchMenu() || [];
     setMenu(data);
   }
 
@@ -105,7 +45,7 @@ const GetRoutesUrl: React.FC = () => {
         ? <CadastroPostView />
         : value.label === 'Quem Somos'
           ? <QuemSomosView />
-          : <PostsView tipo={value.tipoPostId} />
+          : <ListPostsView />
     } />)
   });
 
@@ -118,6 +58,26 @@ const GetRoutesUrl: React.FC = () => {
 
 //TODO: Pensar na forma que vamos listar os banners de anuncios
 const SiteView: React.FC = () => {
+  const { post } = hooksApi()
+  const [itensMenu, setItensMenu] = useState<IMenu[]>([])
+  const [isLoadMenu, setIsLoadMenu] = useState(false);
+
+  const fetchMenu = async () => {
+    const response = (await post({ url: `api/menu/getTable`, body: {} }));
+    setIsLoadMenu(true);
+    setItensMenu(response.data)
+  }
+
+  React.useEffect(() => {
+    if (!isLoadMenu)
+      fetchMenu();
+  }, [])
+
+  React.useEffect(() => {
+    if (!isLoadMenu)
+      setItensMenu([]);
+
+  }, [isLoadMenu])
 
   return (
     <LayoutViewUi
@@ -142,9 +102,7 @@ const SiteView: React.FC = () => {
               preview={false}
               style={{
                 width: '100%'
-              }}
-
-            />
+              }} />
           </Link>
         </Row>
         <Row
@@ -154,8 +112,8 @@ const SiteView: React.FC = () => {
         >
           <div id="container-bd346bb6aa3254da62090d59214f97e8"></div>
         </Row>
-      </SiderUi >}
-    >
+      </SiderUi>}
+      Menu={isLoadMenu && <MenuUi itens={itensMenu} />}>
       <GetRoutesUrl />
     </LayoutViewUi >
   )

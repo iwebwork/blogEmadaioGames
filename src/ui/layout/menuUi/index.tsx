@@ -7,32 +7,14 @@ import { URL_YOUTUBE } from "../../../constants";
 import Anuncio from "../../anuncio";
 import Pallet from "../colorsPalette";
 import { useWindowSize } from "../hooksUi";
-import { fetchMenu } from "./model";
 import { IMenu, ITheme, TMenuItem } from "./props";
 
-const MenuItens: React.FC<ITheme> = ({ theme, mode, backGroundColor, color }) => {
+const MenuItens: React.FC<ITheme> = ({ theme, mode, backGroundColor, color, itens }) => {
   const navigate = useNavigate();
-  const [menu, setMenu] = useState<IMenu[]>([]);
+  const [menu] = useState<IMenu[]>(itens);
 
-  const buscarMenu = async () => {
-    const data = await fetchMenu() || [];
-    setMenu(data);
-  }
-
-  React.useEffect(() => {
-    buscarMenu();
-  }, [])
-
-  React.useEffect(() => {
-
-  }, [menu]);
-
-  const filter = process.env.NODE_ENV === 'production'
-    ? menu.filter((data) => data.liberado === 1)
-    : menu;
-
-  const items: TMenuItem[] = filter.map((item) => {
-    const lblLabel = process.env.NODE_ENV === 'development' && item.liberado === 2
+  const items: TMenuItem[] = menu.map((item) => {
+    const lblLabel = item.liberado === 2
       ? item.label + ' - em revisão'
       : item.label;
 
@@ -77,7 +59,7 @@ const Logo = () => (
   </Anuncio>
 )
 
-const MenuPadrao: React.FC = () => {
+const MenuPadrao: React.FC<MenuUiProps> = ({ itens }) => {
   return (
     <Row align={'middle'} justify={"space-between"}
       style={{
@@ -95,6 +77,7 @@ const MenuPadrao: React.FC = () => {
           theme={"dark"}
           backGroundColor={Pallet.BackGround.principal}
           color={Pallet.Typography.principal}
+          itens={itens}
         />
       </Col>
       <Col span={1}>
@@ -103,7 +86,7 @@ const MenuPadrao: React.FC = () => {
   )
 }
 
-const MenuMobile: React.FC = () => {
+const MenuMobile: React.FC<MenuUiProps> = ({ itens }) => {
   const [placement] = useState<DrawerProps['placement']>('top');
   const [isOpenMenuModible, setIsOpenMenuModible] = useState<boolean>(false);
 
@@ -158,6 +141,7 @@ const MenuMobile: React.FC = () => {
               theme={"light"}
               backGroundColor={Pallet.BackGround.principal}
               color={Pallet.Typography.principal}
+              itens={itens}
             />
             <Row>
               <Anuncio>
@@ -187,7 +171,11 @@ const MenuMobile: React.FC = () => {
   )
 }
 
-const MenuUi: React.FC = () => {
+interface MenuUiProps {
+  itens: IMenu[]
+}
+
+const MenuUi: React.FC<MenuUiProps> = (props) => {
   const window = useWindowSize();
   const [isWindowDesktop, setIsWindowDesktop] = useState<boolean>(false);
 
@@ -197,9 +185,9 @@ const MenuUi: React.FC = () => {
 
   return (
     <>
-      {isWindowDesktop ?
-        <MenuPadrao /> :
-        <MenuMobile />
+      {isWindowDesktop
+        ? <MenuPadrao {...props} />
+        : <MenuMobile {...props} />
       }
     </>
   );

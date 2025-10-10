@@ -10,6 +10,7 @@ export interface ITheme {
   mode: MenuMode,
   backGroundColor?: string;
   color?: string;
+  itens: IMenu[]
 }
 
 export interface IMenu{

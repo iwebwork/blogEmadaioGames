@@ -8,10 +8,11 @@ import { ILayoutUi } from './props';
 import SiderLayout from './siderUi';
 import { contentStyle, footerStyle, layoutStyle, layoutStyleContent } from './styles';
 import { useWindowSize } from './hooksUi';
+import hooksApi from '../../hooks/api';
 
 const { Footer, Content } = Layout;
 
-const LayoutViewUi: React.FC<ILayoutUi> = ({ children, SiderChildrenLeft, SiderChildrenRight }) => {
+const LayoutViewUi: React.FC<ILayoutUi> = ({ children, SiderChildrenLeft, SiderChildrenRight, Menu }) => {
   const window = useWindowSize();
 
   return (
@@ -30,8 +31,8 @@ const LayoutViewUi: React.FC<ILayoutUi> = ({ children, SiderChildrenLeft, SiderC
       }}
     >
       <Layout style={layoutStyle}>
-        <MenuUi />
 
+        {Menu}
         <Layout style={layoutStyleContent}>
           <Layout style={contentStyle}>
             {children &&
