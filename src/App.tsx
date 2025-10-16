@@ -17,7 +17,7 @@ const App: React.FC = () => {
       return;
     }
 
-    setUrlIndex(`${response.data.url}?tipoPostId=${response.data.tipoPostId}`)
+    setUrlIndex(`${response.data.url}`)
   }
 
   React.useEffect(() => {

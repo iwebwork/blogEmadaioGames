@@ -51,6 +51,7 @@ const ListPostsUi: React.FC<IListPostsUi> = () => {
   }
 
   React.useEffect(() => {
+
     if (listOriginalPosts.length > 0)
       return;
 
@@ -60,12 +61,13 @@ const ListPostsUi: React.FC<IListPostsUi> = () => {
   React.useEffect(() => {
     setIsLoading(true);
 
-    if (!listOriginalPosts) {
+    if (listOriginalPosts.length == 0) {
       setListPosts([]);
-      return;
+    }
+    else {
+      setListPosts(listOriginalPosts);
     }
 
-    setListPosts(listOriginalPosts);
     setIsLoading(false);
   }, [listOriginalPosts])
 
