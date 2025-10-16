@@ -31,7 +31,6 @@ export const AuthProvider: React.FC<PropsWithChildren> = ({ children }) => {
   }
 
   React.useEffect(() => {
-    console.log("logado", logado)
     if (logado) {
       setUsuario(TokenService.getUser() as IUser<IUsuario>);
       window.location.href = '/';

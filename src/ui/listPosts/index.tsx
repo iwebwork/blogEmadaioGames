@@ -6,25 +6,30 @@ import ItemPostUi from "../itemPost";
 import BarraPesquisaUi from "../layout/barraPesquisaUi";
 import Pallet from "../layout/colorsPalette";
 import { IListPostsUi, PaginationAlign, PaginationPosition } from './props';
+import { useSearchParams } from "react-router";
+import hooksApi from "../../hooks/api";
 
 const { Text } = Typography;
-const timerMS = 2000;
 
-const ListPostsUi: React.FC<IListPostsUi> = ({ posts, tipo, }) => {
+const ListPostsUi: React.FC<IListPostsUi> = () => {
   const [position] = useState<PaginationPosition>('bottom');
   const [align] = useState<PaginationAlign>('center');
+  const [listOriginalPosts, setListOriginalPosts] = useState<IPost[]>([]);
   const [listPosts, setListPosts] = useState<IPost[]>([]);
   const [loading, setIsLoading] = useState(true);
+  const [searchParams] = useSearchParams();
+  const { post } = hooksApi()
 
   const onSearchInput: SearchProps['onSearch'] = (value, _e, info) => {
     setIsLoading(true);
+    setListPosts(listOriginalPosts);
 
     if (!value) {
-      setListPosts(posts);
+      setIsLoading(false);
       return;
     }
 
-    const data = [...posts].filter((elemento, indice, arrayOriginal) => {
+    const data = [...listOriginalPosts].filter((elemento, indice, arrayOriginal) => {
       const position = elemento.name.toUpperCase().indexOf(value.toUpperCase());
       if (!elemento.corpo.toUpperCase().includes(value.toUpperCase(), position))
         return;
@@ -36,17 +41,33 @@ const ListPostsUi: React.FC<IListPostsUi> = ({ posts, tipo, }) => {
     setIsLoading(false);
   }
 
-  React.useEffect(() => {
-    setTimeout(() => {
-      setListPosts(posts);
-    }, timerMS);
-  }, [posts]);
+  const buscaPosts = async () => {
+    setIsLoading(true);
+    const request = { tipoPostId: searchParams.get('tipoPostId') };
+
+    const result = (await post({ url: `/api/posts/getTable`, body: request }));
+    setListOriginalPosts(result.data);
+    setIsLoading(false);
+  }
 
   React.useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, timerMS)
-  }, [listPosts])
+    if (listOriginalPosts.length > 0)
+      return;
+
+    buscaPosts();
+  }, []);
+
+  React.useEffect(() => {
+    setIsLoading(true);
+
+    if (!listOriginalPosts) {
+      setListPosts([]);
+      return;
+    }
+
+    setListPosts(listOriginalPosts);
+    setIsLoading(false);
+  }, [listOriginalPosts])
 
   return (
     <>
@@ -92,7 +113,7 @@ const ListPostsUi: React.FC<IListPostsUi> = ({ posts, tipo, }) => {
                   backgroundColor: backImagem
                 }} />
                 <Col>
-                  <ItemPostUi id={item.id} tipo={tipo} name={name} title={title} date={item.date} />
+                  <ItemPostUi id={item.id} name={name} title={title} date={item.date} />
                 </Col>
               </Row>
             </List.Item>)

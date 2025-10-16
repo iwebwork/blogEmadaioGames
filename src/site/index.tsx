@@ -1,18 +1,17 @@
 import { Image, Row, Typography } from "antd";
 import Link from "antd/es/typography/Link";
-import React, { lazy, useState } from "react";
+import React, { Suspense, useState } from "react";
 import { Route, Routes } from "react-router";
-import CadastroPostView from "../adm/cadastroPost";
 import hooksApi from "../hooks/api";
 import LayoutViewUi from "../ui/layout";
 import MenuUi from "../ui/layout/menuUi";
 import { IMenu } from "../ui/layout/menuUi/props";
 import PostUi from "../ui/layout/postUi";
 import SiderUi from "../ui/layout/siderUi";
+import ListPostsUi from "../ui/listPosts";
+import NaoEncontradoUi from "../ui/layout/naoEncontradoUi";
 
-const QuemSomosView = lazy(() => import(`../adm/quemSomos`));
-const NaoEncontradoView = lazy(() => import(`../ui/layout/naoEncontradoUi`));
-const ListPostsView = lazy(() => import('./posts'))
+// const QuemSomosView = lazy(() => import(`../adm/quemSomos`));
 
 // const Sider: React.FC = () => {
 //   return (
@@ -26,39 +25,18 @@ const ListPostsView = lazy(() => import('./posts'))
 //   )
 // }
 
-
 const GetRoutesUrl: React.FC = () => {
-  let data: any = [];
-  const [menu, setMenu] = useState<IMenu[]>([]);
-
-  const buscarMenu = async () => {
-    setMenu(data);
-  }
-
-  React.useEffect(() => {
-    buscarMenu();
-  }, [])
-
-  menu.map((value, index) => {
-    data.push(<Route key={index} index={value.index} path={value.path} element={
-      value.label === 'Cadastro de Post'
-        ? <CadastroPostView />
-        : value.label === 'Quem Somos'
-          ? <QuemSomosView />
-          : <ListPostsView />
-    } />)
-  });
 
   return <Routes>
-    {data}
+    <Route path='/blog' element={<ListPostsUi />} />
+    <Route path='*' element={<NaoEncontradoUi />} />
     <Route path='/post/:id' element={<PostUi />} />
-    <Route path='*' element={<NaoEncontradoView />} />
   </Routes>
 }
 
 //TODO: Pensar na forma que vamos listar os banners de anuncios
 const SiteView: React.FC = () => {
-  const { post } = hooksApi()
+  const { post } = hooksApi();
   const [itensMenu, setItensMenu] = useState<IMenu[]>([])
   const [isLoadMenu, setIsLoadMenu] = useState(false);
 
