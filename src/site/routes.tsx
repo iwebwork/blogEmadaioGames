@@ -1,13 +1,13 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router"
+import { Route, Routes } from "react-router";
 import SiteView from ".";
-import TokenService from "../contexts/auth/token";
-import { useAuth } from "../contexts/auth/auth";
+import QuemSomosView from "./quemSomos";
 
 const SiteRoutes: React.FC = () => {
 
   return (
     <Routes>
       <Route index path='*' element={<SiteView />} />
+      <Route index path='/quemSomos' element={<QuemSomosView />} />
     </Routes>
   )
 }

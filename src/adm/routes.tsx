@@ -8,6 +8,7 @@ const AdmRoutes: React.FC = () => {
 
   return (
     <Routes>
+      <Route path='*' element={<Navigate to={'login'} />} />
       <Route index path='/cadastroPost' element={<CadastroPostView />} />
       <Route path='/login' element={<LoginView />} />
     </Routes>

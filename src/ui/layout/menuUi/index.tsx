@@ -25,7 +25,7 @@ const MenuItens: React.FC<ITheme> = ({ theme, mode, backGroundColor, color, iten
         color: color
       },
       onClick: () => {
-        navigate(item.url); // Buscar a url
+        navigate(`${item.url}?tipoPostId=${item.tipoPostId}`); // Buscar a url
         window.location.reload();
       }
     } as TMenuItem

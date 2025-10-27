@@ -1,28 +1,66 @@
-import { Button, DatePicker, Flex, Form, FormProps, Input, Select, Space, Typography } from 'antd';
+import { Button, DatePicker, Flex, Form, FormProps, Input, Select, SelectProps, Space, Typography } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
-import dayjs from 'dayjs';
-import React from "react";
+import dayjs, { OptionType } from 'dayjs';
+import React, { useState } from "react";
 import { getDataAtual } from '../../hooks/comuns';
 import UploadImage from '../../ui/uploadImage';
 import { FieldType } from './props';
+import hooksApi from '../../hooks/api';
+import MessageComponent from '../../ui/message';
+import { useMessage } from '../../contexts/messages/messages';
 
 const { Title } = Typography;
 
 const CadastroPostView: React.FC = () => {
+  const { post } = hooksApi();
+  const messageContext = useMessage();
 
   const [form] = Form.useForm<FieldType>();
   const values = Form.useWatch('cadastroPost', form);
+  const [optionsTiposPost, setOptionsTiposPost] = useState<SelectProps[]>([])
 
-  const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
-    console.log('Success:', values);
+  const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
+    messageContext.clearMessages();
+    const date = new Date(values.date);
+
+    const response = (await post({
+      url: `api/posts/insert`, body: {
+        name: values.name,
+        title: values.title,
+        date: date,
+        image: values.image,
+        tipoPostId: values.tipo,
+        corpo: values.corpo,
+        liberado: values.liberado || 1,
+      }
+    }));
+
+    messageContext.setMessages(response.notifications)
   };
 
   const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
-    console.log('Failed:', errorInfo);
+    messageContext.clearMessages();
+    messageContext.setMessages([{
+      message: "Erro ao cadastrar post",
+      tipo: 2,
+      tipoNome: "Erro"
+    }]);
   };
+
+  const loadTiposPost = async () => {
+    const response = await post({ url: `api/tipoPost/getSelect`, body: {} })
+    if (response.isValid) {
+      setOptionsTiposPost(response.data)
+    }
+  }
+
+  React.useEffect(() => {
+    loadTiposPost();
+  }, [])
 
   return (
     <>
+      <MessageComponent />
       <Flex justify="center">
         <Title>
           Cadastro de post
@@ -44,8 +82,6 @@ const CadastroPostView: React.FC = () => {
             date: dayjs(getDataAtual(), "DD/MM/YYYY"),
             image: "",
             corpo: "Corpo Teste teste",
-            tipo: "1",
-            liberado: "2"
           }}
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
@@ -90,10 +126,7 @@ const CadastroPostView: React.FC = () => {
             rules={[{ required: true, message: "Campo obrigatório e sem espaços!" }]}
           >
             <Select
-              options={[
-                { value: '1', label: 'Noticias' },
-                { value: '2', label: 'Review' },
-              ]}
+              options={optionsTiposPost}
             />
           </Form.Item>
 
@@ -104,8 +137,8 @@ const CadastroPostView: React.FC = () => {
           >
             <Select
               options={[
-                { value: '1', label: 'Sim' },
-                { value: '2', label: 'Não' },
+                { value: 1, label: 'Sim' },
+                { value: 2, label: 'Não' },
               ]}
             />
           </Form.Item>

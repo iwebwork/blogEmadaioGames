@@ -1,6 +1,6 @@
 import React, { PropsWithChildren, useState } from "react";
-import MessageContext from ".";
 import { IMessage } from "./props";
+import MessageContext from ".";
 
 export const MessageProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [messages, setMessages] = useState<IMessage[]>([]);

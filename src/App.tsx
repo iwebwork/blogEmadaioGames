@@ -5,6 +5,7 @@ import SiteRoutes from './site/routes';
 import { FormProvider } from 'antd/es/form/context';
 import { AuthProvider } from './contexts/auth/provider';
 import hooksApi from './hooks/api';
+import { MessageProvider } from './contexts/messages/provider';
 
 const App: React.FC = () => {
   const { post } = hooksApi();
@@ -30,17 +31,19 @@ const App: React.FC = () => {
   return (
     <React.StrictMode>
       <BrowserRouter>
-        <FormProvider>
-          <AuthProvider>
-            <Routes>
-              {urlIndex !== "" &&
-                <Route index path='*' element={<Navigate to={urlIndex} />} />
-              }
-              <Route path='/site/*' element={<SiteRoutes />} />
-              <Route path='/adm/*' element={<AdmRoutes />} />
-            </Routes>
-          </AuthProvider>
-        </FormProvider>
+        <MessageProvider>
+          <FormProvider>
+            <AuthProvider>
+              <Routes>
+                {urlIndex !== "" &&
+                  <Route index path='*' element={<Navigate to={urlIndex} />} />
+                }
+                <Route path='/site/*' element={<SiteRoutes />} />
+                <Route path='/adm/*' element={<AdmRoutes />} />
+              </Routes>
+            </AuthProvider>
+          </FormProvider>
+        </MessageProvider>
       </BrowserRouter >
     </React.StrictMode>
   )

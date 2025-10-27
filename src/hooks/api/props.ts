@@ -27,6 +27,7 @@ export interface IRequest {
 
 export interface IResponse {
   data: any,
+  notifications: any,
   isValid: boolean;
   isAutenticate: boolean;
 }
