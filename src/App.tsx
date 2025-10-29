@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import { FormProvider } from 'antd/es/form/context';
+import React from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
 import AdmRoutes from './adm/routes';
-import SiteRoutes from './site/routes';
-import { FormProvider } from 'antd/es/form/context';
 import { AuthProvider } from './contexts/auth/provider';
-import hooksApi from './hooks/api';
 import { MessageProvider } from './contexts/messages/provider';
+import SiteRoutes from './site/routes';
 
 const App: React.FC = () => {
 
@@ -17,8 +16,9 @@ const App: React.FC = () => {
           <FormProvider>
             <AuthProvider>
               <Routes>
-                <Route path='/site/*' element={<SiteRoutes />} />
+                <Route index path='/site/*' element={<SiteRoutes />} />
                 <Route path='/adm/*' element={<AdmRoutes />} />
+                <Route path='*' element={<Navigate to='/site' />} />
               </Routes>
             </AuthProvider>
           </FormProvider>
