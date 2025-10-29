@@ -34,7 +34,7 @@ const Anuncio: React.FC<PropsWithChildren> = ({ children }) => {
   }
 
   return (
-    <div onClick={abrirPupUnder}>
+    <div key={Math.random()} onClick={abrirPupUnder}>
       {children}
       <a ref={botaoAnuncio}
         rel="noreferrer"

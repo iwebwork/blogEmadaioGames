@@ -73,7 +73,7 @@ const PostUi: React.FC = () => {
           <Row justify={"center"} style={{
             marginTop: 30
           }}>
-            <div id="container-bd346bb6aa3254da62090d59214f97e8"></div>
+            <div key={Math.random()} id="container-bd346bb6aa3254da62090d59214f97e8"></div>
           </Row>
         )
 
@@ -117,6 +117,7 @@ const PostUi: React.FC = () => {
 
     return (
       <div
+        key={Math.random()}
         style={{
           paddingRight: 10
         }}

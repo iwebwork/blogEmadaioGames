@@ -16,7 +16,7 @@ const ListPostsUi: React.FC<IListPostsUi> = () => {
   const [align] = useState<PaginationAlign>('center');
   const [listOriginalPosts, setListOriginalPosts] = useState<IPost[]>([]);
   const [listPosts, setListPosts] = useState<IPost[]>([]);
-  const [loading, setIsLoading] = useState(true);
+  const [loading, setIsLoading] = useState(false);
   const [searchParams] = useSearchParams();
   const { post } = hooksApi()
 
@@ -38,38 +38,38 @@ const ListPostsUi: React.FC<IListPostsUi> = () => {
     });
 
     setListPosts(data);
-    setIsLoading(false);
   }
 
   const buscaPosts = async () => {
-    setIsLoading(true);
     const request = { tipoPostId: searchParams.get('tipoPostId') };
 
     const result = (await post({ url: `/api/posts/getTable`, body: request }));
     setListOriginalPosts(result.data);
-    setIsLoading(false);
   }
 
   React.useEffect(() => {
-
-    if (listOriginalPosts.length > 0)
-      return;
-
+    setIsLoading(true);
     buscaPosts();
+    return;
   }, []);
 
   React.useEffect(() => {
-    setIsLoading(true);
-
-    if (listOriginalPosts.length == 0) {
+    if (listOriginalPosts.length === 0) {
       setListPosts([]);
     }
     else {
       setListPosts(listOriginalPosts);
     }
 
-    setIsLoading(false);
+    return;
   }, [listOriginalPosts])
+
+  React.useEffect(() => {
+    if (listPosts.length === 0)
+      return;
+
+    setIsLoading(false);
+  }, [listPosts])
 
   return (
     <>
@@ -82,7 +82,7 @@ const ListPostsUi: React.FC<IListPostsUi> = () => {
             <>
               <BarraPesquisaUi searchInput={onSearchInput} />
               <Row >
-                <div id="container-bd346bb6aa3254da62090d59214f97e8"></div>
+                <div key={Math.random()} id="container-bd346bb6aa3254da62090d59214f97e8"></div>
               </Row>
             </>
           }
@@ -104,6 +104,9 @@ const ListPostsUi: React.FC<IListPostsUi> = () => {
 
             if (item.liberado === 2) {
               title += ' => pendente'
+            }
+            else {
+
             }
 
             return (<List.Item>

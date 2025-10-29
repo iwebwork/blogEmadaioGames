@@ -25,7 +25,12 @@ const MenuItens: React.FC<ITheme> = ({ theme, mode, backGroundColor, color, iten
         color: color
       },
       onClick: () => {
-        navigate(`${item.url}?tipoPostId=${item.tipoPostId}`); // Buscar a url
+        var url = item.url;
+
+        if (url.includes('blog'))
+          url += `?tipoPostId=${item.tipoPostId}`;
+
+        navigate(url); // Buscar a url
         window.location.reload();
       }
     } as TMenuItem
@@ -134,7 +139,7 @@ const MenuMobile: React.FC<MenuUiProps> = ({ itens }) => {
           color: Pallet.Typography.principal
         }}
       >
-        <div onClick={onClose}
+        <div key={Math.random()} onClick={onClose}
         >
           <Flex>
             <MenuItens

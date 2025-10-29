@@ -8,25 +8,7 @@ import hooksApi from './hooks/api';
 import { MessageProvider } from './contexts/messages/provider';
 
 const App: React.FC = () => {
-  const { post } = hooksApi();
-  const [urlIndex, setUrlIndex] = useState<string>("");
 
-  const goToIndex = async () => {
-    const response = (await post({ url: `api/menu/getMenuIndex`, body: {} }));
-
-    if (!response.isValid) {
-      return;
-    }
-
-    setUrlIndex(`${response.data.url}`)
-  }
-
-  React.useEffect(() => {
-    goToIndex();
-  }, []);
-
-  React.useEffect(() => {
-  }, [urlIndex]);
 
   return (
     <React.StrictMode>
@@ -35,9 +17,6 @@ const App: React.FC = () => {
           <FormProvider>
             <AuthProvider>
               <Routes>
-                {urlIndex !== "" &&
-                  <Route index path='*' element={<Navigate to={urlIndex} />} />
-                }
                 <Route path='/site/*' element={<SiteRoutes />} />
                 <Route path='/adm/*' element={<AdmRoutes />} />
               </Routes>

@@ -10,6 +10,7 @@ import PostUi from "../ui/layout/postUi";
 import SiderUi from "../ui/layout/siderUi";
 import ListPostsUi from "../ui/listPosts";
 import NaoEncontradoUi from "../ui/layout/naoEncontradoUi";
+import QuemSomosView from "./quemSomos";
 
 // const QuemSomosView = lazy(() => import(`../adm/quemSomos`));
 
@@ -28,9 +29,10 @@ import NaoEncontradoUi from "../ui/layout/naoEncontradoUi";
 const GetRoutesUrl: React.FC = () => {
 
   return <Routes>
-    <Route path='/blog' element={<ListPostsUi />} />
     <Route path='*' element={<NaoEncontradoUi />} />
+    <Route path='/blog' element={<ListPostsUi />} />
     <Route path='/post/:id' element={<PostUi />} />
+    <Route path='/quemSomos' element={<QuemSomosView />} />
   </Routes>
 }
 
@@ -88,7 +90,7 @@ const SiteView: React.FC = () => {
             marginRight: 30
           }}
         >
-          <div id="container-bd346bb6aa3254da62090d59214f97e8"></div>
+          <div key={Math.random()} id="container-bd346bb6aa3254da62090d59214f97e8"></div>
         </Row>
       </SiderUi>}
       Menu={isLoadMenu && <MenuUi itens={itensMenu} />}>

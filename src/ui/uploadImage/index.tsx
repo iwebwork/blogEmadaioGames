@@ -23,7 +23,7 @@ const UploadImage: React.FC<IUploadImage> = ({ name, maxCount }) => {
   const uploadButton = (
     <button style={{ border: 0, background: 'none' }} type="button">
       <PlusOutlined />
-      <div style={{ marginTop: 8 }}>Upload</div>
+      <div key={Math.random()} style={{ marginTop: 8 }}>Upload</div>
     </button>
   );
 
