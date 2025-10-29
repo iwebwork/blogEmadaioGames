@@ -1,32 +1,48 @@
 import { Button, Col, Form, Input, Row, Space } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
-import React from 'react';
+import React, { useState } from 'react';
 import { ILoginRequestViewModel } from '../../contexts/auth/props';
 import { useAuth } from '../../contexts/auth/auth';
 import { useMessage } from '../../contexts/messages/messages';
 import { useNavigate } from 'react-router';
 import FormUi from '../../ui/form';
 import InputUi from '../../ui/input';
+import hooksApi from '../../hooks/api';
 
 const FormComponent = () => {
   const [form] = Form.useForm<ILoginRequestViewModel>();
   const context = useAuth();
   const navigate = useNavigate();
+  const { post } = hooksApi();
+
+  const [urlIndex, setUrlIndex] = useState<string>("");
+
+  const getUrlIndex = async () => {
+    const response = (await post({ url: `api/menu/getMenuIndex`, body: {} }));
+
+    if (!response.isValid) {
+      return;
+    }
+
+    setUrlIndex(`${response.data.url}`)
+  }
 
   const onFinish = async () => {
     const values = form.getFieldsValue();
     await context.login(values);
 
-    context.isLogado && navigate('/site');
+    navigate(urlIndex);
   }
 
   React.useEffect(() => {
+    getUrlIndex();
     const request: ILoginRequestViewModel = {
       "Email": "teste@gmail.com",
       "Password": "@Teste123"
     }
 
-    form.setFieldsValue(request)
+    form.setFieldsValue(request);
+    return;
   }, []);
 
   return (<>

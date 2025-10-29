@@ -24,7 +24,6 @@ export const AuthProvider: React.FC<PropsWithChildren> = ({ children }) => {
     else {
       setLogado(false);
       TokenService.removeUser();
-      console.log('AuthProvider login', 'erro ao realizar o login');
     }
 
     return result.data;
@@ -33,7 +32,6 @@ export const AuthProvider: React.FC<PropsWithChildren> = ({ children }) => {
   React.useEffect(() => {
     if (logado) {
       setUsuario(TokenService.getUser() as IUser<IUsuario>);
-      window.location.href = '/';
     }
   }, [logado])
 
