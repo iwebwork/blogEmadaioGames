@@ -94,7 +94,7 @@ const SiteView: React.FC = () => {
         </Row>
       </SiderUi>}
       Menu={isLoadMenu && <MenuUi itens={itensMenu} />}>
-      <GetRoutesUrl />
+      <GetRoutesUrl key={Math.random()} />
     </LayoutViewUi >
   )
 }
